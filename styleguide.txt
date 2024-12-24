@@ -1,0 +1,36 @@
+# Color:
+    - Header background: #244d3b
+    - Header title color: #ffffff
+    - Header Sign in color: #96e7c5
+    - Search background: #6ec5aa
+    - Search color: #96e7c5
+    - About us background: #6ec5aa
+    - About us title color: #123022
+    - About us text color: #244d3b
+    - Categories text: #244d3b
+    - Products text: #244d3b
+    - Footer background: #244d3b
+    - Footer text color: #96e7c5
+
+# Font-family:
+    - Header title: "Puppybellies" 
+        Add this to the css code:
+        @font-face {
+        font-family: "Puppybellies";
+        src: url(Puppybellies-JyRM.ttf) format("truetype");
+        }
+    - Everything else: "Comic Neue"
+        Add this to the css code:
+        @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap");
+
+# Font-size:
+    - Header title: 40px
+    - Header login text: 10px
+    - Search placeholder: 10px
+    - Search input text: 12px
+    - About us title: 24px
+    - About us text: 15px
+    - Categories text: 20px
+    - Product name + price: 15px
+    - Product description: 12px
+    - Footer text: 15px
