@@ -57,7 +57,7 @@ $cat = getCatogery();
 
 
         <a href="./register.php"><i>Register here</i></a>
-        <a href="./signin.php"><b>already have an account ↗</b></a>
+        <a href="./signin.php"><b>Already have an account ↗</b></a>
 
         <br><br>
         <nav><a href="index.php"><i>HOME</i></a></nav>

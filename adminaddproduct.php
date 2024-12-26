@@ -27,7 +27,7 @@ if (isset($_POST['formSubmit'])) {
             $errors[] = "URL is not valid";
         }
         if (!isset($_POST['category'])) {
-            $errors[] = "product category is required ";
+            $errors[] = "Product category is required ";
         } else {
             $cat =  $_POST['category'];
         }

@@ -97,7 +97,7 @@ print "</pre>";
             <?php endif; ?>
 
 
-            <label for="mail">E-mail adress*:</label>
+            <label for="mail">E-mail address*:</label>
             <input type="email" id="mail" name="mail" size="28" placeholder="Enter valid mail ">
 
             <label for="inputPassword" class="form-label">Password*</label>

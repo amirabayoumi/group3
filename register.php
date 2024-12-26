@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
 
 
     if (!isset($_POST['mail'])) {
-        $errors[] = "email address  is required.";
+        $errors[] = "Email address  is required.";
     } else {
         $mail = $_POST['mail'];
 
@@ -99,7 +99,7 @@ if (isset($_POST['submit'])) {
     }
 
     if (strlen($_POST['username']) < 1) {
-        $errors[] = "username is required.";
+        $errors[] = "Username is required.";
     } else {
         if (strlen($_POST['username']) < 5) {
             $errors[] = "username is very short.";
@@ -122,7 +122,7 @@ if (isset($_POST['submit'])) {
         $member = @$_POST['member'];
     }
     if (!isset($_POST['policy'])) {
-        $errors[] = "agreement of policy is required.";
+        $errors[] = "Agreement of policy is required.";
     } else {
         $policy = $_POST['policy'];
     }
@@ -175,7 +175,7 @@ print "</pre>";
     </header>
     <main>
         <form style="background-color: #8598b4c5;" action="./register.php" method="post">
-            <h1>Please fill all required section </h1>
+            <h1>Please fill all required sections </h1>
             <?php if (count($errors)): ?>
                 <div style="background-color: #faec6c; border-radius:20px ;">
                     <ul>
@@ -190,12 +190,12 @@ print "</pre>";
             <label for="firstname">First name*</label>
             <input type="text" id="firstname" name="firstname" size="28" placeholder="Write your first name">
             <label for="lastname">Last name*</label>
-            <input type="text" id="lastname" name="lastname" size="28" placeholder="write your last name">
+            <input type="text" id="lastname" name="lastname" size="28" placeholder="Write your last name">
 
 
             <label for="country">Country</label>
             <select id="country" name="country" class="form-control">
-                <option value="select">select</option>
+                <option value="Select">Select</option>
                 <option value="Afghanistan">Afghanistan</option>
                 <option value="Åland Islands">Åland Islands</option>
                 <option value="Albania">Albania</option>
@@ -432,7 +432,7 @@ print "</pre>";
                 <option value="Uzbekistan">Uzbekistan</option>
                 <option value="Vanuatu">Vanuatu</option>
                 <option value="Venezuela">Venezuela</option>
-                <option value="Viet Nam">Viet Nam</option>
+                <option value="Vietnam">Vietnam</option>
                 <option value="Virgin Islands, British">Virgin Islands, British</option>
                 <option value="Virgin Islands, U.S.">Virgin Islands, U.S.</option>
                 <option value="Wallis and Futuna">Wallis and Futuna</option>
@@ -451,12 +451,12 @@ print "</pre>";
                 <option name="gender" id="gender" value="x">x</option>
             </select>
             <label>Membership type</label>
-            <input type="radio" id="member" name="member" value="standrad" checked=""> <label for="standrad">Standrad</label>
+            <input type="radio" id="member" name="member" value="standard" checked=""> <label for="standard">Standard</label>
             <input type="radio" id="member" name="member" value="student"> <label for="student">Student</label>
 
 
             <br>
-            <label for="mail">E-mail adress*:</label>
+            <label for="mail">E-mail address*:</label>
             <input type="email" id="mail" name="mail" size="28" placeholder="Enter valid mail ">
             <br> <label for="username">Username*</label>
             <input type="text" id="username" name="username" size="28" placeholder="Enter your preference username ">
@@ -466,7 +466,7 @@ print "</pre>";
             <label for="inputPassword2" class="form-label"> Confirm Password*</label>
             <input type="password" id="inputPassword2" name="inputPassword2">
             <div id="passwordHelpBlock" class="form-text">
-                Your password must be 8-20 characters long, contain alt least 1 letters and 1 numbers and 1 special characters, and must not contain spaces, or emoji.
+                Your password must be 8-20 characters long, contain at least 1 letter and 1 number and 1 special character, and must not contain spaces, or emoji.
             </div>
 
             <hr>

@@ -12,7 +12,7 @@ require("./header.php")
     <form action="index.php" method="post">
 
 
-        <input style='width:400px' type="text" id='searchname' name='searchname' placeholder="search by product ">
+        <input style='width:400px' type="text" id='searchname' name='searchname' placeholder="Search by product ">
         <button type="submit" id='search' name="search" class="btn btn-primary"><i class="fa fa-search"> Search</i></button>
     </form>
     <hr>
