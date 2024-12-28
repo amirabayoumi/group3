@@ -1,11 +1,15 @@
 <?php
-require("./function.inc.php");
-requiredLoggedOutAdmin();
-
-
+$_SERVER["admin"] = true;
+include_once "../includes/css_js.inc.php";
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
+require("../function.inc.php");
+requiredLoggedOutAdmin();
+
+
+
+
 
 // $userList = getUser();
 
@@ -83,7 +87,7 @@ if (isset($_POST['submit'])) {
 
     </header>
     <main>
-        <form style="background-color: #8598b4c5;" action="./admin.php" method="post">
+        <form style="background-color: #8598b4c5;" action="./index.php" method="post">
             <h1> Admin Page </h1>
             <!-- <?php if (count($errors)): ?>
                 <div style="background-color: #faec6c; border-radius:20px ;">

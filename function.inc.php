@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 error_reporting(-1);
 ini_set('error_reporting', E_ALL);
 
-//-------------------------------------DB------------------------------------------//
+//-------------------------------------DB connection------------------------------------------//
 function connectToDB()
 {
     // CONNECTIE to db
@@ -23,9 +23,11 @@ function connectToDB()
     $db->setAttribute(PDO::ATTR_EMULATE_PREPARES, FALSE);
     return $db;
 }
+//*********************************************************************/
+//-------------------------USER/clients Functions -------------------
+//*********************************************************************/
 
-
-
+//------------------------- 1- get all user list for CRUD --------------
 
 function getUser()
 {
@@ -35,6 +37,7 @@ function getUser()
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+//------------------------ 2- add new user via register form page ------------
 
 function addUser(String $firstname, String $lastname, String $country,  String $gender, String $member, String $mail, String $username, String $password): bool|int
 {
@@ -53,7 +56,7 @@ function addUser(String $firstname, String $lastname, String $country,  String $
     ]);
     return $db->lastInsertId();
 }
-
+//------------------ 3- validation for mail if this user mail is exist before-----
 function isMailExist(String $email): bool
 {
     $sql = "SELECT Count(*) FROM user WHERE mail=:mail";
@@ -66,7 +69,7 @@ function isMailExist(String $email): bool
     return  (bool)$stmt->fetchColumn();
 }
 
-
+//------------ 4- get user wishlist or his winkel cart -------------
 function getWishlistById($id)
 {
     $sql = 'select * from product left join wishlist 
@@ -76,7 +79,10 @@ on product_id = product.id left join user on user_id = user.id where user.id =:i
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-//----------------------- check mail and password 
+//**********************************************/
+// --------------- Sign in page ---------------/
+//**********************************************/
+//----------------------- 1- return user id by filter mail and password in user table 
 
 function isValidLogin(String $mail, String $pass): bool|int
 {
@@ -89,8 +95,19 @@ function isValidLogin(String $mail, String $pass): bool|int
     ]);
     return $stmt->fetchColumn();
 }
+//---------------- if sign in is true , user session start by his id 
+function setLogin($uid = false)
+{
+    $_SESSION['loggedin'] = time() + 3600;
 
-// ------------------------- check admin name and key 
+    if ($uid) {
+        $_SESSION['uid'] = $uid;
+    }
+}
+//**********************************************/
+// --------------- Admin page ---------------/
+//**********************************************/
+// ------------------------- check admin name and  permission key --------
 function isValidLoginAdmin(String $adminName, String $pass): bool|int
 {
     $sql = "SELECT id FROM admin WHERE name=:name AND pass=:pass;";
@@ -102,18 +119,7 @@ function isValidLoginAdmin(String $adminName, String $pass): bool|int
     ]);
     return $stmt->fetchColumn();
 }
-//---------------------------------Session log-in/out---------------------------------------------//
-
-
-//------------------------- session start user and admin 
-function setLogin($uid = false)
-{
-    $_SESSION['loggedin'] = time() + 3600;
-
-    if ($uid) {
-        $_SESSION['uid'] = $uid;
-    }
-}
+// -------------- if permission key is true , Admin session start Admin mode
 function setLoginAdmin($uid = false)
 {
     $_SESSION['loggedinAdmin'] = time() + 3600;
@@ -124,10 +130,12 @@ function setLoginAdmin($uid = false)
 }
 
 
-//--------------------  check log in admin and user 
-//*****************************************************/
-// ---------------- need to fix!!!!!!
-//*****************************************************/
+
+
+//********************************************************************************************************/
+//--------------------  check sessions for admin and user 
+//--------------- those function is used to navigate user and admin to right page, if they are log in before, they don't have to log in again if the the session still open 
+//********************************************************************************************************/
 function isLoggedIn(): bool
 {
     session_start();
@@ -160,7 +168,6 @@ function isLoggedInAdmin(): bool
     return $loggedin;
 }
 
-//------------------------------- log in admin and user 
 function requiredLoggedIn()
 {
     if (!isLoggedIn()) {
@@ -176,7 +183,7 @@ function requiredLoggedInAdmin()
         exit;
     }
 }
-//------------------------------------------logout user and admin 
+
 function requiredLoggedOut()
 {
     if (isLoggedIn()) {
@@ -193,24 +200,23 @@ function requiredLoggedOutAdmin()
 }
 
 
-//------------------------------- product ------------------------
+//********************************************************************************************************/
+//------------------------------- product by OG tags ------------------------
+//********************************************************************************************************/
 
 
+//----- to get all product for main page -----------
 
 function getItems()
 {
     $sql = "select * from product;";
-
-
-
-
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 
-
+// ---- search by product title ------------
 function getItemsBySearch(String $search)
 {
     $sql = "select* from product where ogtitle like'%$search%';";
@@ -218,8 +224,7 @@ function getItemsBySearch(String $search)
     $stmt->execute([]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-
-
+//----- to get all category in main page -----------
 function getCatogery()
 {
     $sql = "select* from catogery;";
@@ -228,7 +233,7 @@ function getCatogery()
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
+// ---- filter product by category  ------------
 function getItemsByCat(int $id)
 {
     $sql = "select * from product left join catogery
