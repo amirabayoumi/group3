@@ -50,17 +50,13 @@ $cat = getCatogery();
 
 <body>
     <header>
-
-
+        <img src="/images/Pet paradise.png" alt="logo">
         <h1>Pet Paradise</h1>
-        <p><b>Purr-fect Supplies for Your Furry Friends!<br></p>
-
-
-        <a href="./register.php"><i>Register here</i></a>
-        <a href="./signin.php"><b>Already have an account ↗</b></a>
-
-        <br><br>
-        <nav><a href="index.php"><i>HOME</i></a></nav>
+        <div>
+            <a href="./register.php"><i>Register</i></a>
+            <a href="./signin.php"><b>Login</b></a>
+            <i class="icon-user">#TOSTYLE#</i>
+        </div>
     </header>
 
     <body>
