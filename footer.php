@@ -4,7 +4,7 @@
         <div class="footer-section contact-us">
             <h3>Contact Us</h3>
             <address>
-                Email: <a href="mailto:support@petparadise.com" title="Send us an email">purrfect@petparadise.com</a><br>
+                Email: <a href="mailto:purrfect@petparadise.com" title="Send us an email">purrfect@petparadise.com</a><br>
                 Phone: <a href="tel:+34456MEOWMEOW" title="Call us">+34 456 MEOW MEOW</a>
             </address>
         </div>
