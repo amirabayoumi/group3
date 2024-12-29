@@ -23,14 +23,6 @@ require("./header.php")
     </section>
 
     <section>
-        <h2>About us</h2>
-        <p>
-            Welcome to our webshop! We are a small pet shop where you can find the
-            purr-fect supplies for your furry friends!
-        </p>
-    </section>
-
-    <section>
         <div id="categories">
             <article class="card mb-3" style="max-width: 90vh; display:grid; place-self:center;">
                 <div class="row g-0">
