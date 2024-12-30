@@ -14,7 +14,6 @@ require("./header.php")
         </form>
     </section>
 
-
     <section>
         <h2>About us</h2>
         <p>
