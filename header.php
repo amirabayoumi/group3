@@ -26,7 +26,7 @@ if (isset($_POST['search'])) {
 // print_r($items);
 // print "</pre>";
 
-$cat = getCatogery();
+$cat = getCategory();
 
 // print "<pre>";
 // print_r($cat);

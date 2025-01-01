@@ -1,9 +1,9 @@
 <?php
 require('../function.inc.php');
 requiredLoggedInAdmin();
-// ini_set('display_errors', '1');
-// ini_set('display_startup_errors', '1');
-// error_reporting(E_ALL);
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
 
 
 
@@ -46,11 +46,12 @@ if (isset($_POST['formSubmit'])) {
         $ogtitle = @$ogData->hybridGraph->title ?? '';
         $ogdescription = @$ogData->hybridGraph->description ?? '';
         $ogimage = @$ogData->hybridGraph->image ?? '';;
+        $ogprice = @$ogData->hybridGraph->price ?? '';;
 
 
 
-        // insert into db
-        $id = insertOgLink($inputUrl, $ogtitle, $ogdescription, $ogimage, $cat);
+        // // insert into db
+        $id = insertOgLink($inputUrl, $ogtitle, $ogdescription, $ogimage, $ogprice, $cat);
 
         if (!$id) {
             $errors[] = "Something unexplainable happened...";
@@ -93,7 +94,7 @@ print '</pre>';
             </div>
         <?php endif; ?>
 
-        <form method="post" action="./adminaddproduct.php">
+        <!-- <form method="post" action="./adminaddproduct.php">
             <fieldset>
                 <label for="inputUrl">URL: *</label>
                 <input type="text" id="inputUrl" name="inputUrl" placeholder="https://..." value="<?= $inputUrl; ?>" required>
@@ -109,7 +110,38 @@ print '</pre>';
             <aside>
                 <button type="button">Add Product</button>
                 <button type="button">Delete Product</button>
-            </aside>
+            </aside> -->
+
+        <!-- old code -->
+        <form method="post" action="./adminaddproduct.php">
+
+            <div class="form-group mt-3">
+                <label for="inputUrl" class="col-sm-2 col-form-label">URL: *</label>
+                <div>
+                    <input type="text" class="form-control" id="inputUrl" name="inputUrl" placeholder="https://..." value="<?= $inputUrl; ?>">
+                </div>
+            </div>
+            <div> <label for="category">Choose a product category:</label>
+                <select name="category" id="category">
+                    <option value="1">Food</option>
+                    <option value="2">Toy</option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="form-group mt-5">
+                <div>
+                    <button type="submit" class="btn btn-primary" name="formSubmit" style="width: 100%">Add</button>
+                </div>
+            </div>
+        </form>
+
+
+        <!-- old code -->
+
     </header>
     <main>
         <h2>List of Products</h2>
@@ -136,9 +168,9 @@ print '</pre>';
 
                             <tr>
                                 <td><?= $item['id']; ?></td>
-                                <td><?= ($item['ogimage'] !== null && strlen($item['ogimage']) > 0) ? '<img src="' . $item['ogimage'] . '" class="thumb"/>' : 'no image'; ?></td>
-                                <td><?= mb_strimwidth(($item['ogtitle'] ?? 'no title'), 0, 50, "..."); ?></td>
-                                <td><?= mb_strimwidth(($item['ogdescription'] ?? 'no description'), 0, 50, "..."); ?></td>
+                                <td><?= ($item['image'] !== null && strlen($item['image']) > 0) ? '<img src="' . $item['image'] . '" class="thumb"/>' : 'no image'; ?></td>
+                                <td><?= mb_strimwidth(($item['title'] ?? 'no title'), 0, 50, "..."); ?></td>
+                                <td><?= mb_strimwidth(($item['description'] ?? 'no description'), 0, 50, "..."); ?></td>
                                 <td><?= mb_strimwidth($item['url'], 0, 50, "..."); ?></td>
                                 <td><?= $item['weight']; ?></td>
 
