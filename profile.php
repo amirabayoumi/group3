@@ -14,6 +14,8 @@ print '</pre>';
 if (isset($_GET['wishlist'])) {
     $wishList = getWishlistById($_SESSION['uid']);
 }
+// need to fix 
+// get name by user better instead get name by wishlist !!
 $toGetName = getWishlistById($_SESSION['uid']);
 
 // print '<pre>';

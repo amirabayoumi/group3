@@ -106,14 +106,14 @@ function setLogin($uid = false)
 // --------------- Admin page ---------------/
 //**********************************************/
 // ------------------------- check admin name and  permission key --------
-function isValidLoginAdmin(String $adminName, String $pass): bool|int
+function isValidLoginAdmin(String $adminName, String $key): bool|int
 {
-    $sql = "SELECT id FROM admin WHERE name=:name AND pass=:pass;";
+    $sql = "SELECT id FROM admin WHERE name=:name AND admin_key=:pass;";
 
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([
         ':name' => $adminName,
-        ':pass' => $pass
+        ':pass' => $key
     ]);
     return $stmt->fetchColumn();
 }
