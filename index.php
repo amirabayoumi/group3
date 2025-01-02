@@ -58,13 +58,13 @@ require("./header.php")
         <article class="card mb-3" style="max-width: 90vh; display:grid; place-self:center;">
             <div class="row g-0">
                 <div class="col-md-4">
-                    <img src="<?= $item['ogimage']; ?>" class="img-fluid rounded-start" alt="...">
+                    <img src="<?= $item['image']; ?>" class="img-fluid rounded-start" alt="...">
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
-                        <h3 class="card-title"><?= $item['ogtitle']; ?></h3>
-                        <h3 class="card-price"><?= $item['ogprice']; ?></h3>
-                        <p class="card-text"><?= $item['ogdescription']; ?></p>
+                        <h3 class="card-title"><?= $item['title']; ?></h3>
+                        <h3 class="card-price"><?= $item['price']; ?></h3>
+                        <p class="card-text"><?= $item['description']; ?></p>
                         <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
                     </div>
                 </div>

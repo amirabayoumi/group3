@@ -3,9 +3,9 @@
 require('./function.inc.php');
 requiredLoggedIn();
 
-// print '<pre>';
-// print_r($_SESSION);
-// print '</pre>';
+print '<pre>';
+print_r($_SESSION);
+print '</pre>';
 
 // print '<pre>';
 // print_r($_GET);
@@ -36,7 +36,7 @@ if (isset($_POST['search'])) {
 // print_r($items);
 // print "</pre>";
 
-$cat = getCatogery();
+$cat = getCategory();
 
 // print "<pre>";
 // print_r($cat);

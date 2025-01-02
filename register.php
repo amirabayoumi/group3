@@ -27,8 +27,6 @@ $lastname = "";
 $mail = "";
 $password = "";
 $username = "";
-$member = "";
-$gender = "";
 $country = "";
 
 
@@ -113,14 +111,6 @@ if (isset($_POST['submit'])) {
 
         $country = @$_POST['country'];
     }
-    if (isset($_POST['gender'])) {
-
-        $gender = @$_POST['gender'];
-    }
-
-    if (isset($_POST['member'])) {
-        $member = @$_POST['member'];
-    }
     if (!isset($_POST['policy'])) {
         $errors[] = "Agreement of policy is required.";
     } else {
@@ -132,7 +122,7 @@ if (isset($_POST['submit'])) {
 
 
         if (!count($errors)) {
-            $newId = addUser($firstname, $lastname,  $country,   $gender,  $member,  $mail, $username, $password);
+            $newId = addUser($firstname, $lastname,  $country, $mail, $username, $password);
             if (!$newId) {
                 $errors[] = "An unknown error has occured, pleace contact us...";
             } else {
@@ -443,16 +433,6 @@ print "</pre>";
                 <option value="other">Other</option>
             </select>
 
-            <label for="gender">Gender</label>
-            <select id="gender" name="gender">
-                <option value="select">Select</option>
-                <option name="gender" id="gender" value="m">M</option>
-                <option name="gender" id="gender" value="f">F</option>
-                <option name="gender" id="gender" value="x">x</option>
-            </select>
-            <label>Membership type</label>
-            <input type="radio" id="member" name="member" value="standard" checked=""> <label for="standard">Standard</label>
-            <input type="radio" id="member" name="member" value="student"> <label for="student">Student</label>
 
 
             <br>
