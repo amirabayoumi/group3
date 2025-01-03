@@ -22,13 +22,10 @@ if (isset($_POST['formSubmit'])) {
         // check if URL is no longer than 255 characters
         if (strlen($inputUrl) == 0) {
             $errors[] = "URL is required";
-        }
-
-        // check if URL is valid
-        if (!preg_match("/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/", $inputUrl)) {
+        } elseif (!preg_match("/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/", $inputUrl)) {
             $errors[] = "URL is not valid";
         }
-        if (!isset($_POST['category'])) {
+        if (!isset($_POST['category']) || $_POST['category'] < 1) {
             $errors[] = "Product category is required ";
         } else {
             $cat =  $_POST['category'];
@@ -36,7 +33,12 @@ if (isset($_POST['formSubmit'])) {
     }
     //validation for category 
 
-
+    // print '<pre>';
+    // print_r($_POST);
+    // print '</pre>';
+    // print '<pre>';
+    // print_r($errors);
+    // print '</pre>';
     if (!count($errors)) {
 
 
@@ -46,25 +48,48 @@ if (isset($_POST['formSubmit'])) {
         $ogtitle = @$ogData->hybridGraph->title ?? '';
         $ogdescription = @$ogData->hybridGraph->description ?? '';
         $ogimage = @$ogData->hybridGraph->image ?? '';;
-        $ogprice = @$ogData->hybridGraph->price ?? '';;
+        $ogprice = $ogData->hybridGraph->products[0]->offers[0]->price ?? '';
 
+        // var_dump($ogprice);
 
-
-        // // insert into db
+        // insert into db
         $id = insertOgLink($inputUrl, $ogtitle, $ogdescription, $ogimage, $ogprice, $cat);
 
         if (!$id) {
             $errors[] = "Something unexplainable happened...";
         }
     }
-    print '<pre>';
-    print_r($ogData);
-    print '</pre>';
+    // print '<pre>';
+    // print_r($ogData);
+    // print '</pre>';
 }
-print '<pre>';
-print_r($_POST);
-print '</pre>';
+
 // $items = getOgLinks();
+
+
+// print '<pre>';
+// print_r($items);
+// print '</pre>';
+
+
+
+//--------------- pagination products in Admin zone 
+$items = getItems();
+
+$start = 0;
+$rowsPerPage = 6;
+$pages = ceil(count($items) / $rowsPerPage);
+// print $pages;
+
+if (isset($_GET['page'])) {
+
+    $currentPage = $_GET['page'];
+    $start = $pages * $currentPage - 1;
+} else {
+    $currentPage = 1;
+}
+
+$dataPerPage = getProductPerPage($start, $rowsPerPage);
 
 ?>
 
@@ -76,25 +101,148 @@ print '</pre>';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products</title>
+    <title>CRUD Products</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+
+            background-color: white;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+            Header {
+                padding: 1rem;
+                background-color: rgb(116, 151, 118);
+                display: flex;
+                font-size: 20px;
+                place-items: center;
+                color: rgb(78, 76, 76);
+                justify-content: space-between;
+
+                a {
+                    text-decoration: none;
+                    font-size: 20px;
+                    color: rgb(78, 76, 76);
+                    background-color: white;
+                    padding: 1rem;
+                    border-radius: 5px;
+
+                    &:hover {
+                        background-color: rgb(224, 222, 222);
+                    }
+                }
+            }
+
+            main {
+                section {
+
+
+                    &:nth-child(1) {
+                        width: 60%;
+                        padding: 1rem;
+                        margin-top: 1rem;
+                        background-color: rgb(173, 192, 174);
+                        border-radius: 10px;
+                        display: grid;
+                        place-self: center;
+
+                        h2 {
+                            color: rgb(73, 75, 73);
+                        }
+
+
+
+                        >div:nth-child(2) {
+                            color: rgb(204, 81, 81);
+                        }
+
+                        form {
+
+                            display: grid;
+                            gap: 1rem;
+                            grid-template-columns: 2fr 0.5fr;
+
+                            color: rgb(73, 75, 73);
+
+                            div {
+                                &:nth-child(1) {
+
+                                    input:nth-child(2) {
+                                        margin-top: 0.5rem;
+                                        display: block;
+                                        width: 100%;
+                                        padding: 0.5rem;
+                                        border: none;
+                                    }
+
+                                }
+
+                                &:nth-child(2) {
+                                    grid-row: 2/3;
+                                    width: 100%;
+
+                                    select:nth-child(2) {
+                                        border-radius: 5px;
+                                        border: none;
+                                        width: 50%;
+                                        padding: 0.5rem;
+                                    }
+                                }
+
+                            }
+
+                            button {
+                                color: rgb(59, 65, 59);
+                                background-color: rgb(255, 255, 255);
+                                border: none;
+                                grid-row: 1/3;
+                                border-radius: 50%;
+                                aspect-ratio: 1/1;
+                                width: 70px;
+                                align-self: center;
+                                place-self: center;
+                                font-size: 30px;
+                            }
+
+
+                        }
+                    }
+                }
+            }
+
+
+        }
+    </style>
+
 </head>
 
 <body>
     <header>
         <h1>Administration Panel - Products</h1>
-        <h2>Add New Link</h2>
-
-        <?php if (count($errors)) : ?>
-            <div class="alert alert-danger" role="alert">
-                <ul>
-                    <?php foreach ($errors as $error) : ?>
-                        <li><?= $error; ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        <?php endif; ?>
-
-        <!-- <form method="post" action="./adminaddproduct.php">
+        <a href="./adminProfile.php">Back to Main Admin Page</a>
+    </header>
+    <main>
+        <section>
+            <h2> Add New Product </h2>
+            <?php if (count($errors)) : ?>
+                <div>
+                    <ul>
+                        <?php foreach ($errors as $error) : ?>
+                            <li><?= $error; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+            <!-- <form method="post" action="./adminaddproduct.php">
             <fieldset>
                 <label for="inputUrl">URL: *</label>
                 <input type="text" id="inputUrl" name="inputUrl" placeholder="https://..." value="<?= $inputUrl; ?>" required>
@@ -112,58 +260,38 @@ print '</pre>';
                 <button type="button">Delete Product</button>
             </aside> -->
 
-        <!-- old code -->
-        <form method="post" action="./adminaddproduct.php">
-
-            <div class="form-group mt-3">
-                <label for="inputUrl" class="col-sm-2 col-form-label">URL: *</label>
-                <div>
-                    <input type="text" class="form-control" id="inputUrl" name="inputUrl" placeholder="https://..." value="<?= $inputUrl; ?>">
+            <!-- old code -->
+            <form method="post" action="./adminaddproduct.php">
+                <div> <label for="inputUrl">URL: *</label>
+                    <input type="text" id="inputUrl" name="inputUrl" placeholder="https://..." value="<?= $inputUrl; ?>">
                 </div>
-            </div>
-            <div> <label for="category">Choose a product category:</label>
-                <select name="category" id="category">
-                    <option value="1">Food</option>
-                    <option value="2">Toy</option>
-
-                </select>
-
-            </div>
-
-
-
-            <div class="form-group mt-5">
-                <div>
-                    <button type="submit" class="btn btn-primary" name="formSubmit" style="width: 100%">Add</button>
+                <div> <label for="category">Choose a product category:</label>
+                    <select name="category" id="category">
+                        <option value="0" selected> Select</option>
+                        <option value="1">Toy</option>
+                        <option value="2">Food</option>
+                    </select>
                 </div>
-            </div>
-        </form>
+                <button type="submit" class="btn btn-primary" name="formSubmit">+</button>
+            </form>
+        </section>
+        <!-- <section>
+            <h2>List of Products</h2>
+            <section>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Product Name</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Stock</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
 
-
-        <!-- old code -->
-
-    </header>
-    <main>
-        <h2>List of Products</h2>
-        <section>
-            <table>
-                <thead>
-                    <tr>
-                        <th scope="col">
-                            <input type="checkbox" id="selectAll">
-                        </th>
-                        <th scope="col">Image</th>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Stock</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Weight</th>
-                        <th scope="col">URL</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- 
                         <?php foreach ($items as $item): ?>
 
                             <tr>
@@ -172,43 +300,103 @@ print '</pre>';
                                 <td><?= mb_strimwidth(($item['title'] ?? 'no title'), 0, 50, "..."); ?></td>
                                 <td><?= mb_strimwidth(($item['description'] ?? 'no description'), 0, 50, "..."); ?></td>
                                 <td><?= mb_strimwidth($item['url'], 0, 50, "..."); ?></td>
-                                <td><?= $item['weight']; ?></td>
-
+                                <td><?= $item['price']; ?></td>
                             </tr>
 
-                        <?php endforeach; ?> -->
-                    <!-- Example row, replace this with dynamic content -->
-                    <tr>
-                        <td><input type="checkbox" name="productSelection[]"></td>
-                        <td><img src="product-image.jpg" alt="Product Image" height="50"></td>
-                        <td>Example Product</td>
-                        <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
-                        <td>Available</td>
-                        <td>50</td>
-                        <td>$19.99</td>
-                        <td>1.5kg</td>
-                        <td>https://example.com/product-link</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-        <nav aria-label="Overview navigation">
-            <ul>
-                <li>
-                    <a href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
+                        <?php endforeach; ?>
+
+                        <tr>
+                            <td><input type="checkbox" name="productSelection[]"></td>
+                            <td><img src="product-image.jpg" alt="Product Image" height="50"></td>
+                            <td>Example Product</td>
+                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
+                            <td>Available</td>
+                            <td>50</td>
+                            <td>$19.99</td>
+                            <td>1.5kg</td>
+                            <td>https://example.com/product-link</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </section> -->
+
+        <?php if (isset($_GET["message"])): // msg from get 
+        ?>
+
+            <div class="alert alert-warning" role="alert" style="margin:1rem; width:60%; display:grid; place-self:center;">
+                <?= $_GET["message"]; ?>
+            </div>
+
+        <?php endif; ?>
+        <div class="container">
+
+            <div class="table-responsive">
+                <div class="table-wrapper">
+
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Image</th>
+                                <th>ProductName</th>
+                                <th>Description</th>
+                                <th>URL</th>
+                                <th>Price</th>
+                                <th>status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <?php foreach ($dataPerPage as $item): ?> <tr>
+
+                                    <td><?= $item['id']; ?></td>
+                                    <td><?= ($item['image'] !== null && strlen($item['image']) > 0) ? '<img style="width:50px; " src="' . $item['image'] . '" class="thumb"/>' : 'no image'; ?></td>
+                                    <td><?= mb_strimwidth(($item['title'] ?? 'no title'), 0, 25, "..."); ?></td>
+                                    <td><?= mb_strimwidth(($item['description'] ?? 'no description'), 0, 50, "..."); ?></td>
+                                    <td><?= mb_strimwidth($item['url'], 0, 50, "..."); ?></td>
+                                    <td><?= $item['price']; ?></td>
+
+                                    <td><span class="status text-<?= ($item['status']) == 0 ? "warning" : "success"; ?>">&bull;</span> <?php if (!$item['status']) {
+                                                                                                                                            print "not-available";
+                                                                                                                                        } else {
+                                                                                                                                            print "available";
+                                                                                                                                        }; ?></td>
+                                    <td>
+                                        <!-- <a href="#?id=<?= $item['id']; ?>" class="settings" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a> -->
+                                        <a href="./deleteProduct.php?delete=<?= $item['id']; ?>" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </main>
+    <footer>
+        <ul class="pagination" style="display:flex; place-self:center;">
+
+
+            <li class="page-item <?php if ($currentPage == 1) {
+                                        print "hidden";
+                                    } ?> "><a href="./adminaddproduct.php?page=<?php echo $currentPage - 1; ?>">Previous</a></li>
+            <li class="page-item"><a href="./adminaddproduct.php?page=<?= 1 ?>">First</a></li>
+            <li> <?php for ($i = 1; $i <= $pages; $i++) : ?>
+                    <a href="adminaddproduct.php?page=<?= $i; ?>"><?= $i; ?></a>
+                <?php endfor; ?>
+            </li>
+            <li class="page-item"><a href="./adminaddproduct.php?page=<?= $pages ?>">Last</a></li>
+            <li class="page-item <?php if ($currentPage >= $pages) {
+                                        print "hidden";
+                                    } ?> "><a href="./adminaddproduct.php?page=<?= $currentPage  + 1; ?>" class="page-link">Next</a></li>
+
+        </ul>
+
+    </footer>
 </body>
 
 </html>

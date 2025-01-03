@@ -283,3 +283,38 @@ function insertOgLink(String $url, $title, $description, $image, $price, Int $ca
 
     return $db->lastInsertId();
 }
+
+
+function getProductPerPage(int $start, int $rows): array
+{
+    $sql = "SELECT * FROM product limit :start, :rows;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ':start' => $start,
+        ':rows' => $rows
+
+    ]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+function getProductByID(Int $id)
+{
+    $sql = "SELECT * FROM product where id=:id;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ':id' => $id
+    ]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
+function deleteProduct(int $id)
+{
+    $sql = "DELETE FROM product WHERE id = :id;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ':id' => $id
+    ]);
+    $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
