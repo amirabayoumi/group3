@@ -13,16 +13,16 @@ requiredLoggedOutAdmin();
 
 // $userList = getUser();
 
-print "<pre>";
-print_r($_POST);
-print "</pre>";
+// print "<pre>";
+// print_r($_POST);
+// print "</pre>";
 
 // print "<pre>";
 // print_r($userList);
 // print "</pre>";
-print '<pre>';
-print_r($_SESSION);
-print '</pre>';
+// print '<pre>';
+// print_r($_SESSION);
+// print '</pre>';
 
 
 $errors = [];
@@ -50,7 +50,7 @@ if (isset($_POST['submit'])) {
         header("Location: adminProfile.php");
         exit;
     } else {
-        $errors[] = "E-mail and/or password is not correct.";
+        $errors[] = "Name Or Key is not correct.";
     }
 }
 
@@ -74,44 +74,159 @@ if (isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
+
+    <style>
+        body {
+            background-color: rgb(255, 255, 255);
+            min-height: 100vh;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            color: rgb(88, 87, 87);
+
+            header {
+                text-align: center;
+            }
+
+            main {
+                margin-top: 5rem;
+
+                background-color: rgba(87, 126, 109, 0.77);
+                width: 70%;
+                max-width: 700px;
+                display: grid;
+                place-self: center;
+                grid-template-columns: 1fr 1fr;
+                border: 0.5px solid rgb(158, 161, 160);
+                box-shadow: 5px 5px 10px rgb(118, 148, 132);
+                border-radius: 10px;
+
+                section {
+                    &:nth-child(1) {
+                        font-size: 5rem;
+                        text-align: center;
+                        border-right: 0.5px solid rgb(199, 204, 202);
+                    }
+
+                    &:nth-child(2) {
+                        padding: 1rem;
+                        text-align: center;
+                        color: white;
+
+                        form {
+                            height: 80%;
+                            display: grid;
+
+                            h1 {
+                                align-self: center;
+                            }
+
+                            div {
+                                &:nth-child(2) {
+                                    display: grid;
+                                    gap: 1rem;
+
+                                    button {
+                                        background-color: rgb(219, 186, 39);
+                                        border: none;
+                                        border-radius: 8px;
+                                        color: rgb(75, 74, 73);
+
+                                        &:hover {
+                                            background-color: rgb(95, 91, 73);
+                                            color: white;
+                                        }
+                                    }
+                                }
+
+
+                            }
+                        }
+
+
+                    }
+
+                }
+            }
+
+            >section {
+                padding-top: 2rem;
+
+                >div {
+                    width: 60%;
+                    display: grid;
+                    place-self: center;
+                    grid-template-columns: 20% 80%;
+                    background-color: rgba(202, 47, 0, 0.37);
+                    border-radius: 10px;
+                    color: rgb(129, 41, 14);
+
+                    h1 {
+                        font-size: 2rem;
+
+
+                        text-align: center;
+                    }
+                }
+
+            }
+
+        }
+
+        @media (max-width: 600px) {
+            body main {
+                grid-template-columns: 1fr;
+            }
+
+            body main section:nth-child(1) h1 {
+                font-size: 50px;
+            }
+
+        }
+    </style>
 </head>
 
 <body>
+
     <header>
-
-
-        <h1>Welcome Back!</h1>
-
-
-
+        <img src="" alt="">
+        <h1>Welcome to Admin Zone</h1>
+        <p>Here you can control the Pet Paradise Shop.</p>
+        <p>To access the admin zone, please enter your <strong>Name</strong> and <strong>Admin Key</strong>.</p>
     </header>
+
     <main>
-        <form style="background-color: #8598b4c5;" action="./index.php" method="post">
-            <h1> Admin Page </h1>
-            <!-- <?php if (count($errors)): ?>
-                <div style="background-color: #faec6c; border-radius:20px ;">
-                    <ul>
-                        <?php foreach ($errors as $error): ?>
-                            <li style="color: #6d1000ec"><?= $error; ?></li>
-                        <?php endforeach; ?>
-                    </ul>
+        <section>
+            <h1>&#128272;</h1>
+        </section>
+        <section>
+            <form action="./index.php" method="post">
+                <h1> Admin Login</h1>
+
+
+
+                <div>
+                    <input type="text" id="adminName" name="adminName" size="28" placeholder="Admin Name">
+                    <input type="password" id="adminKey" name="adminKey" placeholder="Admin Key">
+                    <button type="submit" id="submit" name="submit" value="1"> Enter Admin Dashboard </button>
                 </div>
-
-            <?php endif; ?> -->
-
-
-            <label for="adminName">Admin name:</label>
-            <input type="text" id="adminName" name="adminName" size="28" placeholder="">
-
-            <label for="adminKey" class="form-label">key:</label>
-            <input type="password" id="adminKey" name="adminKey">
+            </form>
 
 
-
-            <button type="submit" id="submit" name="submit" value="1">Sign in</button>
-        </form>
+        </section>
     </main>
+    <section>
+        <?php if (count($errors)): ?>
+            <div>
+                <h1>&#9888;</h1>
+                <ul>
+
+                    <?php foreach ($errors as $error): ?>
+                        <li><?= $error; ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+
+        <?php endif; ?>
+    </section>
 
 </body>
 
