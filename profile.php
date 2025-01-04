@@ -7,6 +7,10 @@ requiredLoggedIn();
 // print_r($_SESSION);
 // print '</pre>';
 
+if (isset($_SESSION['uid'])) {
+    $userId = $_SESSION['uid'];
+    $user = getUserById($userId);
+}
 // print '<pre>';
 // print_r($_GET);
 // print '</pre>';
@@ -42,6 +46,7 @@ $cat = getCatogery();
 // print_r($cat);
 // print "</pre>";
 
+
 ?>
 
 
@@ -63,13 +68,34 @@ $cat = getCatogery();
     <header>
         <a href="./logout.php"><i>Log out</i></a>
 
-
-        <h1>Welcome <?= $toGetName[0]['firstname']; ?> !</h1>
+        <h1>Welcome <?= $user['firstname'] ?>!</h1>
         <hr>
-        <a href="profile.php"><i> Profile Home</i></a>
 
         <br><br>
-        <h1>here is the whislist!</h1>
+        <h1>Your data</h1>
+        <a href="updateProfile.php">Edit</a>
+        <a href="deleteProfile.php">Delete</a>
+        <table>
+            <tr>
+                <th>First name:</th>
+                <td><?= $user['firstname'] ?></td>
+            </tr>
+            <tr>
+                <th>Last name:</th>
+                <td><?= $user['lastname'] ?></td>
+            </tr>
+            <tr>
+                <th>Email:</th>
+                <td><?= $user['mail'] ?></td>
+            </tr>
+            <tr>
+                <th>Username:</th>
+                <td><?= $user['username'] ?></td>
+            </tr>
+        </table>
+
+        <br><br>
+        <h1>Here's your wishlist!</h1>
         <a href="profile.php?wishlist" style="font-size: 40px; text-decoration:none"> &#9829;</a>
         <?php foreach ($wishList as $wishItem): ?>
             <div class="card mb-3" style="max-width: 90vh; display:grid; place-self:center;">
