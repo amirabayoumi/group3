@@ -1,17 +1,70 @@
 @import url("./reset.css");
-@import url("./icons.css");
+@import url("../fonts/icomoon/style.css");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap");
-:root {
-  font-size: 62.5%;
-  --soft-orange: hsl(35, 77%, 62%);
+
+@font-face {
+  font-family: "Puppybellies";
+  src: url("../fonts/Puppybellies-JyRM.ttf") format("truetype");
 }
+
+:root {
+  --header-bg: #244d3b;
+  --header-title-color: #ffffff;
+  --header-signin-color: #96e7c5;
+
+  --font-header-title: "Puppybellies", sans-serif;
+  --font-body: "Comic Neue", sans-serif;
+}
+
 * {
+  font-size: 62.5%;
   box-sizing: border-box;
 }
+
 body {
-  background-color: green;
-}
-body * {
-  line-height: calc(2px + 2ex + 2px);
-  font-size: 5rem;
+  font-family: var(--font-body);
+  font-size: 40px;
+  width: 100%;
+
+  header {
+    background-color: var(--header-bg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+    color: var(--header-title-color);
+
+    img {
+      max-width: 80px;
+      height: auto;
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-size: 40px;
+      font-family: var(--font-header-title);
+    }
+
+    div {
+      display: flex;
+      align-items: center;
+      font-size: 10px;
+      gap: 10px; /* Space between links */
+
+      a {
+        color: var(--header-signin-color);
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+          transform: scale(1.2);
+        }
+      }
+
+      .icon-user {
+        font-size: 20px;
+        color: var(--header-signin-color);
+      }
+    }
+  }
 }

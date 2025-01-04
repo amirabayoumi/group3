@@ -41,6 +41,8 @@ $cat = getCategory();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/icons.css">
 
 </head>
 
@@ -51,7 +53,7 @@ $cat = getCategory();
         <div>
             <a href="./register.php"><i>Register</i></a>
             <a href="./signin.php"><b>Login</b></a>
-            <i class="icon-user">#TOSTYLE#</i>
+            <i class="icon-user"></i>
         </div>
     </header>
 
