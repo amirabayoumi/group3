@@ -264,13 +264,12 @@ function getCategory()
 }
 
 // ---- filter product by category  ------------
-function getItemsByCat(int $id)
+function getItemsByCat(String $name)
 {
-    $sql = "select * from product left join category
-on category.id = category_id where product.category_id= :id";
+    $sql = "select product.*, category.name as catName from category left join product on category.id = product.category_id where category.name = :name;";
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([
-        'id' => $id
+        'name' => $name
     ]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
