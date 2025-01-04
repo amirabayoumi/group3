@@ -11,7 +11,7 @@ function connectToDB()
     $db_host = '127.0.0.1';
     $db_user = 'root';
     $db_password = 'root';
-    $db_db = 'membership';
+    $db_db = 'petshop';
     $db_port = 8889;
 
     try {
@@ -71,17 +71,15 @@ function deleteUser($id)
 
 //------------------------ 2- add new user via register form page ------------
 
-function addUser(String $firstname, String $lastname, String $country,  String $gender, String $member, String $mail, String $username, String $password): bool|int
+function addUser(String $firstname, String $lastname, String $country,  String $mail, String $username, String $password): bool|int
 {
     $db = connectToDB();
-    $sql = "INSERT INTO user (firstname, lastname, country, gender, membertype, mail, username, password, policy) VALUES (:firstname, :lastname, :country, :gender, :membertype, :mail, :username, :password, 1) ;";
+    $sql = "INSERT INTO user (firstname, lastname, country, mail, username, password, policy) VALUES (:firstname, :lastname, :country, :mail, :username, :password, 1) ;";
     $stmt = $db->prepare($sql);
     $stmt->execute([
         ':firstname' => $firstname,
         ':lastname' => $lastname,
         ':country' => $country,
-        ':gender' => $gender,
-        ':membertype' => $member,
         ':mail' => $mail,
         ':username' => $username,
         ':password' => md5($password)
@@ -140,14 +138,14 @@ function setLogin($uid = false)
 // --------------- Admin page ---------------/
 //**********************************************/
 // ------------------------- check admin name and  permission key --------
-function isValidLoginAdmin(String $adminName, String $pass): bool|int
+function isValidLoginAdmin(String $adminName, String $key): bool|int
 {
-    $sql = "SELECT id FROM admin WHERE name=:name AND pass=:pass;";
+    $sql = "SELECT id FROM admin WHERE name=:name AND admin_key=:pass;";
 
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([
         ':name' => $adminName,
-        ':pass' => $pass
+        ':pass' => $key
     ]);
     return $stmt->fetchColumn();
 }
@@ -251,15 +249,15 @@ function getItems()
 // ---- search by product title ------------
 function getItemsBySearch(String $search)
 {
-    $sql = "select* from product where ogtitle like'%$search%';";
+    $sql = "select* from product where title like'%$search%';";
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 //----- to get all category in main page -----------
-function getCatogery()
+function getCategory()
 {
-    $sql = "select* from catogery;";
+    $sql = "select* from category;";
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -268,8 +266,8 @@ function getCatogery()
 // ---- filter product by category  ------------
 function getItemsByCat(int $id)
 {
-    $sql = "select * from product left join catogery
-on catogery.id = catogery_id where product.catogery_id= :id";
+    $sql = "select * from product left join category
+on category.id = category_id where product.category_id= :id";
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([
         'id' => $id
@@ -301,18 +299,54 @@ function getOgViaApi(String $ogUrl): bool|stdClass
 }
 
 // --------------------------- insert new product to shop list by OG tags 
-function insertOgLink(String $url, $title, $description, $image, Int $cat): bool|int
+function insertOgLink(String $url, $title, $description, $image, $price, Int $cat): bool|int
 {
     $db = connectToDB();
-    $sql = "INSERT INTO product (url, ogtitle, ogdescription, ogimage, catogery_id) VALUES ( :url, :ogtitle, :ogdescription, :ogimage ,:category);";
+    $sql = "INSERT INTO product (url, title, description, image, price,status,stock, category_id) VALUES ( :url, :title, :description, :image ,:price ,1,1,:category);";
     $stmt = $db->prepare($sql);
     $stmt->execute([
         'url' => $url,
-        'ogtitle' => mb_strimwidth($title, 0, 250, "..."),
-        'ogdescription' => mb_strimwidth($description, 0, 250, "..."),
-        'ogimage' => mb_strimwidth($image, 0, 250, "..."),
+        'title' => mb_strimwidth($title, 0, 250, "..."),
+        'description' => mb_strimwidth($description, 0, 250, "..."),
+        'image' => mb_strimwidth($image, 0, 250, "..."),
+        'price' => $price,
         'category' => $cat
     ]);
 
     return $db->lastInsertId();
+}
+
+
+function getProductPerPage(int $start, int $rows): array
+{
+    $sql = "SELECT * FROM product limit :start, :rows;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ':start' => $start,
+        ':rows' => $rows
+
+    ]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+function getProductByID(Int $id)
+{
+    $sql = "SELECT * FROM product where id=:id;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ':id' => $id
+    ]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+
+function deleteProduct(int $id)
+{
+    $sql = "DELETE FROM product WHERE id = :id;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ':id' => $id
+    ]);
+    $stmt->fetchAll(PDO::FETCH_ASSOC);
 }

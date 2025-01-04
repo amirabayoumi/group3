@@ -3,9 +3,9 @@
 require('./function.inc.php');
 requiredLoggedIn();
 
-// print '<pre>';
-// print_r($_SESSION);
-// print '</pre>';
+print '<pre>';
+print_r($_SESSION);
+print '</pre>';
 
 if (isset($_SESSION['uid'])) {
     $userId = $_SESSION['uid'];
@@ -18,6 +18,8 @@ if (isset($_SESSION['uid'])) {
 if (isset($_GET['wishlist'])) {
     $wishList = getWishlistById($_SESSION['uid']);
 }
+// need to fix 
+// get name by user better instead get name by wishlist !!
 $toGetName = getWishlistById($_SESSION['uid']);
 
 // print '<pre>';
@@ -40,7 +42,7 @@ if (isset($_POST['search'])) {
 // print_r($items);
 // print "</pre>";
 
-$cat = getCatogery();
+$cat = getCategory();
 
 // print "<pre>";
 // print_r($cat);
