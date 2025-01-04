@@ -68,3 +68,23 @@ body {
     }
   }
 }
+@media screen and (max-width: 480px) {
+  body header {
+    padding: 10px;
+
+    img {
+      max-width: 60px;
+      height: auto;
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-size: 25px;
+    }
+
+    div {
+      align-items: center;
+      gap: 5px;
+    }
+  }
+}
