@@ -45,16 +45,16 @@ function getUserById($id)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-function updateUser($id, $firstname, $lastname, $mail, $password)
+function updateUser($id, $firstname, $lastname, $country, $mail, $username, $petname, $password)
 {
     if (strlen($password) == 0) {
-        $sql = "UPDATE user SET firstname = :firstname, lastname = :lastname, mail = :mail WHERE id = :id";
+        $sql = "UPDATE user SET firstname = :firstname, lastname = :lastname, country = :country, mail = :mail, username = :username, petname = :petname WHERE id = :id";
         $stmt = connectToDB()->prepare($sql);
-        $stmt->execute(['id' => $id, 'firstname' => $firstname, 'lastname' => $lastname, 'mail' => $mail]);
+        $stmt->execute(['id' => $id, 'firstname' => $firstname, 'lastname' => $lastname, 'country' => $country, 'mail' => $mail, 'username' => $username, 'petname' => $petname]);
     } else {
-        $sql = "UPDATE user SET firstname = :firstname, lastname = :lastname, mail = :mail, password = :password WHERE id = :id";
+        $sql = "UPDATE user SET firstname = :firstname, lastname = :lastname, country = :country, mail = :mail, username = :username, petname = :petname, password = :password WHERE id = :id";
         $stmt = connectToDB()->prepare($sql);
-        $stmt->execute(['id' => $id, 'firstname' => $firstname, 'lastname' => $lastname, 'mail' => $mail, 'password' => md5($password)]);
+        $stmt->execute(['id' => $id, 'firstname' => $firstname, 'lastname' => $lastname, 'country' => $country, 'mail' => $mail, 'username' => $username, 'petname' => $petname, 'password' => md5($password)]);
     }
 
     return $stmt->fetch(PDO::FETCH_ASSOC);

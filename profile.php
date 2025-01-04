@@ -87,12 +87,20 @@ $cat = getCategory();
                 <td><?= $user['lastname'] ?></td>
             </tr>
             <tr>
+                <th>Country:</th>
+                <td><?= $user['country'] ?></td>
+            </tr>
+            <tr>
                 <th>Email:</th>
                 <td><?= $user['mail'] ?></td>
             </tr>
             <tr>
                 <th>Username:</th>
                 <td><?= $user['username'] ?></td>
+            </tr>
+            <tr>
+                <th>Petname:</th>
+                <td><?= $user['petname'] ?></td>
             </tr>
         </table>
 
