@@ -48,7 +48,7 @@ $cat = getCategory();
 
 <body>
     <header>
-        <img src="/images/Pet paradise.png" alt="logo">
+        <img src="./images/Pet paradise.png" alt="logo">
         <h1>Pet Paradise</h1>
         <div>
             <a href="./register.php"><i>Register</i></a>
