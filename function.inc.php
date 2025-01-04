@@ -37,6 +37,38 @@ function getUser()
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getUserById($id)
+{
+    $sql = 'SELECT * FROM user WHERE id = :id';
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute(['id' => $id]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function updateUser($id, $firstname, $lastname, $country, $mail, $username, $petname, $password)
+{
+    if (strlen($password) == 0) {
+        $sql = "UPDATE user SET firstname = :firstname, lastname = :lastname, country = :country, mail = :mail, username = :username, petname = :petname WHERE id = :id";
+        $stmt = connectToDB()->prepare($sql);
+        $stmt->execute(['id' => $id, 'firstname' => $firstname, 'lastname' => $lastname, 'country' => $country, 'mail' => $mail, 'username' => $username, 'petname' => $petname]);
+    } else {
+        $sql = "UPDATE user SET firstname = :firstname, lastname = :lastname, country = :country, mail = :mail, username = :username, petname = :petname, password = :password WHERE id = :id";
+        $stmt = connectToDB()->prepare($sql);
+        $stmt->execute(['id' => $id, 'firstname' => $firstname, 'lastname' => $lastname, 'country' => $country, 'mail' => $mail, 'username' => $username, 'petname' => $petname, 'password' => md5($password)]);
+    }
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
+function deleteUser($id)
+{
+    $sql = "DELETE FROM user WHERE id = :id";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute(['id' => $id]);
+
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
+
 //------------------------ 2- add new user via register form page ------------
 
 function addUser(String $firstname, String $lastname, String $country,  String $mail, String $username, String $password): bool|int
