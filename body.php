@@ -231,7 +231,7 @@
 
     </div>
     <div>
-        <a href="index.php?cat=toy"> <img src="https://www.animalhumanesociety.org/sites/default/files/styles/scale_width_960/public/media/image/2023-04/untitled-instagram-post-square.png.jpg?itok=cBCBr_Do" alt="care">
+        <a href="index.php?cat=care"> <img src="https://www.animalhumanesociety.org/sites/default/files/styles/scale_width_960/public/media/image/2023-04/untitled-instagram-post-square.png.jpg?itok=cBCBr_Do" alt="care">
             <h5>Care</h5>
         </a>
 
@@ -249,7 +249,7 @@
                     <img src="<?= $item['image']; ?>" alt="" />
                     <div>
                         <p><?= $item['title']; ?></p>
-                        <h4><?= $item['price']; ?> Euro</h4>
+                        <h4><?= $item['price']; ?> &#8364;</h4>
                     </div>
 
                     <p>
