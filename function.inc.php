@@ -71,7 +71,7 @@ function deleteUser($id)
 
 //------------------------ 2- add new user via register form page ------------
 
-function addUser(String $firstname, String $lastname, String $country,  String $mail, String $username, String $password): bool|int
+function addUser(String $firstname, String $lastname, String $mail, String $username, String $password): bool|int
 {
     $db = connectToDB();
     $sql = "INSERT INTO user (firstname, lastname, country, mail, username, password, policy) VALUES (:firstname, :lastname, :country, :mail, :username, :password, 1) ;";
@@ -79,7 +79,6 @@ function addUser(String $firstname, String $lastname, String $country,  String $
     $stmt->execute([
         ':firstname' => $firstname,
         ':lastname' => $lastname,
-        ':country' => $country,
         ':mail' => $mail,
         ':username' => $username,
         ':password' => md5($password)
@@ -140,7 +139,7 @@ function setLogin($uid = false)
 // ------------------------- check admin name and  permission key --------
 function isValidLoginAdmin(String $adminName, String $key): bool|int
 {
-    $sql = "SELECT id FROM admin WHERE name=:name AND admin_key=:pass;";
+    $sql = "SELECT id FROM admin WHERE name=:name AND `key`=:pass;";
 
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([
