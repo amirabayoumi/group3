@@ -32,6 +32,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px 30px;
+    position: relative;
     color: var(--header-title-color);
 
     img {
@@ -41,15 +42,19 @@ body {
     }
 
     h1 {
-      font-size: 40px;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 50px;
       font-family: var(--font-header-title);
+      text-align: center;
     }
 
     div {
       display: flex;
       align-items: center;
-      font-size: 10px;
-      gap: 10px; /* Space between links */
+      font-size: 20px;
+      gap: 10px;
 
       a {
         color: var(--header-signin-color);
@@ -62,29 +67,68 @@ body {
       }
 
       .icon-user {
-        font-size: 20px;
+        font-size: 30px;
         color: var(--header-signin-color);
       }
     }
   }
 }
-@media screen and (max-width: 480px) {
+
+@media screen and (max-width: 900px) {
   body header {
+    display: flex;
+    flex-wrap: wrap;
     padding: 10px;
+    justify-content: space-between;
+    align-items: center;
 
     img {
-      max-width: 60px;
+      max-width: 70px;
       height: auto;
-      border-radius: 50%;
+    }
+
+    h1 {
+      font-size: 35px;
+      text-align: center;
+      flex: 1 1 100%;
+      margin: 10px 0;
+    }
+
+    div {
+      font-size: 15px;
+      gap: 10px;
+      justify-content: flex-end;
+
+      .icon-user {
+        font-size: 20px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 650px) {
+  body header {
+    flex-direction: column;
+    align-items: center;
+
+    img {
+      max-width: 50px;
     }
 
     h1 {
       font-size: 25px;
+      position: static;
+      transform: none;
+      margin: 10px 0;
     }
 
     div {
-      align-items: center;
+      font-size: 12px;
       gap: 5px;
+
+      .icon-user {
+        font-size: 15px;
+      }
     }
   }
 }
