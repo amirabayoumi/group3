@@ -5,13 +5,109 @@
   /* font-size: 62.5%; */
   --soft-orange: hsl(35, 77%, 62%);
 }
+
 * {
   box-sizing: border-box;
 }
-body {
-  /* background-color: red; */
-}
+
 body * {
   line-height: calc(2px + 2ex + 2px);
   /* font-size: 5rem; */
+}
+
+body {
+  background-color: rgb(255, 255, 255);
+  min-height: 100vh;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: rgb(88, 87, 87);
+
+  header {
+    text-align: center;
+  }
+
+  main {
+    margin-top: 5rem;
+
+    background-color: rgba(87, 126, 109, 0.77);
+    width: 70%;
+    max-width: 700px;
+    display: grid;
+    place-self: center;
+    grid-template-columns: 1fr 1fr;
+    border: 0.5px solid rgb(158, 161, 160);
+    box-shadow: 5px 5px 10px rgb(118, 148, 132);
+    border-radius: 10px;
+
+    section {
+      &:nth-child(1) {
+        font-size: 5rem;
+        text-align: center;
+        border-right: 0.5px solid rgb(199, 204, 202);
+      }
+
+      &:nth-child(2) {
+        padding: 1rem;
+        text-align: center;
+        color: white;
+
+        form {
+          height: 80%;
+          display: grid;
+
+          h1 {
+            align-self: center;
+          }
+
+          div {
+            &:nth-child(2) {
+              display: grid;
+              gap: 1rem;
+
+              button {
+                background-color: rgb(219, 186, 39);
+                border: none;
+                border-radius: 8px;
+                color: rgb(75, 74, 73);
+
+                &:hover {
+                  background-color: rgb(95, 91, 73);
+                  color: white;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  > section {
+    padding-top: 2rem;
+
+    > div {
+      width: 60%;
+      display: grid;
+      place-self: center;
+      grid-template-columns: 20% 80%;
+      background-color: rgba(202, 47, 0, 0.37);
+      border-radius: 10px;
+      color: rgb(129, 41, 14);
+
+      h1 {
+        font-size: 2rem;
+
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  body main {
+    grid-template-columns: 1fr;
+  }
+
+  body main section:nth-child(1) h1 {
+    font-size: 50px;
+  }
 }
