@@ -33,9 +33,9 @@ if (isset($_POST['formSubmit'])) {
     }
     //validation for category 
 
-    // print '<pre>';
-    // print_r($_POST);
-    // print '</pre>';
+    print '<pre>';
+    print_r($_POST);
+    print '</pre>';
     // print '<pre>';
     // print_r($errors);
     // print '</pre>';
@@ -102,6 +102,7 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Products</title>
+    <link rel="stylesheet" href="./css/adminProduct.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -109,119 +110,6 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-
-            background-color: white;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-
-            Header {
-                padding: 1rem;
-                background-color: rgb(116, 151, 118);
-                display: flex;
-                font-size: 20px;
-                place-items: center;
-                color: rgb(78, 76, 76);
-                justify-content: space-between;
-
-                a {
-                    text-decoration: none;
-                    font-size: 20px;
-                    color: rgb(78, 76, 76);
-                    background-color: white;
-                    padding: 1rem;
-                    border-radius: 5px;
-
-                    &:hover {
-                        background-color: rgb(224, 222, 222);
-                    }
-                }
-            }
-
-            main {
-                section {
-
-
-                    &:nth-child(1) {
-                        width: 60%;
-                        padding: 1rem;
-                        margin-top: 1rem;
-                        background-color: rgb(173, 192, 174);
-                        border-radius: 10px;
-                        display: grid;
-                        place-self: center;
-
-                        h2 {
-                            color: rgb(73, 75, 73);
-                        }
-
-
-
-                        >div:nth-child(2) {
-                            color: rgb(204, 81, 81);
-                        }
-
-                        form {
-
-                            display: grid;
-                            gap: 1rem;
-                            grid-template-columns: 2fr 0.5fr;
-
-                            color: rgb(73, 75, 73);
-
-                            div {
-                                &:nth-child(1) {
-
-                                    input:nth-child(2) {
-                                        margin-top: 0.5rem;
-                                        display: block;
-                                        width: 100%;
-                                        padding: 0.5rem;
-                                        border: none;
-                                    }
-
-                                }
-
-                                &:nth-child(2) {
-                                    grid-row: 2/3;
-                                    width: 100%;
-
-                                    select:nth-child(2) {
-                                        border-radius: 5px;
-                                        border: none;
-                                        width: 50%;
-                                        padding: 0.5rem;
-                                    }
-                                }
-
-                            }
-
-                            button {
-                                color: rgb(59, 65, 59);
-                                background-color: rgb(255, 255, 255);
-                                border: none;
-                                grid-row: 1/3;
-                                border-radius: 50%;
-                                aspect-ratio: 1/1;
-                                width: 70px;
-                                align-self: center;
-                                place-self: center;
-                                font-size: 30px;
-                            }
-
-
-                        }
-                    }
-                }
-            }
-
-
-        }
-    </style>
 
 </head>
 
@@ -242,28 +130,12 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
                     </ul>
                 </div>
             <?php endif; ?>
-            <!-- <form method="post" action="./adminaddproduct.php">
-            <fieldset>
-                <label for="inputUrl">URL: *</label>
-                <input type="text" id="inputUrl" name="inputUrl" placeholder="https://..." value="<?= $inputUrl; ?>" required>
-            </fieldset>
 
-            <fieldset>
-                <label for="category">Choose a product category:</label>
-                <select name="category" id="category" required>
-                    <option value="1">Food</option>
-                    <option value="2">Toy</option>
-                </select>
-            </fieldset>
-            <aside>
-                <button type="button">Add Product</button>
-                <button type="button">Delete Product</button>
-            </aside> -->
-
-            <!-- old code -->
             <form method="post" action="./adminaddproduct.php">
                 <div> <label for="inputUrl">URL: *</label>
-                    <input type="text" id="inputUrl" name="inputUrl" placeholder="https://..." value="<?= $inputUrl; ?>">
+                    <input type="text" id="inputUrl" name="inputUrl" placeholder="https://..." value="<?php if (!$_POST['category']) {
+                                                                                                            print $inputUrl;
+                                                                                                        }  ?>">
                 </div>
                 <div> <label for="category">Choose a product category:</label>
                     <select name="category" id="category">
@@ -275,51 +147,6 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
                 <button type="submit" class="btn btn-primary" name="formSubmit">+</button>
             </form>
         </section>
-        <!-- <section>
-            <h2>List of Products</h2>
-            <section>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Image</th>
-                            <th>Product Name</th>
-                            <th>Description</th>
-                            <th>Status</th>
-                            <th>Stock</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <?php foreach ($items as $item): ?>
-
-                            <tr>
-                                <td><?= $item['id']; ?></td>
-                                <td><?= ($item['image'] !== null && strlen($item['image']) > 0) ? '<img src="' . $item['image'] . '" class="thumb"/>' : 'no image'; ?></td>
-                                <td><?= mb_strimwidth(($item['title'] ?? 'no title'), 0, 50, "..."); ?></td>
-                                <td><?= mb_strimwidth(($item['description'] ?? 'no description'), 0, 50, "..."); ?></td>
-                                <td><?= mb_strimwidth($item['url'], 0, 50, "..."); ?></td>
-                                <td><?= $item['price']; ?></td>
-                            </tr>
-
-                        <?php endforeach; ?>
-
-                        <tr>
-                            <td><input type="checkbox" name="productSelection[]"></td>
-                            <td><img src="product-image.jpg" alt="Product Image" height="50"></td>
-                            <td>Example Product</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
-                            <td>Available</td>
-                            <td>50</td>
-                            <td>$19.99</td>
-                            <td>1.5kg</td>
-                            <td>https://example.com/product-link</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-        </section> -->
 
         <?php if (isset($_GET["message"])): // msg from get 
         ?>
