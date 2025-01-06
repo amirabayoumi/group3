@@ -30,11 +30,7 @@ $toGetName = getWishlistById($_SESSION['uid']);
 if (isset($_POST['search'])) {
     $items =  getItemsBySearch($_POST['searchname']);
 } elseif (isset($_GET['cat'])) {
-    if ($_GET['cat'] == "food") {
-        $items = getItemsByCat(1);
-    } else if ($_GET['cat'] == "toy") {
-        $items = getItemsByCat(2);
-    }
+    $items = getItemsByCat($_GET['cat']);
 } else {
     $items = getItems();
 }
@@ -126,7 +122,8 @@ $cat = getCategory();
     </header>
     <main>
         <?php if (!isset($_GET['wishlist'])): ?>
-            <?php require("./body.php"); ?>
+            <?php $pageName = "profile.php";
+            require("./body.php"); ?>
         <?php endif; ?>
     </main>
 
