@@ -59,11 +59,15 @@ body {
           div {
             &:nth-child(1) {
               input:nth-child(2) {
+                color: #244d3b;
                 margin-top: 0.5rem;
                 display: block;
                 width: 100%;
                 padding: 0.5rem;
                 border: none;
+                &::placeholder {
+                  color: #244d3b;
+                }
               }
             }
 

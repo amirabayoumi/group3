@@ -33,9 +33,9 @@ if (isset($_POST['formSubmit'])) {
     }
     //validation for category 
 
-    // print '<pre>';
-    // print_r($_POST);
-    // print '</pre>';
+    print '<pre>';
+    print_r($_POST);
+    print '</pre>';
     // print '<pre>';
     // print_r($errors);
     // print '</pre>';
@@ -130,28 +130,12 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
                     </ul>
                 </div>
             <?php endif; ?>
-            <!-- <form method="post" action="./adminaddproduct.php">
-            <fieldset>
-                <label for="inputUrl">URL: *</label>
-                <input type="text" id="inputUrl" name="inputUrl" placeholder="https://..." value="<?= $inputUrl; ?>" required>
-            </fieldset>
 
-            <fieldset>
-                <label for="category">Choose a product category:</label>
-                <select name="category" id="category" required>
-                    <option value="1">Food</option>
-                    <option value="2">Toy</option>
-                </select>
-            </fieldset>
-            <aside>
-                <button type="button">Add Product</button>
-                <button type="button">Delete Product</button>
-            </aside> -->
-
-            <!-- old code -->
             <form method="post" action="./adminaddproduct.php">
                 <div> <label for="inputUrl">URL: *</label>
-                    <input type="text" id="inputUrl" name="inputUrl" placeholder="https://..." value="<?= $inputUrl; ?>">
+                    <input type="text" id="inputUrl" name="inputUrl" placeholder="https://..." value="<?php if (!$_POST['category']) {
+                                                                                                            print $inputUrl;
+                                                                                                        }  ?>">
                 </div>
                 <div> <label for="category">Choose a product category:</label>
                     <select name="category" id="category">
@@ -163,51 +147,6 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
                 <button type="submit" class="btn btn-primary" name="formSubmit">+</button>
             </form>
         </section>
-        <!-- <section>
-            <h2>List of Products</h2>
-            <section>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Image</th>
-                            <th>Product Name</th>
-                            <th>Description</th>
-                            <th>Status</th>
-                            <th>Stock</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
-                        <?php foreach ($items as $item): ?>
-
-                            <tr>
-                                <td><?= $item['id']; ?></td>
-                                <td><?= ($item['image'] !== null && strlen($item['image']) > 0) ? '<img src="' . $item['image'] . '" class="thumb"/>' : 'no image'; ?></td>
-                                <td><?= mb_strimwidth(($item['title'] ?? 'no title'), 0, 50, "..."); ?></td>
-                                <td><?= mb_strimwidth(($item['description'] ?? 'no description'), 0, 50, "..."); ?></td>
-                                <td><?= mb_strimwidth($item['url'], 0, 50, "..."); ?></td>
-                                <td><?= $item['price']; ?></td>
-                            </tr>
-
-                        <?php endforeach; ?>
-
-                        <tr>
-                            <td><input type="checkbox" name="productSelection[]"></td>
-                            <td><img src="product-image.jpg" alt="Product Image" height="50"></td>
-                            <td>Example Product</td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</td>
-                            <td>Available</td>
-                            <td>50</td>
-                            <td>$19.99</td>
-                            <td>1.5kg</td>
-                            <td>https://example.com/product-link</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-        </section> -->
 
         <?php if (isset($_GET["message"])): // msg from get 
         ?>
