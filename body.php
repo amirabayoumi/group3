@@ -297,9 +297,25 @@ $items = getProductPerPage($start, $rowsPerPage);
         <h1>Oops! Sorry, no products were found. Please try searching again or send us a request with what you're looking for, and we'll be happy to assist you </h1>
     <?php endif; ?>
 </section>
-<ul>
-    <li><a href="#">Previous</a></li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">Next</a></li>
+<ul class="pagination">
+    <?php
+    // This shows a "Previous" link only if the current page is greater than 1.
+    if ($currentPage > 1): ?>
+        <li><a href="index.php?page=<?= $currentPage - 1; ?>">Previous</a></li>
+    <?php endif; ?>
+
+    <?php
+    // Loop through all pages to display page numbers.
+    for ($i = 1; $i <= $pages; $i++): ?>
+        <li <?= $i == $currentPage ? 'class="active"' : ''; ?>>
+            <!-- Display page number as a link. "active" class added for the current page. -->
+            <a href="index.php?page=<?= $i; ?>"><?= $i; ?></a>
+        </li>
+    <?php endfor; ?>
+
+    <?php
+    // Show "Next" link only if the current page is less than the total number of pages.
+    if ($currentPage < $pages): ?>
+        <li><a href="index.php?page=<?= $currentPage + 1; ?>">Next</a></li>
+    <?php endif; ?>
 </ul>
