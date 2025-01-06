@@ -48,6 +48,7 @@ $cat = getCategory();
         <img src="./images/Pet paradise.png" alt="logo">
         <h1>Pet Paradise</h1>
         <div>
+            <a href="./index.php"><b>Home</b></a>
             <a href="./register.php"><i>Register</i></a>
             <a href="./signin.php"><b>Login</b></a>
             <i class="icon-user"></i>
