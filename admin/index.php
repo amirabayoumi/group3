@@ -89,7 +89,7 @@ if (isset($_POST['submit'])) {
             main {
                 margin-top: 5rem;
 
-                background-color: rgba(87, 126, 109, 0.77);
+                background-color: #244d3b;
                 width: 70%;
                 max-width: 700px;
                 display: grid;
@@ -131,7 +131,7 @@ if (isset($_POST['submit'])) {
                                         color: rgb(75, 74, 73);
 
                                         &:hover {
-                                            background-color: rgb(95, 91, 73);
+                                            background-color: rgb(126, 118, 85);
                                             color: white;
                                         }
                                     }

@@ -121,11 +121,11 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
 
             Header {
                 padding: 1rem;
-                background-color: rgb(116, 151, 118);
+                background-color: #244d3b;
                 display: flex;
                 font-size: 20px;
                 place-items: center;
-                color: rgb(78, 76, 76);
+                color: white;
                 justify-content: space-between;
 
                 a {
@@ -138,6 +138,7 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
 
                     &:hover {
                         background-color: rgb(224, 222, 222);
+                        text-decoration: none;
                     }
                 }
             }
@@ -150,13 +151,13 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
                         width: 60%;
                         padding: 1rem;
                         margin-top: 1rem;
-                        background-color: rgb(173, 192, 174);
+                        background-color: #244d3b;
                         border-radius: 10px;
                         display: grid;
                         place-self: center;
 
                         h2 {
-                            color: rgb(73, 75, 73);
+                            color: white;
                         }
 
 
@@ -171,7 +172,7 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
                             gap: 1rem;
                             grid-template-columns: 2fr 0.5fr;
 
-                            color: rgb(73, 75, 73);
+                            color: white;
 
                             div {
                                 &:nth-child(1) {
@@ -195,6 +196,7 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
                                         border: none;
                                         width: 50%;
                                         padding: 0.5rem;
+                                        color: #244d3b;
                                     }
                                 }
 
@@ -211,6 +213,10 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
                                 align-self: center;
                                 place-self: center;
                                 font-size: 30px;
+
+                                &:hover {
+                                    background-color: #96e7c5;
+                                }
                             }
 
 
