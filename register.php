@@ -234,13 +234,13 @@ if (isset($_POST['submit'])) {
                         padding: 1rem;
 
                         ul {
-                            list-style-type: none; // Прибираємо стандартні маркери
+                            list-style-type: none;
                             margin: 0;
                             padding: 0;
 
                             li {
                                 font-size: 1.1rem;
-                                color: #D72C0D; // Колір тексту для кожного елемента списку
+                                color: #D72C0D;
                             }
                         }
                     }
