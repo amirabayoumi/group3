@@ -1,6 +1,27 @@
 <?php
 require_once("./function.inc.php");
+// Number of items per page
+$rowsPerPage = 6;
 
+// Determine the current page
+if (isset($_GET['page'])) {
+    $currentPage = (int)$_GET['page'];
+    if ($currentPage < 1) {
+        $currentPage = 1;
+    }
+} else {
+    $currentPage = 1;
+}
+
+// Calculate the starting index for the database query
+$start = ($currentPage - 1) * $rowsPerPage;
+
+// Fetch total number of products to calculate total pages
+$totalItems = count(getItems()); // Using getItems() to get all products
+$pages = ceil($totalItems / $rowsPerPage);
+
+// Fetch the products for the current page (implement function getProductPerPage)
+$items = getProductPerPage($start, $rowsPerPage);
 ?>
 
 
