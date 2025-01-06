@@ -1,4 +1,6 @@
 <?php
+$errors = [];
+
 require("./header.php");
 require_once("./function.inc.php");
 requiredLoggedOut();
@@ -8,7 +10,7 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-// $userList = getUser();
+$userList = getUser();
 
 // print "<pre>";
 // print_r($_POST);
@@ -22,7 +24,7 @@ error_reporting(E_ALL);
 // print_r($_SESSION);
 // print '</pre>';
 
-$errors = [];
+
 $firstname = "";
 $lastname = "";
 $mail = "";
@@ -42,7 +44,7 @@ if (isset($_POST['submit'])) {
         }
 
         if (preg_match("/[\^<,\"@\/\{\}\(\)\*\$%\?=>:\|;#]+/i", $firstname)) {
-            $errors[] = "Firstname can not contain special characters";
+            $errors[] = "Firstname can not contain special characters.";
         }
     }
 
@@ -57,7 +59,7 @@ if (isset($_POST['submit'])) {
         }
 
         if (preg_match("/[\^<,\"@\/\{\}\(\)\*\$%\?=>:\|;#]+/i", $lastname)) {
-            $errors[] = "Lastname can not contain special characters";
+            $errors[] = "Lastname can not contain special characters.";
         }
     }
 
@@ -70,7 +72,7 @@ if (isset($_POST['submit'])) {
             $errors[] = "E-mail address is invalid.";
         } else {
             if (isMailExist($mail)) {
-                $errors[] = "this email is already have an account!";
+                $errors[] = "This email address is already associated with an account.";
             }
         }
     }
@@ -82,39 +84,37 @@ if (isset($_POST['submit'])) {
         if ($_POST['inputPassword2'] == $_POST['inputPassword1']) {
             $password = $_POST['inputPassword2'];
         } else {
-            $errors[] = "Passwords is not same";
+            $errors[] = "Passwords are not the same.";
         }
 
 
         if (!preg_match("/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/", $password)) {
-            $errors[] = "Password needs to contain at least 1 uppercase letter, 1 lowercase, 1 symbol, 1 number and needs to be at least 8 characters long.";
+            $errors[] = "Password must contain at least 1 uppercase letter, 1 lowercase letter, 1 symbol, 1 number and must be at least 8 characters long.";
         }
     }
 
-    if (strlen($_POST['username']) < 1) {
+    if (!isset($_POST['username']) || strlen($_POST['username']) < 1) {
         $errors[] = "Username is required.";
     } else {
         if (strlen($_POST['username']) < 5) {
-            $errors[] = "username is very short.";
+            $errors[] = "Username is too short.";
         } else {
             $username = $_POST['username'];
         }
     }
 
     if (!count($errors)) {
+        $newId = addUser($firstname, $lastname, $mail, $username, $password);
+        if (!$newId) {
+            $errors[] = "An unknown error has occured, please contact us...";
+        } else {
 
-        if (!count($errors)) {
-            $newId = addUser($firstname, $lastname, $mail, $username, $password);
-            if (!$newId) {
-                $errors[] = "An unknown error has occured, pleace contact us...";
-            } else {
-
-                header("Location: signin.php");
-                exit;
-            }
+            header("Location: signin.php");
+            exit;
         }
     }
 }
+
 
 // print "<pre>";
 // print_r($errors);
@@ -175,7 +175,7 @@ if (isset($_POST['submit'])) {
                             font-size: 1.3rem;
                             font-weight: bold;
                             color: #244d3b;
-                           
+
                             label {
                                 display: block;
                                 margin-bottom: 1rem;
@@ -229,6 +229,21 @@ if (isset($_POST['submit'])) {
                     a:hover {
                         text-decoration: underline;
                     }
+
+                    .error-container {
+                        padding: 1rem;
+
+                        ul {
+                            list-style-type: none; // Прибираємо стандартні маркери
+                            margin: 0;
+                            padding: 0;
+
+                            li {
+                                font-size: 1.1rem;
+                                color: #D72C0D; // Колір тексту для кожного елемента списку
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -238,61 +253,62 @@ if (isset($_POST['submit'])) {
 
 <body>
     <main>
-
         <form action="./register.php" method="post">
+            <h1>New Customer</h1>
+
+            <p> </p>
             <?php if (count($errors)): ?>
-                <div style="background-color: #faec6c; border-radius:20px ;">
+                <div class="error-container">
                     <ul>
                         <?php foreach ($errors as $error): ?>
-                            <li style="color: #244d3b"><?= $error; ?></li>
+                            <li><?= $error; ?></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
-
             <?php endif; ?>
 
-            <h1>New Customer</h1>
             <fieldset>
                 <legend>Personal Information</legend><br>
                 <input type="hidden" name="success_url" value="">
                 <input type="hidden" name="error_url" value="">
                 <div>
-                    <label for="firstname">First name*</label>
-                    <input type="text" id="firstname" name="firstname" placeholder="First name" required>
+                    <label for="firstname">First name:</label>
+                    <input type="text" id="firstname" name="firstname" placeholder="Enter first name" required>
                 </div>
                 <div>
-                    <label for="lastname">Last name*</label>
-                    <input type="text" id="lastname" name="lastname" placeholder="Last name" required>
+                    <label for="lastname">Last name:</label>
+                    <input type="text" id="lastname" name="lastname" placeholder="Enter last name" required>
                 </div>
             </fieldset>
 
             <fieldset>
                 <legend>Login Details</legend><br>
                 <div>
-                    <label for="username">Username*</label>
-                    <input type="username" name="username" id="username" placeholder="Username" required>
+                    <label for="username">Username:</label>
+                    <input type="username" name="username" id="username" placeholder="Enter username" required>
                 </div>
                 <div>
-                    <label for="mail">Email address*</label>
-                    <input type="email" name="mail" id="mail" placeholder="Email address" required>
+                    <label for="mail">Email address:</label>
+                    <input type="email" name="mail" id="mail" placeholder="Enter email address" required>
                 </div>
                 <div>
-                    <label for="inputPassword1">Password*</label>
-                    <input type="password" name="inputPassword1" id="inputPassword1" placeholder="Password" required>
+                    <label for="inputPassword1">Password:</label>
+                    <input type="password" name="inputPassword1" id="inputPassword1" placeholder="Enter password" required>
                 </div>
                 <div>
-                    <label for="inputPassword2">Confirm Password*</label>
-                    <input type="password" name="inputPassword2" id="inputPassword2" placeholder="Password confirmation" required>
+                    <label for="inputPassword2">Confirm password:</label>
+                    <input type="password" name="inputPassword2" id="inputPassword2" placeholder="Confirm your password" required>
                 </div>
                 <div id="passwordHelpBlock" class="form-text">
                     Min. 8 characters. Use a combination of upper and lowercase letters, numbers or special characters.
                 </div>
             </fieldset>
             <div>
-                <button type="submit" id="send2">Create Account</button>
+                <button type="submit" id="send2" name="submit">Create Account</button>
                 <a href="https://">Back</a>
             </div>
-            <input type="text" name="token" style="display: none">
+
+
         </form>
     </main>
 </body>
