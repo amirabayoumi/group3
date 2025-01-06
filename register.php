@@ -273,11 +273,11 @@ if (isset($_POST['submit'])) {
                 <input type="hidden" name="error_url" value="">
                 <div>
                     <label for="firstname">First name:</label>
-                    <input type="text" id="firstname" name="firstname" placeholder="Enter first name" required>
+                    <input type="text" id="firstname" name="firstname" placeholder="Enter first name">
                 </div>
                 <div>
                     <label for="lastname">Last name:</label>
-                    <input type="text" id="lastname" name="lastname" placeholder="Enter last name" required>
+                    <input type="text" id="lastname" name="lastname" placeholder="Enter last name">
                 </div>
             </fieldset>
 
@@ -285,19 +285,19 @@ if (isset($_POST['submit'])) {
                 <legend>Login Details</legend><br>
                 <div>
                     <label for="username">Username:</label>
-                    <input type="username" name="username" id="username" placeholder="Enter username" required>
+                    <input type="username" name="username" id="username" placeholder="Enter username">
                 </div>
                 <div>
                     <label for="mail">Email address:</label>
-                    <input type="email" name="mail" id="mail" placeholder="Enter email address" required>
+                    <input type="email" name="mail" id="mail" placeholder="Enter email address">
                 </div>
                 <div>
                     <label for="inputPassword1">Password:</label>
-                    <input type="password" name="inputPassword1" id="inputPassword1" placeholder="Enter password" required>
+                    <input type="password" name="inputPassword1" id="inputPassword1" placeholder="Enter password">
                 </div>
                 <div>
                     <label for="inputPassword2">Confirm password:</label>
-                    <input type="password" name="inputPassword2" id="inputPassword2" placeholder="Confirm your password" required>
+                    <input type="password" name="inputPassword2" id="inputPassword2" placeholder="Confirm your password">
                 </div>
                 <div id="passwordHelpBlock" class="form-text">
                     Min. 8 characters. Use a combination of upper and lowercase letters, numbers or special characters.
