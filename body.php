@@ -1,10 +1,22 @@
 <style>
+    @import url(https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css);
     @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap");
 
+
+
+
+    :root {
+        --header-bg: #244d3b;
+        --header-title-color: #ffffff;
+        --header-signin-color: #96e7c5;
+
+        --font-header-title: "Puppybellies", sans-serif;
+        --font-body: "Comic Neue", sans-serif;
+    }
+
     * {
+        font-size: 62.5%;
         box-sizing: border-box;
-
-
     }
 
     #searchBar {
@@ -21,21 +33,24 @@
                 background-color: #6ec5aa;
                 border: none;
                 border-radius: 5px;
-                padding: 0.7rem;
+                padding: 1rem;
 
                 position: absolute;
                 right: 0;
                 top: 50%;
-
+                color: white;
+                font-size: 1rem;
+                font-weight: 500;
 
                 &::placeholder {
                     color: white;
+                    font-size: 1rem;
                 }
 
             }
 
             button {
-                font-size: 25px;
+                font-size: 2rem;
                 border: none;
                 background-color: transparent;
                 position: absolute;
@@ -255,7 +270,6 @@
                     <p>
                         <?= $item['description']; ?>
                     </p>
-
                 </div>
                 <div>
 
