@@ -102,6 +102,7 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CRUD Products</title>
+    <link rel="stylesheet" href="./css/adminProduct.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -109,125 +110,6 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-
-            background-color: white;
-            font-family: Verdana, Geneva, Tahoma, sans-serif;
-
-            Header {
-                padding: 1rem;
-                background-color: #244d3b;
-                display: flex;
-                font-size: 20px;
-                place-items: center;
-                color: white;
-                justify-content: space-between;
-
-                a {
-                    text-decoration: none;
-                    font-size: 20px;
-                    color: rgb(78, 76, 76);
-                    background-color: white;
-                    padding: 1rem;
-                    border-radius: 5px;
-
-                    &:hover {
-                        background-color: rgb(224, 222, 222);
-                        text-decoration: none;
-                    }
-                }
-            }
-
-            main {
-                section {
-
-
-                    &:nth-child(1) {
-                        width: 60%;
-                        padding: 1rem;
-                        margin-top: 1rem;
-                        background-color: #244d3b;
-                        border-radius: 10px;
-                        display: grid;
-                        place-self: center;
-
-                        h2 {
-                            color: white;
-                        }
-
-
-
-                        >div:nth-child(2) {
-                            color: rgb(204, 81, 81);
-                        }
-
-                        form {
-
-                            display: grid;
-                            gap: 1rem;
-                            grid-template-columns: 2fr 0.5fr;
-
-                            color: white;
-
-                            div {
-                                &:nth-child(1) {
-
-                                    input:nth-child(2) {
-                                        margin-top: 0.5rem;
-                                        display: block;
-                                        width: 100%;
-                                        padding: 0.5rem;
-                                        border: none;
-                                    }
-
-                                }
-
-                                &:nth-child(2) {
-                                    grid-row: 2/3;
-                                    width: 100%;
-
-                                    select:nth-child(2) {
-                                        border-radius: 5px;
-                                        border: none;
-                                        width: 50%;
-                                        padding: 0.5rem;
-                                        color: #244d3b;
-                                    }
-                                }
-
-                            }
-
-                            button {
-                                color: rgb(59, 65, 59);
-                                background-color: rgb(255, 255, 255);
-                                border: none;
-                                grid-row: 1/3;
-                                border-radius: 50%;
-                                aspect-ratio: 1/1;
-                                width: 70px;
-                                align-self: center;
-                                place-self: center;
-                                font-size: 30px;
-
-                                &:hover {
-                                    background-color: #96e7c5;
-                                }
-                            }
-
-
-                        }
-                    }
-                }
-            }
-
-
-        }
-    </style>
 
 </head>
 
