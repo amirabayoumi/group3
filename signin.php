@@ -31,7 +31,7 @@ if (isset($_POST['mail'])) {
 
     // eerst validatie op mail (low level)
     if (!strlen($_POST['mail'])) {
-        $errors[] = "Please fill in e-mail.";
+        $errors[] = "Please fill in email.";
     }
 
     // validatie op password (low level)
@@ -47,7 +47,7 @@ if (isset($_POST['mail'])) {
         header("Location: profile.php");
         exit;
     } else {
-        $errors[] = "E-mail and/or password is not correct!";
+        $errors[] = "Email and/or password is not correct!";
     }
 }
 
@@ -90,12 +90,13 @@ if (isset($_POST['mail'])) {
                     padding: 1.5rem;
                     border: 1px solid #ccc;
                     border-radius: 5px;
-                    width: 45%;
+                    width: 500px;
+                    min-width: 300px;
 
                     label {
                         display: block;
                         margin-bottom: 0.5rem;
-                        font-weight: bold;
+
                     }
 
                     input {
@@ -124,6 +125,21 @@ if (isset($_POST['mail'])) {
                         border: 1px solid #244d3b;
                         border-radius: 5px;
                     }
+
+                    .error-container {
+                        padding: 1rem;
+
+                        ul {
+                            list-style-type: none;
+                            margin: 0;
+                            padding: 0;
+
+                            li {
+                                font-size: 1.1rem;
+                                color: #D72C0D;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -137,23 +153,23 @@ if (isset($_POST['mail'])) {
         <section class="login">
             <form action="./signin.php" method="post">
 
+                <p> </p>
                 <?php if (count($errors)): ?>
-                    <div style="background-color: #faec6c; border-radius:20px ;">
+                    <div class="error-container">
                         <ul>
                             <?php foreach ($errors as $error): ?>
-                                <li style="color: #244d3b"><?= $error; ?></li>
+                                <li><?= $error; ?></li>
                             <?php endforeach; ?>
                         </ul>
                     </div>
-
                 <?php endif; ?>
 
 
-                <label for="mail">E-mail address:</label>
-                <input type="email" id="mail" name="mail" size="28" placeholder="Please enter your email" required>
+                <label for="mail">Email address:</label>
+                <input type="email" id="mail" name="mail" size="28" placeholder="Please enter your email">
 
                 <label for="inputPassword">Password:</label>
-                <input type="password" id="inputPassword" name="inputPassword" placeholder="Please enter your password" required>
+                <input type="password" id="inputPassword" name="inputPassword" placeholder="Please enter your password">
 
 
 
