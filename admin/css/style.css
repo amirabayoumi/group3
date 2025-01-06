@@ -28,7 +28,7 @@ body {
   main {
     margin-top: 5rem;
 
-    background-color: rgba(87, 126, 109, 0.77);
+    background-color: #244d3b;
     width: 70%;
     max-width: 700px;
     display: grid;
