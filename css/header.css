@@ -41,15 +41,17 @@ body {
     }
 
     h1 {
-      font-size: 40px;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 50px;
       font-family: var(--font-header-title);
     }
 
     div {
       display: flex;
       align-items: center;
-      font-size: 10px;
-      gap: 10px; /* Space between links */
+      font-size: 20px;
+      gap: 15px; /* Space between links */
 
       a {
         color: var(--header-signin-color);
@@ -62,12 +64,13 @@ body {
       }
 
       .icon-user {
-        font-size: 20px;
+        font-size: 30px;
         color: var(--header-signin-color);
       }
     }
   }
 }
+
 @media screen and (max-width: 480px) {
   body header {
     padding: 10px;
