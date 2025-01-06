@@ -270,3 +270,9 @@
         <h1>Oops! Sorry, no products were found. Please try searching again or send us a request with what you're looking for, and we'll be happy to assist you </h1>
     <?php endif; ?>
 </section>
+<ul>
+    <li><a href="#">Previous</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">Next</a></li>
+</ul>
