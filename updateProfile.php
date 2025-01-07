@@ -73,7 +73,7 @@ if (@$_POST['submit_edit']) {
 </head>
 
 <body>
-    <header>
+    <!-- <header>
         <img src="./images/Pet paradise.png" alt="logo">
         <h1><? if (strlen($user['petname']) > 1) {
                 print $user['petname'];
@@ -109,7 +109,7 @@ if (@$_POST['submit_edit']) {
 
         </div>
 
-    </header>
+    </header> -->
     <main>
         <form action="./updateProfile.php" method="post">
             <?php if (count($errors)): ?>
