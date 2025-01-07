@@ -35,41 +35,41 @@ $username = "";
 if (isset($_POST['submit'])) {
 
     if (!isset($_POST['firstname'])) {
-        $errors[] = "Firstname is required.";
+        $errors[] = "First name is required.";
     } else {
         $firstname = $_POST['firstname'];
 
         if (strlen($firstname) < 1) {
-            $errors[] = "Firstname is required.";
+            $errors[] = "First name is required.";
         }
 
         if (preg_match("/[\^<,\"@\/\{\}\(\)\*\$%\?=>:\|;#]+/i", $firstname)) {
-            $errors[] = "Firstname can not contain special characters.";
+            $errors[] = "First name can not contain special characters.";
         }
     }
 
 
     if (!isset($_POST['lastname'])) {
-        $errors[] = "Lastname is required.";
+        $errors[] = "Last name is required.";
     } else {
         $lastname = $_POST['lastname'];
 
         if (strlen($lastname) < 1) {
-            $errors[] = "Lastname is required.";
+            $errors[] = "Last name is required.";
         }
 
         if (preg_match("/[\^<,\"@\/\{\}\(\)\*\$%\?=>:\|;#]+/i", $lastname)) {
-            $errors[] = "Lastname can not contain special characters.";
+            $errors[] = "Last name can not contain special characters.";
         }
     }
 
     if (!isset($_POST['mail'])) {
-        $errors[] = "Email address  is required.";
+        $errors[] = "Email address is required.";
     } else {
         $mail = $_POST['mail'];
 
         if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
-            $errors[] = "E-mail address is invalid.";
+            $errors[] = "Email address is invalid.";
         } else {
             if (isMailExist($mail)) {
                 $errors[] = "This email address is already associated with an account.";
@@ -149,6 +149,7 @@ if (isset($_POST['submit'])) {
                 justify-content: space-around;
                 margin: 3rem auto;
                 max-width: 1200px;
+                min-width: 300px;
 
                 form {
                     background-color: #ffffff;
@@ -156,6 +157,7 @@ if (isset($_POST['submit'])) {
                     border: 1px solid #ccc;
                     border-radius: 5px;
                     max-width: 600px;
+
                     margin: 2rem auto;
 
                     h1 {
