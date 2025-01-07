@@ -3,9 +3,9 @@
 require('./function.inc.php');
 requiredLoggedIn();
 
-print '<pre>';
-print_r($_SESSION);
-print '</pre>';
+// print '<pre>';
+// print_r($_SESSION);
+// print '</pre>';
 
 if (isset($_SESSION['uid'])) {
     $userId = $_SESSION['uid'];
@@ -55,77 +55,86 @@ $cat = getCategory();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="https://unpkg.com/mvp.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" integrity="sha384-tViUnnbYAV00FLIhhi3v/dWt3Jxw4gZQcNoSCxCIFNJVCx7/D55/wXsrNIRANwdD" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="css/userProfileHeader.css">
 </head>
 
 <body>
+
     <header>
-        <a href="./logout.php"><i>Log out</i></a>
+        <img src="./images/Pet paradise.png" alt="logo">
+        <h1><? if (strlen($user['petname']) > 1) {
+                print $user['petname'];
+            } else {
+                print "Pet";
+            } ?> Paradise</h1>
+        <div>
+            <a href="profile.php">Home</a>
 
-        <h1>Welcome <?= $user['firstname'] ?>!</h1>
-        <hr>
-
-        <br><br>
-        <h1>Your data</h1>
-        <a href="updateProfile.php">Edit</a>
-        <a href="deleteProfile.php">Delete</a>
-        <table>
-            <tr>
-                <th>First name:</th>
-                <td><?= $user['firstname'] ?></td>
-            </tr>
-            <tr>
-                <th>Last name:</th>
-                <td><?= $user['lastname'] ?></td>
-            </tr>
-            <tr>
-                <th>Country:</th>
-                <td><?= $user['country'] ?></td>
-            </tr>
-            <tr>
-                <th>Email:</th>
-                <td><?= $user['mail'] ?></td>
-            </tr>
-            <tr>
-                <th>Username:</th>
-                <td><?= $user['username'] ?></td>
-            </tr>
-            <tr>
-                <th>Petname:</th>
-                <td><?= $user['petname'] ?></td>
-            </tr>
-        </table>
-
-        <br><br>
-        <h1>Here's your wishlist!</h1>
-        <a href="profile.php?wishlist" style="font-size: 40px; text-decoration:none"> &#9829;</a>
-        <?php foreach ($wishList as $wishItem): ?>
-            <div class="card mb-3" style="max-width: 90vh; display:grid; place-self:center;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="<?= $wishItem['ogimage']; ?>" class="img-fluid rounded-start" alt="...">
+            <div>
+                <a href="#">Welcome, <?= $user['firstname'] ?>!</a>
+                <aside>
+                    <div>
+                        <h3>Your Profile Details</h3>
+                        <p>Name: <?= $user['firstname'] ?> <?= $user['lastname'] ?></p>
+                        <p>Country: <?= $user['country'] ?></p>
+                        <p>UserName: <?= $user['username'] ?></p>
+                        <p>Email: <?= $user['mail'] ?></p>
+                        <?php if (strlen($user['petname']) > 1): ?>
+                            <p> Pet Name : <?= $user['petname'] ?></p>
+                        <?php endif; ?>
                     </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title"><?= $wishItem['ogtitle']; ?></h5>
-                            <p class="card-text"><?= $wishItem['ogdescription']; ?></p>
-                            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-                        </div>
+                    <div> <a href="updateProfile.php">Edit Profile</a>
+                        <a href="deleteProfile.php">Delete Profile</a>
+                        <a href="./logout.php">Log out</a>
                     </div>
-                </div>
+
+
+
+                </aside>
             </div>
-        <?php endforeach; ?>
+            <a href="profile.php?wishlist"> Your Wishlist &#9829;</a>
+
+        </div>
+
     </header>
+
     <main>
+        <section style="display:<?php if (!isset($_GET['wishlist'])) {
+                                    print "none";
+                                } else {
+                                    print "";
+                                } ?>">
+            <?php foreach ($wishList as $wishItem): ?>
+                <article>
+
+                    <div>
+                        <img src=" <?= $wishItem['image']; ?>" alt="" />
+                        <div>
+                            <p><?= $wishItem['title']; ?></p>
+                            <h4><?= $wishItem['price']; ?> &#8364;</h4>
+                        </div>
+
+                        <p>
+                            <?= $wishItem['description']; ?>
+                        </p>
+
+                    </div>
+                    <div>
+
+                        <p><?= $wishItem['stock']; ?> left in stock</p>
+                        <a href="detail.php">Buy</a>
+                    </div>
+                </article>
+            <?php endforeach; ?>
+        </section>
+
         <?php if (!isset($_GET['wishlist'])): ?>
             <?php $pageName = "profile.php";
             require("./body.php"); ?>
         <?php endif; ?>
     </main>
+
+
 
 </body>
 
