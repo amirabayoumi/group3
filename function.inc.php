@@ -60,6 +60,7 @@ function updateUser($id, $firstname, $lastname, $country, $mail, $username, $pet
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+
 function deleteUser($id)
 {
     $sql = "DELETE FROM user WHERE id = :id";
@@ -74,7 +75,7 @@ function deleteUser($id)
 function addUser(String $firstname, String $lastname, String $mail, String $username, String $password): bool|int
 {
     $db = connectToDB();
-    $sql = "INSERT INTO user (firstname, lastname, country, mail, username, password, policy) VALUES (:firstname, :lastname, :country, :mail, :username, :password, 1) ;";
+    $sql = "INSERT INTO user (firstname, lastname, mail, username, password) VALUES (:firstname, :lastname, :mail, :username, :password) ;";
     $stmt = $db->prepare($sql);
     $stmt->execute([
         ':firstname' => $firstname,
