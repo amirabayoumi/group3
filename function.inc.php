@@ -317,7 +317,7 @@ function insertOgLink(String $url, $title, $description, $image, $price, Int $ca
 
 function getProductPerPage(int $start, int $rows): array
 {
-    $sql = "SELECT * FROM product limit :start, :rows;";
+    $sql = "select * from product left join wishlist on product.id = wishlist.product_id limit :start, :rows;";
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([
         ':start' => $start,
@@ -348,3 +348,34 @@ function deleteProduct(int $id)
     ]);
     $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function addProductToWishlist(int $productId, Int $userId)
+{
+    $sql = "INSERT INTO wishlist (product_id, user_id) VALUES (:productID, :userId);";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ':productID' => $productId,
+        ':userId' => $userId
+    ]);
+    $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function deleteProductFromWishlist(int $productId, Int $userId)
+{
+    $sql = "DELETE FROM wishlist WHERE (product_id = :product_id) and (user_id = :user_id);";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ':product_id' => $productId,
+        ':user_id' => $userId
+    ]);
+    $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+// function getProductinBody()
+// {
+//     $sql = "select * from product left join wishlist on product.id = wishlist.product_id ";
+//     $stmt = connectToDB()->prepare($sql);
+//     $stmt->execute([]);
+//     return $stmt->fetchAll(PDO::FETCH_ASSOC);
+// }

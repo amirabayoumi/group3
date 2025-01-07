@@ -197,14 +197,20 @@ body {
               white-space: nowrap;
             }
 
-            a {
-              padding: 0.2rem 1rem;
-              text-decoration: none;
-              background-color: white;
-              border: none;
-              border-radius: 5px;
-              font-size: 20px;
-              color: #244d3b;
+            form {
+              button {
+                padding: 0.2rem 1rem;
+                text-decoration: none;
+                background-color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 20px;
+                color: #244d3b;
+                &:hover {
+                  background-color: #244d3b;
+                  color: #ffffff;
+                }
+              }
             }
           }
         }
