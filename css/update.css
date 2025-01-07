@@ -53,6 +53,7 @@ body {
         color: #6ec5aa;
         height: 4rem;
         border-radius: 2rem;
+        cursor: pointer;
       }
     }
   }
