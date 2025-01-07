@@ -1,12 +1,24 @@
 <?php
 
+ini_set('display_errors', '1');
+ini_set('display_startup_errors', '1');
+error_reporting(E_ALL);
+
 require('./function.inc.php');
 requiredLoggedIn();
 
 // print '<pre>';
 // print_r($_SESSION);
 // print '</pre>';
-
+if (isset($_POST["takeOffWishItem"])) {
+    if (($_POST["takeOffWishItem"]) > 0) {
+        if (isset($_SESSION["uid"])) {
+            $userId = $_SESSION["uid"];
+            $productId = $_POST["takeOffWishItem"];
+            deleteProductFromWishlist($productId,  $userId);
+        }
+    }
+}
 if (isset($_SESSION['uid'])) {
     $userId = $_SESSION['uid'];
     $user = getUserById($userId);
@@ -121,8 +133,11 @@ $cat = getCategory();
                     </div>
                     <div>
 
+
                         <p><?= $wishItem['stock']; ?> left in stock</p>
-                        <a href="detail.php">Buy</a>
+                        <form action="profile.php?wishlist" method="post">
+                            <button type="submit" name="takeOffWishItem" id="takeOffWishItem" value="<?= $wishItem['product_id']; ?>">&#x2665;</button>
+                        </form>
                     </div>
                 </article>
             <?php endforeach; ?>

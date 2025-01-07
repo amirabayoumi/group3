@@ -20,8 +20,45 @@ $start = ($currentPage - 1) * $rowsPerPage;
 $totalItems = count(getItems()); // Using getItems() to get all products
 $pages = ceil($totalItems / $rowsPerPage);
 
+
+
+
+// print '<pre>';
+// print_r($items);
+// print '</pre>';
+
+
+// print '<pre>';
+// print_r($_POST);
+// print '</pre>';
+print '<pre>';
+print_r($_SESSION);
+print '</pre>';
+
+if (isset($_POST["addWishItem"])) {
+    if (($_POST["addWishItem"]) > 0) {
+        if (isset($_SESSION["uid"])) {
+            $userId = $_SESSION["uid"];
+            $productId = $_POST["addWishItem"];
+            addProductToWishlist($productId,  $userId);
+        } else {
+        }
+    }
+}
+
+if (isset($_POST["takeOffWishItem"])) {
+    if (($_POST["takeOffWishItem"]) > 0) {
+        if (isset($_SESSION["uid"])) {
+            $userId = $_SESSION["uid"];
+            $productId = $_POST["takeOffWishItem"];
+            deleteProductFromWishlist($productId,  $userId);
+        }
+    }
+}
+
 // Fetch the products for the current page (implement function getProductPerPage)
 $items = getProductPerPage($start, $rowsPerPage);
+
 ?>
 
 
@@ -228,7 +265,7 @@ $items = getProductPerPage($start, $rowsPerPage);
                         white-space: nowrap;
                     }
 
-                    a {
+                    button {
                         padding: 0.2rem 1rem;
                         text-decoration: none;
                         background-color: white;
@@ -236,6 +273,11 @@ $items = getProductPerPage($start, $rowsPerPage);
                         border-radius: 5px;
                         font-size: 20px;
                         color: #244d3b;
+
+                        &:hover {
+                            background-color: #244d3b;
+                            color: #ffffff;
+                        }
                     }
                 }
             }
@@ -244,7 +286,7 @@ $items = getProductPerPage($start, $rowsPerPage);
 </style>
 
 <section id="searchBar">
-    <form action="index.php" method="post">
+    <form action="<?= $pageName; ?>" method="post">
         <input type="text" id='searchname' name='searchname' placeholder="Search... ">
         <button type="submit" id='search' name="search" class="btn btn-primary"><i class="icon-search"></i></button>
     </form>
@@ -301,7 +343,29 @@ $items = getProductPerPage($start, $rowsPerPage);
                 <div>
 
                     <p><?= $item['stock']; ?> left in stock</p>
-                    <a href="detail.php">Buy</a>
+                    <form action="<?= $pageName; ?>" method="post">
+                        <button type="submit" id="<?php if ($item['user_id'] == $_SESSION['uid']) {
+                                                        print "takeOffWishItem";
+                                                    } else {
+                                                        print "addWishItem";
+                                                    }
+                                                    ?>" name="<?php if ($item['user_id'] == $_SESSION['uid']) {
+                                                                    print "takeOffWishItem";
+                                                                } else {
+                                                                    print "addWishItem";
+                                                                }
+                                                                ?>" value=" <?= $item['id']; ?>"> <?php if (isset($_SESSION['uid']) && $item['user_id'] == $_SESSION['uid']) {
+                                                                                                        print "&#x2665;";
+                                                                                                    } elseif (isset($_SESSION['uid']) && $item['user_id'] != $_SESSION['uid']) {
+                                                                                                        print " Add &#x2665;";
+                                                                                                    } else {
+                                                                                                        print "register to add to your wishlist ";
+                                                                                                    }
+
+
+                                                                                                    ?> </button>
+                    </form>
+
                 </div>
             </article>
 
@@ -315,7 +379,7 @@ $items = getProductPerPage($start, $rowsPerPage);
     <?php
     // This shows a "Previous" link only if the current page is greater than 1.
     if ($currentPage > 1): ?>
-        <li><a href="index.php?page=<?= $currentPage - 1; ?>">Previous</a></li>
+        <li><a href="<?= $pageName; ?>?page=<?= $currentPage - 1; ?>">Previous</a></li>
     <?php endif; ?>
 
     <?php
@@ -323,13 +387,13 @@ $items = getProductPerPage($start, $rowsPerPage);
     for ($i = 1; $i <= $pages; $i++): ?>
         <li <?= $i == $currentPage ? 'class="active"' : ''; ?>>
             <!-- Display page number as a link. "active" class added for the current page. -->
-            <a href="index.php?page=<?= $i; ?>"><?= $i; ?></a>
+            <a href="<?= $pageName; ?>?page=<?= $i; ?>"><?= $i; ?></a>
         </li>
     <?php endfor; ?>
 
     <?php
     // Show "Next" link only if the current page is less than the total number of pages.
     if ($currentPage < $pages): ?>
-        <li><a href="index.php?page=<?= $currentPage + 1; ?>">Next</a></li>
+        <li><a href="<?= $pageName; ?>?page=<?= $currentPage + 1; ?>">Next</a></li>
     <?php endif; ?>
 </ul>
