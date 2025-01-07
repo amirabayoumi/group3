@@ -71,7 +71,7 @@ $cat = getCategory();
             <a href="profile.php">Home</a>
 
             <div>
-                <p>Welcome, <?= $user['firstname'] ?>!</p>
+                <a href="#">Welcome, <?= $user['firstname'] ?>!</a>
                 <aside>
                     <div>
                         <h3>Your Profile Details</h3>

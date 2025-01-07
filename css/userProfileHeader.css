@@ -56,6 +56,11 @@ body {
       > div {
         position: relative;
         z-index: 1;
+        > a {
+          color: var(--header-signin-color);
+          text-decoration: none;
+        }
+
         aside {
           position: absolute;
           right: 0;
