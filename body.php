@@ -1,3 +1,30 @@
+<?php
+require_once("./function.inc.php");
+// Number of items per page
+$rowsPerPage = 6;
+
+// Determine the current page
+if (isset($_GET['page'])) {
+    $currentPage = (int)$_GET['page'];
+    if ($currentPage < 1) {
+        $currentPage = 1;
+    }
+} else {
+    $currentPage = 1;
+}
+
+// Calculate the starting index for the database query
+$start = ($currentPage - 1) * $rowsPerPage;
+
+// Fetch total number of products to calculate total pages
+$totalItems = count(getItems()); // Using getItems() to get all products
+$pages = ceil($totalItems / $rowsPerPage);
+
+// Fetch the products for the current page (implement function getProductPerPage)
+$items = getProductPerPage($start, $rowsPerPage);
+?>
+
+
 <style>
     @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap");
 
@@ -270,3 +297,25 @@
         <h1>Oops! Sorry, no products were found. Please try searching again or send us a request with what you're looking for, and we'll be happy to assist you </h1>
     <?php endif; ?>
 </section>
+<ul class="pagination">
+    <?php
+    // This shows a "Previous" link only if the current page is greater than 1.
+    if ($currentPage > 1): ?>
+        <li><a href="index.php?page=<?= $currentPage - 1; ?>">Previous</a></li>
+    <?php endif; ?>
+
+    <?php
+    // Loop through all pages to display page numbers.
+    for ($i = 1; $i <= $pages; $i++): ?>
+        <li <?= $i == $currentPage ? 'class="active"' : ''; ?>>
+            <!-- Display page number as a link. "active" class added for the current page. -->
+            <a href="index.php?page=<?= $i; ?>"><?= $i; ?></a>
+        </li>
+    <?php endfor; ?>
+
+    <?php
+    // Show "Next" link only if the current page is less than the total number of pages.
+    if ($currentPage < $pages): ?>
+        <li><a href="index.php?page=<?= $currentPage + 1; ?>">Next</a></li>
+    <?php endif; ?>
+</ul>
