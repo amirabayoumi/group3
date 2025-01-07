@@ -18,9 +18,9 @@ if (isset($_SESSION['uid'])) {
 // print '</pre>';
 
 if (@$_POST['submit_edit']) {
-    print '<pre>';
-    print_r($_POST);
-    print '</pre>';
+    // print '<pre>';
+    // print_r($_POST);
+    // print '</pre>';
 
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
@@ -68,14 +68,52 @@ if (@$_POST['submit_edit']) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update profile</title>
+    <link rel="stylesheet" href="css/update.css">
+    <link rel="stylesheet" href="css/userProfileHeader.css">
 </head>
 
 <body>
+    <header>
+        <img src="./images/Pet paradise.png" alt="logo">
+        <h1><? if (strlen($user['petname']) > 1) {
+                print $user['petname'];
+            } else {
+                print "Pet";
+            } ?> Paradise</h1>
+        <div>
+            <a href="profile.php">Home</a>
 
+            <div>
+                <a href="#">Welcome, <?= $user['firstname'] ?>!</a>
+                <aside>
+                    <div>
+                        <h3>Your Profile Details</h3>
+                        <p>Name: <?= $user['firstname'] ?> <?= $user['lastname'] ?></p>
+                        <p>Country: <?= $user['country'] ?></p>
+                        <p>UserName: <?= $user['username'] ?></p>
+                        <p>Email: <?= $user['mail'] ?></p>
+                        <?php if (strlen($user['petname']) > 1): ?>
+                            <p> Pet Name : <?= $user['petname'] ?></p>
+                        <?php endif; ?>
+                    </div>
+                    <div> <a href="updateProfile.php">Edit Profile</a>
+                        <a href="deleteProfile.php">Delete Profile</a>
+                        <a href="./logout.php">Log out</a>
+                    </div>
+
+
+
+                </aside>
+            </div>
+            <a href="profile.php?wishlist"> Your Wishlist &#9829;</a>
+
+        </div>
+
+    </header>
     <main>
-        <form style="background-color: #8598b4c5;" action="./updateProfile.php" method="post">
+        <form action="./updateProfile.php" method="post">
             <?php if (count($errors)): ?>
-                <div style="background-color: #faec6c; border-radius:20px ;">
+                <div>
                     <ul>
                         <?php foreach ($errors as $error): ?>
                             <li style="color: #6d1000ec"><?= $error; ?></li>
@@ -86,10 +124,9 @@ if (@$_POST['submit_edit']) {
             <?php endif; ?>
 
             <label for="firstname">First name*</label>
-            <input type="text" id="firstname" name="firstname" size="28" value="<?= $user['firstname'] ?>">
+            <input type="text" id="firstname" name="firstname" value="<?= $user['firstname'] ?>">
             <label for="lastname">Last name*</label>
-            <input type="text" id="lastname" name="lastname" size="28" value="<?= $user['lastname'] ?>">
-            <br>
+            <input type="text" id="lastname" name="lastname" value="<?= $user['lastname'] ?>">
             <label for="country">Country</label>
             <select id="country" name="country" class="form-control">
                 <option value="Select">Select</option>
@@ -342,7 +379,7 @@ if (@$_POST['submit_edit']) {
 
             <label for="mail">E-mail address*:</label>
             <input type="email" id="mail" name="mail" size="28" value="<?= $user['mail'] ?>">
-            <br> <label for="username">Username*</label>
+            <label for="username">Username*</label>
             <input type="text" id="username" name="username" size="28" value="<?= $user['username'] ?>">
             <label for="petname">Petname</label>
             <input type="text" id="petname" name="petname" size="28" value="<?= $user['petname'] ?>">
