@@ -103,7 +103,7 @@ if (isset($_POST['submit'])) {
         }
     }
     if (!isset($_POST['policy'])) {
-        $errors[] = "agreement of policy is required.";
+        $errors[] = "Agreement of policy is required.";
     } else {
         $policy = $_POST['policy'];
     }
