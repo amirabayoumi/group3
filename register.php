@@ -102,7 +102,11 @@ if (isset($_POST['submit'])) {
             $username = $_POST['username'];
         }
     }
-
+    if (!isset($_POST['policy'])) {
+        $errors[] = "agreement of policy is required.";
+    } else {
+        $policy = $_POST['policy'];
+    }
     if (!count($errors)) {
         $newId = addUser($firstname, $lastname, $mail, $username, $password);
         if (!$newId) {
@@ -203,15 +207,74 @@ if (isset($_POST['submit'])) {
                         text-align: left;
                     }
 
-                    button {
-                        transition: all .5s ease;
-                        background-color: #244d3b;
-                        color: #ffffff;
-                        padding: 0.8rem 2rem;
-                        border: none;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        font-size: 1rem;
+                    #policy {
+
+                        /* background-color: #D72C0D; */
+                        display: grid;
+                        grid-template-columns: 1fr;
+
+                        section {
+                            padding: 0.5rem;
+
+
+
+                            &:nth-child(1) {
+                                width: 100%;
+                                display: flex;
+                                padding: 0;
+
+
+
+
+                                input {
+                                    display: inline;
+                                    width: 10%;
+                                    margin: 0;
+                                }
+
+                                label {
+                                    font-size: 20px;
+                                    width: 90%;
+                                    white-space: nowrap
+                                }
+
+                            }
+
+                            &:nth-child(2) {
+                                line-height: 25px;
+                                padding: 1rem;
+
+                                details {
+                                    font-size: 15px;
+
+                                }
+
+                                summary {
+                                    font-size: 18px;
+                                }
+                            }
+
+                            &:nth-child(3) {
+                                display: flex;
+                                align-items: center;
+
+                                justify-content: space-between;
+
+                                button {
+                                    transition: all .5s ease;
+                                    background-color: #244d3b;
+                                    color: #ffffff;
+                                    padding: 0.8rem 2rem;
+                                    border: none;
+                                    border-radius: 5px;
+                                    cursor: pointer;
+                                    font-size: 1rem;
+                                }
+                            }
+                        }
+
+
+
                     }
 
                     button:hover {
@@ -263,7 +326,7 @@ if (isset($_POST['submit'])) {
                 <div class="error-container">
                     <ul>
                         <?php foreach ($errors as $error): ?>
-                            <li><?= $error; ?></li>
+                            <li> &#x2022; <?= $error; ?></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -305,9 +368,27 @@ if (isset($_POST['submit'])) {
                     Min. 8 characters. Use a combination of upper and lowercase letters, numbers or special characters.
                 </div>
             </fieldset>
-            <div>
-                <button type="submit" id="send2" name="submit">Create Account</button>
-                <a href="https://">Back</a>
+
+            <div id="policy">
+                <section>
+                    <input type="checkbox" id="policy" name="policy" value="1">
+                    <label for="policy">I Agree to Privacy Policy*</label>
+                </section>
+                <section>
+                    <details>
+                        <summary>Check the policy terms*</summary>
+
+                        Privacy Policy: We collect and use your personal data to provide and improve our services.
+                        Your information is securely stored and will not be shared with third parties without consent,
+                        except as required by law. By agreeing, you accept our terms of data handling.
+
+                    </details>
+                </section>
+
+                <section> <button type="submit" id="send2" name="submit">Create Account</button>
+                    <a href="https://">Back</a>
+                </section>
+
             </div>
 
 
