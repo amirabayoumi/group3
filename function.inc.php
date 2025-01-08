@@ -280,7 +280,7 @@ function getOgViaApi(String $ogUrl): bool|stdClass
 {
     $curl_handle = curl_init();
 
-    $apiURL = "https://opengraph.io/api/1.1/site/" . urlencode($ogUrl) . "?app_id=4b00ea99-9be1-4a4f-8d85-c40958ba6672";
+    $apiURL = "https://opengraph.io/api/1.1/site/" . urlencode($ogUrl) . "?app_id=758f69e8-2fda-483e-8b22-fe1b86da85d8";
 
     curl_setopt($curl_handle, CURLOPT_URL, $apiURL); // de locatie waar ik een request naartoe stuur
     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true); // ik wil een antwoord ontvangen van de request url

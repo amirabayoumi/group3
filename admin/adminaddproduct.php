@@ -47,8 +47,8 @@ if (isset($_POST['formSubmit'])) {
 
         $ogtitle = @$ogData->hybridGraph->title ?? '';
         $ogdescription = @$ogData->hybridGraph->description ?? '';
-        $ogimage = @$ogData->hybridGraph->image ?? '';;
-        $ogprice = $ogData->hybridGraph->products[0]->offers[0]->price ?? '';
+        $ogimage = @$ogData->hybridGraph->image ?? '';
+        $ogprice =  @$ogData->hybridGraph->products[0]->offers[0]->price ?? '';
 
         // var_dump($ogprice);
 
@@ -62,6 +62,7 @@ if (isset($_POST['formSubmit'])) {
     // print '<pre>';
     // print_r($ogData);
     // print '</pre>';
+
 }
 
 // $items = getOgLinks();
@@ -77,18 +78,18 @@ if (isset($_POST['formSubmit'])) {
 $items = getItems();
 
 $start = 0;
-$rowsPerPage = 4;
+$rowsPerPage = 8;
 $pages = ceil(count($items) / $rowsPerPage);
 // print $pages;
 
-if (isset($_GET['page'])) {
+$currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 
-    $currentPage = $_GET['page'];
-    $start = $pages * $currentPage - 1;
-} else {
+if ($currentPage < 1) {
     $currentPage = 1;
+} elseif ($currentPage > $pages) {
+    $currentPage = $pages;
 }
-
+$start = ($currentPage - 1) * $rowsPerPage;
 $dataPerPage = getProductPerPage($start, $rowsPerPage);
 
 ?>
