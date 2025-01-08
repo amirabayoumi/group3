@@ -54,7 +54,7 @@ if (isset($_POST['formSubmit'])) {
 
         // insert into db
         $id = insertOgLink($inputUrl, $ogtitle, $ogdescription, $ogimage, $ogprice, $cat);
-
+        unset($_POST);
         if (!$id) {
             $errors[] = "Something unexplainable happened...";
         }
@@ -77,7 +77,7 @@ if (isset($_POST['formSubmit'])) {
 $items = getItems();
 
 $start = 0;
-$rowsPerPage = 6;
+$rowsPerPage = 4;
 $pages = ceil(count($items) / $rowsPerPage);
 // print $pages;
 
@@ -133,9 +133,11 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
 
             <form method="post" action="./adminaddproduct.php">
                 <div> <label for="inputUrl">URL: *</label>
-                    <input type="text" id="inputUrl" name="inputUrl" placeholder="https://..." value="<?php if (!$_POST['category']) {
-                                                                                                            print $inputUrl;
-                                                                                                        }  ?>">
+                    <input type="text" id="inputUrl" name="inputUrl" placeholder="https://..." value="<?php if (isset($_POST['inputUrl'])) {
+                                                                                                            print $_POST['inputUrl'];
+                                                                                                        } else {
+                                                                                                            print '';
+                                                                                                        } ?>">
                 </div>
                 <div> <label for="category">Choose a product category:</label>
                     <select name="category" id="category">

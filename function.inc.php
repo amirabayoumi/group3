@@ -140,7 +140,7 @@ function setLogin($uid = false)
 // ------------------------- check admin name and  permission key --------
 function isValidLoginAdmin(String $adminName, String $key): bool|int
 {
-    $sql = "SELECT id FROM admin WHERE name=:name AND `key`=:pass;";
+    $sql = "SELECT id FROM admin WHERE name=:name AND `admin_key`=:pass;";
 
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([
