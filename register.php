@@ -338,11 +338,11 @@ if (isset($_POST['submit'])) {
                 <input type="hidden" name="error_url" value="">
                 <div>
                     <label for="firstname">First name:</label>
-                    <input type="text" id="firstname" name="firstname" placeholder="Enter first name">
+                    <input type="text" id="firstname" name="firstname" placeholder="Enter first name" value="<?php echo isset($_POST['firstname']) ? htmlspecialchars($_POST['firstname'], ENT_QUOTES) : ''; ?>">
                 </div>
                 <div>
                     <label for="lastname">Last name:</label>
-                    <input type="text" id="lastname" name="lastname" placeholder="Enter last name">
+                    <input type="text" id="lastname" name="lastname" placeholder="Enter last name" value="<?php echo isset($_POST['lastname']) ? htmlspecialchars($_POST['lastname'], ENT_QUOTES) : ''; ?>">
                 </div>
             </fieldset>
 
@@ -350,11 +350,11 @@ if (isset($_POST['submit'])) {
                 <legend>Login Details</legend><br>
                 <div>
                     <label for="username">Username:</label>
-                    <input type="username" name="username" id="username" placeholder="Enter username">
+                    <input type="username" name="username" id="username" placeholder="Enter username" value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username'], ENT_QUOTES) : ''; ?>">
                 </div>
                 <div>
                     <label for="mail">Email address:</label>
-                    <input type="email" name="mail" id="mail" placeholder="Enter email address">
+                    <input type="email" name="mail" id="mail" placeholder="Enter email address" value="<?php echo isset($_POST['mail']) ? htmlspecialchars($_POST['mail'], ENT_QUOTES) : ''; ?>">
                 </div>
                 <div>
                     <label for="inputPassword1">Password:</label>
