@@ -30,9 +30,8 @@ if (isset($_SESSION['uid'])) {
 if (isset($_GET['wishlist'])) {
     $wishList = getWishlistById($_SESSION['uid']);
 }
-// need to fix 
-// get name by user better instead get name by wishlist !!
-$toGetName = getWishlistById($_SESSION['uid']);
+//not needed anymore 
+// $toGetName = getWishlistById($_SESSION['uid']);
 
 // print '<pre>';
 // print_r($wishList);
@@ -74,7 +73,7 @@ $cat = getCategory();
 
     <header>
         <img src="./images/Pet paradise.png" alt="logo">
-        <h1><? if (strlen($user['petname']) > 1) {
+        <h1><? if (isset($user['petname']) && strlen($user['petname']) > 1) {
                 print $user['petname'];
             } else {
                 print "Pet";

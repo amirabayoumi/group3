@@ -31,9 +31,9 @@ $pages = ceil($totalItems / $rowsPerPage);
 // print '<pre>';
 // print_r($_POST);
 // print '</pre>';
-print '<pre>';
-print_r($_SESSION);
-print '</pre>';
+// print '<pre>';
+// print_r($_SESSION);
+// print '</pre>';
 
 if (isset($_POST["addWishItem"])) {
     if (($_POST["addWishItem"]) > 0) {
