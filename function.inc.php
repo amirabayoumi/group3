@@ -301,7 +301,7 @@ function getOgViaApi(String $ogUrl): bool|stdClass
 function insertOgLink(String $url, $title, $description, $image, $price, Int $cat): bool|int
 {
     $db = connectToDB();
-    $sql = "INSERT INTO product (url, title, description, image, price,status,stock, category_id) VALUES ( :url, :title, :description, :image ,:price ,1,1,:category);";
+    $sql = "INSERT INTO product (url, title, description, image, price, category_id) VALUES ( :url, :title, :description, :image ,:price ,:category);";
     $stmt = $db->prepare($sql);
     $stmt->execute([
         'url' => $url,
@@ -349,6 +349,19 @@ function deleteProduct(int $id)
     ]);
     $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function UpdateProductAvilability(int $id, int $value)
+{
+    $sql = "UPDATE product SET status = :value, updated_date = now() WHERE id = :id;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ':id' => $id,
+        ':value' => $value
+    ]);
+    $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 
 function addProductToWishlist(int $productId, Int $userId)
 {

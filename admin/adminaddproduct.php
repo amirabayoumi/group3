@@ -5,7 +5,12 @@ ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
 
-
+if (isset($_POST['updateStatus'])) {
+    $id = $_POST['updateStatus'];
+    $value = $_POST['newStatus'];
+    UpdateProductAvilability($id, $value);
+    unset($_POST);
+}
 
 $errors = [];
 $inputUrl = '';
@@ -94,6 +99,13 @@ if ($currentPage < 1) {
 $start = ($currentPage - 1) * $rowsPerPage;
 $dataPerPage = getProductPerPage($start, $rowsPerPage);
 
+// print '<pre>';
+// print_r($_POST);
+// print '</pre>';
+
+
+
+
 ?>
 
 
@@ -108,10 +120,13 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
     <link rel="stylesheet" href="./css/adminProduct.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
 
 </head>
@@ -176,7 +191,8 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
                                 <th>URL</th>
                                 <th>Price</th>
                                 <th>status</th>
-                                <th>Action</th>
+                                <th>Delete</th>
+                                <th>LastUpdated</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -190,13 +206,55 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
                                     <td><?= mb_strimwidth($item['url'], 0, 50, "..."); ?></td>
                                     <td><?= $item['price']; ?></td>
 
-                                    <td><span class="status text-<?= ($item['status']) == 0 ? "warning" : "success"; ?>">&bull;</span> <?php if (!$item['status']) {
-                                                                                                                                            print "not-available";
-                                                                                                                                        } else {
-                                                                                                                                            print "available";
-                                                                                                                                        }; ?></td>
+                                    <!-- <td><span class="status text-<?= ($item['status']) == 0 ? "warning" : "success"; ?>">&bull;</span> <?php if (!$item['status']) {
+                                                                                                                                                print "not-available";
+                                                                                                                                            } else {
+                                                                                                                                                print "available";
+                                                                                                                                            }; ?></td>
+                                    <td> -->
                                     <td>
-                                        <!-- <a href="#?id=<?= $item['id']; ?>" class="settings" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE8B8;</i></a> -->
+                                        <!-- <form method="POST" action="./adminaddproduct.php">
+                                            <select class="status-select" name="status">
+                                                <option value="1" <?= ($item['status'] == 1) ? 'selected' : ''; ?>>available</option>
+                                                <option value="0" <?= ($item['status'] == 0) ? 'selected' : ''; ?>>not available</option>
+                                            </select>
+                                     
+                                            <button type="submit" style="" name="updateStatus" value="<?= $item['id']; ?>"></button>
+                                        </form> -->
+
+                                        <!-- Example single danger button -->
+                                        <div class="btn-group">
+                                            <form method="POST" action="./adminaddproduct.php">
+                                                <button type="button" class="btn btn-<?php if (!$item['status']) {
+                                                                                            print "danger ";
+                                                                                        } else {
+                                                                                            print "success ";
+                                                                                        }; ?> dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <?php if (!$item['status']) {
+                                                        print "not-available";
+                                                    } else {
+                                                        print "available";
+                                                    }; ?>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                    <li> <input type="hidden" name="newStatus" value="<?php if (!$item['status']) {
+                                                                                                            print "1";
+                                                                                                        } else {
+                                                                                                            print "0";
+                                                                                                        }; ?>"><button type="submit" style="border:none; width:100%;" name="updateStatus" value="<?= $item['id']; ?>">
+                                                            <?php if (!$item['status']) {
+                                                                print "available";
+                                                            } else {
+                                                                print "not-available";
+                                                            }; ?>
+                                                        </button></li>
+
+
+                                                </ul>
+                                            </form>
+                                        </div>
+                                    </td>
+                                    <td>
                                         <a href="./deleteProduct.php?delete=<?= $item['id']; ?>" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                                     </td>
                                 </tr>
