@@ -62,9 +62,9 @@ if (isset($_POST['formSubmit'])) {
             $errors[] = "Something unexplainable happened...";
         }
     }
-    print '<pre>';
-    print_r($ogData);
-    print '</pre>';
+    // print '<pre>';
+    // print_r($ogData);
+    // print '</pre>';
 }
 
 // $items = getOgLinks();
