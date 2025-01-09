@@ -8,14 +8,14 @@ include("../function.inc.php");
 $id = (int)$_GET['delete'];
 $item = getProductByID($id);
 
-print "<pre>";
-print_r($_GET);
-print "</pre>";
+// print "<pre>";
+// print_r($_GET);
+// print "</pre>";
 
 
-print "<pre>";
-print_r($_POST);
-print "</pre>";
+// print "<pre>";
+// print_r($_POST);
+// print "</pre>";
 
 // print "<pre>";
 // print_r($item);
@@ -58,11 +58,11 @@ if (isset($_POST['sure'])) {
 
         </div>
         <div class="modal-body">
-            <p>Are you sure you want to delete these Product?</p>
-            <p class="text-warning"><small>This action cannot be undone.</small></p>
+            <p style="font-size: 25px;">Are you sure you want to delete these Product?</p>
+            <p class="text-warning" style="font-size: 20px;"><small>This action cannot be undone.</small></p>
         </div>
 
-        <div style="display: grid; place-self:center; width:80%; background-color:antiquewhite; text-align:center;">
+        <div style="display: grid; place-self:center; width:80%; background-color:rgba(245, 195, 179, 0.8); text-align:center; padding:20px;">
 
             <img style="width:250px; place-self:center;" src="<?= $item['image']; ?>" alt="">
             <h1><?= $item['title']; ?></h1>
