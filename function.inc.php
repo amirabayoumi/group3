@@ -342,6 +342,11 @@ function getProductByID(Int $id)
 
 function deleteProduct(int $id)
 {
+    $sql = "DELETE FROM wishlist  WHERE product_id = :id;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ':id' => $id
+    ]);
     $sql = "DELETE FROM product WHERE id = :id;";
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([
