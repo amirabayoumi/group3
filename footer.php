@@ -38,3 +38,8 @@
         <p title="Group project Syntra">Group 3 Syntra &copy; 2024</p>
     </div>
 </footer>
+<link rel="stylesheet" href="<?= getCSS("footer"); ?>" />
+<script type="module" src="<?= getJS("footer") ?>"></script>
+</body>
+
+</html>
