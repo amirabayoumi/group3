@@ -1,7 +1,7 @@
 <?php
 require_once("./function.inc.php");
 // Number of items per page
-$rowsPerPage = 6;
+$rowsPerPage = 8;
 
 // Determine the current page
 if (isset($_GET['page'])) {
@@ -55,9 +55,37 @@ if (isset($_POST["takeOffWishItem"])) {
         }
     }
 }
+// $items = getItems();
+
+
+
+if (isset($_POST['search'])) {
+    $items =  getItemsBySearch($_POST['searchname']);
+} elseif (isset($_GET['cat'])) {
+    $items = getItemsByCat($_GET['cat']);
+    // print "<pre>";
+    // print_r($items);
+    // print "</pre>";
+} else {
+    $items = getProductPerPage($start, $rowsPerPage);
+
+    // $items = getItems();
+}
+// print "<pre>";
+// print_r($items);
+// print "</pre>";
+
+// $cat = getCategory();
+
+// print "<pre>";
+// print_r($cat);
+// print "</pre>";
 
 // Fetch the products for the current page (implement function getProductPerPage)
-$items = getProductPerPage($start, $rowsPerPage);
+
+// print "<pre>";
+// print_r($items);
+// print "</pre>";
 
 ?>
 
@@ -115,7 +143,7 @@ $items = getProductPerPage($start, $rowsPerPage);
 
 
             <?php foreach ($items as $item): ?>
-                <article>
+                <article style="background-color: <?= !$item['status'] ? '#88a197e0' : ''  ?>">
 
                     <div id="item">
                         <img src="<?= $item['image']; ?>" alt="" />
@@ -130,28 +158,28 @@ $items = getProductPerPage($start, $rowsPerPage);
                     </div>
                     <div>
 
-                        <p><?= $item['stock']; ?>Availability: </p>
+                        <p style="color: <?= !$item['status'] ? '#914f3b' : 'black'  ?>"> <?= !$item['status'] ? 'Not Available' : 'Available'  ?> </p>
                         <form action="<?= $pageName; ?>" method="post">
-                            <button type="submit" id="<?php if ($item['user_id'] == $_SESSION['uid']) {
-                                                            print "takeOffWishItem";
-                                                        } else {
-                                                            print "addWishItem";
-                                                        }
-                                                        ?>" name="<?php if ($item['user_id'] == $_SESSION['uid']) {
-                                                                        print "takeOffWishItem";
-                                                                    } else {
-                                                                        print "addWishItem";
-                                                                    }
-                                                                    ?>" value=" <?= $item['id']; ?>"> <?php if (isset($_SESSION['uid']) && $item['user_id'] == $_SESSION['uid']) {
-                                                                                                            print "&#x2665;";
-                                                                                                        } elseif (isset($_SESSION['uid']) && $item['user_id'] != $_SESSION['uid']) {
-                                                                                                            print " Add &#x2665;";
-                                                                                                        } else {
-                                                                                                            print "register to add to your wishlist ";
-                                                                                                        }
+                            <button type="submit" style="visibility: <?php if (!isset($_SESSION['uid'])) {
+                                                                            print "hidden;";
+                                                                        } ?>" id=" <?php if ($item['user_id'] == $_SESSION['uid']) {
+                                                                                        print "takeOffWishItem";
+                                                                                    } else {
+                                                                                        print "addWishItem";
+                                                                                    }
+                                                                                    ?>" name="<?php if ($item['user_id'] == $_SESSION['uid']) {
+                                                                                                    print "takeOffWishItem";
+                                                                                                } else {
+                                                                                                    print "addWishItem";
+                                                                                                }
+                                                                                                ?>" value=" <?= $item['id']; ?>"> <?php if (isset($_SESSION['uid']) && $item['user_id'] == $_SESSION['uid']) {
+                                                                                                                                        print "&#x2665;";
+                                                                                                                                    } elseif (isset($_SESSION['uid']) && $item['user_id'] != $_SESSION['uid']) {
+                                                                                                                                        print " Add &#x2665;";
+                                                                                                                                    }
 
 
-                                                                                                        ?> </button>
+                                                                                                                                    ?> </button>
                         </form>
 
                     </div>
