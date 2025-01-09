@@ -24,6 +24,8 @@ if (isset($_POST['formSubmit'])) {
             $errors[] = "URL is required";
         } elseif (!preg_match("/(http|https|ftp|ftps)\:\/\/[a-zA-Z0-9\-\.]+\.[a-zA-Z]{2,3}(\/\S*)?/", $inputUrl)) {
             $errors[] = "URL is not valid";
+        } elseif (strlen($inputUrl) > 255) {
+            $errors[] = "URL is too long";
         }
         if (!isset($_POST['category']) || $_POST['category'] < 1) {
             $errors[] = "Product category is required ";
@@ -55,14 +57,14 @@ if (isset($_POST['formSubmit'])) {
         // insert into db
         $id = insertOgLink($inputUrl, $ogtitle, $ogdescription, $ogimage, $ogprice, $cat);
         unset($_POST);
+        $AddMessage = "Product added successfully";
         if (!$id) {
             $errors[] = "Something unexplainable happened...";
         }
     }
-    // print '<pre>';
-    // print_r($ogData);
-    // print '</pre>';
-
+    print '<pre>';
+    print_r($ogData);
+    print '</pre>';
 }
 
 // $items = getOgLinks();
