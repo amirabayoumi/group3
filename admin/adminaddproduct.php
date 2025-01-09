@@ -241,7 +241,7 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
                                                                                                             print "1";
                                                                                                         } else {
                                                                                                             print "0";
-                                                                                                        }; ?>"><button type="submit" style="border:none; width:100%;" name="updateStatus" value="<?= $item['id']; ?>">
+                                                                                                        }; ?>"><button type="submit" style="border:none; width:100%; background-color:transparent" name="updateStatus" value="<?= $item['id']; ?>">
                                                             <?php if (!$item['status']) {
                                                                 print "available";
                                                             } else {
