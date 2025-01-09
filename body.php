@@ -117,7 +117,7 @@ $items = getProductPerPage($start, $rowsPerPage);
             <?php foreach ($items as $item): ?>
                 <article>
 
-                    <div>
+                    <div id="item">
                         <img src="<?= $item['image']; ?>" alt="" />
                         <div>
                             <p><?= $item['title']; ?></p>
@@ -143,15 +143,15 @@ $items = getProductPerPage($start, $rowsPerPage);
                                                                         print "addWishItem";
                                                                     }
                                                                     ?>" value=" <?= $item['id']; ?>"> <?php if (isset($_SESSION['uid']) && $item['user_id'] == $_SESSION['uid']) {
-                                                                                                        print "&#x2665;";
-                                                                                                    } elseif (isset($_SESSION['uid']) && $item['user_id'] != $_SESSION['uid']) {
-                                                                                                        print " Add &#x2665;";
-                                                                                                    } else {
-                                                                                                        print "register to add to your wishlist ";
-                                                                                                    }
+                                                                                                            print "&#x2665;";
+                                                                                                        } elseif (isset($_SESSION['uid']) && $item['user_id'] != $_SESSION['uid']) {
+                                                                                                            print " Add &#x2665;";
+                                                                                                        } else {
+                                                                                                            print "register to add to your wishlist ";
+                                                                                                        }
 
 
-                                                                                                    ?> </button>
+                                                                                                        ?> </button>
                         </form>
 
                     </div>
