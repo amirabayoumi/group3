@@ -40,9 +40,9 @@ if (isset($_POST['formSubmit'])) {
     }
     //validation for category 
 
-    print '<pre>';
-    print_r($_POST);
-    print '</pre>';
+    // print '<pre>';
+    // print_r($_POST);
+    // print '</pre>';
     // print '<pre>';
     // print_r($errors);
     // print '</pre>';
@@ -85,7 +85,7 @@ if (isset($_POST['formSubmit'])) {
 $items = getItems();
 
 $start = 0;
-$rowsPerPage = 8;
+$rowsPerPage = 10;
 $pages = ceil(count($items) / $rowsPerPage);
 // print $pages;
 
@@ -257,6 +257,7 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
                                     <td>
                                         <a href="./deleteProduct.php?delete=<?= $item['id']; ?>" class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE5C9;</i></a>
                                     </td>
+                                    <td><?= $item['updated_date']; ?></td>
                                 </tr>
                             <?php endforeach; ?>
 
@@ -271,18 +272,18 @@ $dataPerPage = getProductPerPage($start, $rowsPerPage);
         <ul class="pagination" style="display:flex; place-self:center;">
 
 
-            <li class="page-item <?php if ($currentPage == 1) {
-                                        print "hidden";
-                                    } ?> "><a href="./adminaddproduct.php?page=<?php echo $currentPage - 1; ?>">Previous</a></li>
-            <li class="page-item"><a href="./adminaddproduct.php?page=<?= 1 ?>">First</a></li>
+            <li class="page-item  "><a href="./adminaddproduct.php?page=<?php echo $currentPage - 1; ?>" class="page-link" style="display:<?php if ($currentPage === 1) {
+                                                                                                                                                print "none";
+                                                                                                                                            } ?>">Previous</a></li>
+            <li class="page-item"><a href="./adminaddproduct.php?page=<?= 1 ?>" class="page-link">First</a></li>
             <li> <?php for ($i = 1; $i <= $pages; $i++) : ?>
-                    <a href="adminaddproduct.php?page=<?= $i; ?>"><?= $i; ?></a>
+                    <a href="adminaddproduct.php?page=<?= $i; ?>" class="page-link" style="display:inline-block"><?= $i; ?></a>
                 <?php endfor; ?>
             </li>
-            <li class="page-item"><a href="./adminaddproduct.php?page=<?= $pages ?>">Last</a></li>
-            <li class="page-item <?php if ($currentPage >= $pages) {
-                                        print "hidden";
-                                    } ?> "><a href="./adminaddproduct.php?page=<?= $currentPage  + 1; ?>" class="page-link">Next</a></li>
+            <li class="page-item"><a href="./adminaddproduct.php?page=<?= $pages ?>" class="page-link">Last</a></li>
+            <li class="page-item "><a href="./adminaddproduct.php?page=<?= $currentPage  + 1; ?>" class="page-link" style="display:<?php if ($currentPage >= $pages) {
+                                                                                                                                        print "none";
+                                                                                                                                    } ?>">Next</a></li>
 
         </ul>
 
