@@ -130,7 +130,7 @@ $items = getProductPerPage($start, $rowsPerPage);
                     </div>
                     <div>
 
-                        <p><?= $item['stock']; ?> left in stock</p>
+                        <p><?= $item['stock']; ?>Availability: </p>
                         <form action="<?= $pageName; ?>" method="post">
                             <button type="submit" id="<?php if ($item['user_id'] == $_SESSION['uid']) {
                                                             print "takeOffWishItem";
