@@ -18,10 +18,10 @@
             <ul class="social-icons" aria-label="Follow us on social media">
                 <!-- ARIA-label is an attribute which provides screen readers with a clear description of the list, 
                      helping users with disabilities understand that these are links to social media platforms. -->
-                <li><a href="https://www.facebook.com/lifewithdogs/" target="_blank" title="Follow us on Facebook"><i class="icon-facebook"></i>Facebook</a></li>
-                <li><a href="https://www.instagram.com/loveyoustepan/" target="_blank" title="Check out our Instagram"><i class="icon-instagram"></i>Instagram</a></li>
-                <li><a href="https://x.com/ShouldHaveCat" target="_blank" title="Follow us on Twitter"><i class="icon-x"></i>Twitter</a></li>
-                <li><a href="https://www.youtube.com/shorts/Uq5Osz_gfgs" target="_blank" title="Watch our videos on YouTube"><i class="icon-youtube"></i>YouTube</a></li>
+                <li><a href="https://www.facebook.com/lifewithdogs/" target="_blank" title="Follow us on Facebook"><i class="icon-facebook"></i></a></li>
+                <li><a href="https://www.instagram.com/loveyoustepan/" target="_blank" title="Check out our Instagram"><i class="icon-instagram"></i></a></li>
+                <li><a href="https://x.com/ShouldHaveCat" target="_blank" title="Follow us on Twitter"><i class="icon-x"></i></a></li>
+                <li><a href="https://www.youtube.com/shorts/Uq5Osz_gfgs" target="_blank" title="Watch our videos on YouTube"><i class="icon-youtube"></i></a></li>
             </ul>
         </div>
 
