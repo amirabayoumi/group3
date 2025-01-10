@@ -1,31 +1,4 @@
-@import url("./reset.css");
-@import url("../fonts/icomoon/style.css");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap");
-
-@font-face {
-  font-family: "Puppybellies";
-  src: url("../fonts/Puppybellies-JyRM.ttf") format("truetype");
-}
-
-:root {
-  --header-bg: #244d3b;
-  --header-title-color: #ffffff;
-  --header-signin-color: #96e7c5;
-
-  --font-header-title: "Puppybellies", sans-serif;
-  --font-body: "Comic Neue", sans-serif;
-}
-
-* {
-  font-size: 62.5%;
-  box-sizing: border-box;
-}
-
 body {
-  font-family: var(--font-body);
-  font-size: 40px;
-  width: 100%;
-
   header {
     background-color: var(--header-bg);
     display: flex;
@@ -42,9 +15,9 @@ body {
     }
 
     h1 {
-      position: absolute;
+      /* position: absolute;
       left: 50%;
-      transform: translateX(-50%);
+      transform: translateX(-50%); */
       font-size: 50px;
       font-family: var(--font-header-title);
       text-align: center;
