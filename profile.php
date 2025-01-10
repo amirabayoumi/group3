@@ -29,13 +29,14 @@ if (isset($_SESSION['uid'])) {
 
 if (isset($_GET['wishlist'])) {
     $wishList = getWishlistById($_SESSION['uid']);
+    // print '<pre>';
+    // print_r($wishList);
+    // print '</pre>';
 }
 //not needed anymore 
 // $toGetName = getWishlistById($_SESSION['uid']);
 
-// print '<pre>';
-// print_r($wishList);
-// print '</pre>';
+
 
 
 if (isset($_POST['search'])) {
@@ -94,8 +95,8 @@ $cat = getCategory();
                             <p> Pet Name : <?= $user['petname'] ?></p>
                         <?php endif; ?>
                     </div>
-                    <div> <a href="updateProfile.php">Edit Profile</a>
-                        <a href="deleteProfile.php">Delete Profile</a>
+                    <div> <a href="profile.php?updateProfile">Edit Profile</a>
+                        <a href="profile.php?deleteProfile">Delete Profile</a>
                         <a href="./logout.php">Log out</a>
                     </div>
 
@@ -133,7 +134,7 @@ $cat = getCategory();
                     <div>
 
 
-                        <p><?= $wishItem['stock']; ?> left in stock</p>
+                        <p style="color: <?= !$wishItem['status'] ? '#914f3b' : 'black'  ?>"> <?= !$wishItem['status'] ? 'Not Available' : 'Available'  ?> </p>
                         <form action="profile.php?wishlist" method="post">
                             <button type="submit" name="takeOffWishItem" id="takeOffWishItem" value="<?= $wishItem['product_id']; ?>">&#x2665;</button>
                         </form>
@@ -142,7 +143,15 @@ $cat = getCategory();
             <?php endforeach; ?>
         </section>
 
-        <?php if (!isset($_GET['wishlist'])): ?>
+
+
+        <?php if (isset($_GET['updateProfile'])) {
+            require("./updateProfile.php");
+        } ?>
+        <?php if (isset($_GET['deleteProfile'])) {
+            require("./deleteProfile.php");
+        } ?>
+        <?php if (!isset($_GET['wishlist']) && !isset($_GET['updateProfile']) && !isset($_GET['deleteProfile'])): ?>
             <?php $pageName = "profile.php";
             require("./body.php"); ?>
         <?php endif; ?>
