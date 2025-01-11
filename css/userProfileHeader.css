@@ -265,11 +265,25 @@ body {
       font-size: 15px;
       gap: 10px;
       justify-content: flex-end;
-
-      .icon-user {
-        font-size: 20px;
-      }
     }
+  }
+
+  body header div div aside#profileDetails > div:nth-child(1) {
+    display: none;
+  }
+  body header div div aside#profileDetails  {
+   white-space: nowrap;
+    &:hover {
+      display: grid;
+      grid-template-columns: 1fr;
+      border-radius: 10px;
+      font-size: 15px;
+      padding: 0.5rem;
+      background-color: var(--header-signin-color);
+      border: 1px solid #244d3b;
+      width: auto;
+      height: fit-content;
+      transform: translate(0, 15px);
   }
 }
 
