@@ -248,10 +248,10 @@ body {
   }
 
   #categories div a img {
-    width: 30%;
+    width: 50%;
   }
 
   #categories div a h5 {
-    font-size: 50px;
+    font-size: 40px;
   }
 }
