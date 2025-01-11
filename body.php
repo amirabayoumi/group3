@@ -217,28 +217,31 @@ if (isset($_GET["lang"])) {
             <h1>Oops! Sorry, no products were found. Please try searching again or send us a request with what you're looking for, and we'll be happy to assist you </h1>
         <?php endif; ?>
     </section>
-    <ul class="pagination">
-        <?php
-        // This shows a "Previous" link only if the current page is greater than 1.
-        if ($currentPage > 1): ?>
-            <li><a href="<?= $pageName; ?>?page=<?= $currentPage - 1; ?>">Previous</a></li>
-        <?php endif; ?>
+    <section id="pagination">
+        <ul>
+            <?php
+            // This shows a "Previous" link only if the current page is greater than 1.
+            if ($currentPage > 1): ?>
+                <li><a href="<?= $pageName; ?>?page=<?= $currentPage - 1; ?>">Previous</a></li>
+            <?php endif; ?>
 
-        <?php
-        // Loop through all pages to display page numbers.
-        for ($i = 1; $i <= $pages; $i++): ?>
-            <li <?= $i == $currentPage ? 'class="active"' : ''; ?>>
-                <!-- Display page number as a link. "active" class added for the current page. -->
-                <a href="<?= $pageName; ?>?page=<?= $i; ?>"><?= $i; ?></a>
-            </li>
-        <?php endfor; ?>
+            <?php
+            // Loop through all pages to display page numbers.
+            for ($i = 1; $i <= $pages; $i++): ?>
+                <li <?= $i == $currentPage ? 'class="active"' : ''; ?>>
+                    <!-- Display page number as a link. "active" class added for the current page. -->
+                    <a href="<?= $pageName; ?>?page=<?= $i; ?>"><?= $i; ?></a>
+                </li>
+            <?php endfor; ?>
 
-        <?php
-        // Show "Next" link only if the current page is less than the total number of pages.
-        if ($currentPage < $pages): ?>
-            <li><a href="<?= $pageName; ?>?page=<?= $currentPage + 1; ?>">Next</a></li>
-        <?php endif; ?>
-    </ul>
+            <?php
+            // Show "Next" link only if the current page is less than the total number of pages.
+            if ($currentPage < $pages): ?>
+                <li><a href="<?= $pageName; ?>?page=<?= $currentPage + 1; ?>">Next</a></li>
+            <?php endif; ?>
+        </ul>
+    </section>
+
 </body>
 
 </html>

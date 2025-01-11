@@ -214,6 +214,32 @@ body {
     }
   }
 }
+
+#pagination {
+  ul {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    li {
+      a {
+        text-decoration: none;
+        padding: 1rem;
+        color: var(--header-bg);
+        border: 0.1rem solid var(--header-bg);
+        border-radius: 5px;
+        transition: 400ms;
+        font-size: 0.8rem;
+
+        &:hover {
+          background-color: var(--header-bg);
+          color: white;
+          border: none;
+        }
+      }
+    }
+  }
+}
 @media (max-width: 600px) {
   #categories {
     grid-template-columns: 1fr;
