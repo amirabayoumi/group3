@@ -86,7 +86,32 @@ if (isset($_POST['search'])) {
 // print "<pre>";
 // print_r($items);
 // print "</pre>";
+$lang = "";
 
+
+
+$languages = [
+    'aboutUsTitle' => [
+        'en' => 'About Us',
+        'nl' => 'Over ons',
+        'ar' => 'من نحن',
+        'ua' => 'Про нас'
+    ],
+    'aboutUs' => [
+        'en' => 'Welcome to our pet e-paradise! 🐾 We are not a traditional pet shop; we are a carefully curated collection of the best products from top suppliers. In our webshop, you’ll find the purr-fect supplies for your furry friends! Our team works hard to select only high-quality, trusted items so you can spend less time searching and more time spoiling your beloved pets. Because your furry friends deserve nothing but the best!',
+        'nl' => 'Welkom in ons huisdieren e-paradijs! 🐾 Wij zijn geen traditionele dierenwinkel; we zijn een zorgvuldig samengestelde collectie van de beste producten van top leveranciers. In onze webshop vind je alles wat je nodig hebt voor je harige vrienden! Ons team werkt hard om alleen hoogwaardige en vertrouwde producten te selecteren, zodat jij minder tijd kwijt bent aan zoeken en meer tijd hebt om je huisdieren te verwennen. Want jouw huisdieren verdienen alleen het allerbeste!',
+        'ar' => 'مرحبًا بكم في جنة الحيوانات الأليفة الإلكترونية! 🐾 نحن لسنا متجر حيوانات أليف تقليدي؛ بل نحن مجموعة مختارة بعناية من أفضل المنتجات من الموردين الموثوقين. في متجرنا الإلكتروني، ستجدون كل ما تحتاجونه لرعاية أصدقائكم الفرويين! يعمل فريقنا بجد لاختيار منتجات عالية الجودة وموثوقة، لتقضوا وقتًا أقل في البحث ووقتًا أطول في تدليل حيواناتكم الأليفة. لأن أصدقائكم الفرويين يستحقون الأفضل دائمًا!',
+        'ua' => 'Ласкаво просимо до нашого е-парадайсу для домашніх улюбленців! 🐾 Ми не звичайний зоомагазин; ми ретельно підібрана колекція найкращих продуктів від провідних постачальників. У нашому інтернет-магазині ви знайдете все необхідне для ваших пухнастих друзів! Наша команда наполегливо працює, щоб обирати лише якісні та перевірені товари, щоб ви витрачали менше часу на пошуки і більше – на піклування та ласку для ваших улюбленців. Адже ваші домашні друзі заслуговують лише найкращого!'
+    ]
+
+];
+if (isset($_GET["lang"])) {
+    if (in_array($_GET["lang"], array("en", "nl", "ar", "ua"))) {
+        $lang = $_GET["lang"];
+    }
+} else {
+    $lang = "en";
+}
 ?>
 
 
@@ -108,11 +133,12 @@ if (isset($_POST['search'])) {
         </form>
     </section>
 
+
     <section id="aboutUs">
-        <h2>About us</h2>
+        <div id="languagesBar"><a href="index.php?lang=en">EN</a> | <a href="index.php?lang=nl">NL</a> | <a href="index.php?lang=ar">عربي</a> | <a href="index.php?lang=ua">UA</a></a></div>
+        <h2><?= $languages['aboutUsTitle'][$lang]; ?></h2>
         <p>
-            Welcome to our webshop! We are a small pet shop where you can find the
-            purr-fect supplies for your furry friends!
+            <?= $languages['aboutUs'][$lang]; ?>
         </p>
     </section>
 
