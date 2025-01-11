@@ -249,9 +249,9 @@ function getItems()
 // ---- search by product title ------------
 function getItemsBySearch(String $search)
 {
-    $sql = "select product.* ,wishlist.* from product left join wishlist on product_id= product.id where  title like'%$search%';";
+    $sql = "select product.* ,wishlist.* from product left join wishlist on product_id= product.id where  title like :search;";
     $stmt = connectToDB()->prepare($sql);
-    $stmt->execute([]);
+    $stmt->execute(['search' => "%$search%"]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 //----- to get all category in main page -----------
