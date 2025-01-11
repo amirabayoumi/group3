@@ -135,7 +135,7 @@ if (isset($_GET["lang"])) {
 
 
     <section id="aboutUs">
-        <div id="languagesBar"><a href="index.php?lang=en">EN</a> | <a href="index.php?lang=nl">NL</a> | <a href="index.php?lang=ar">عربي</a> | <a href="index.php?lang=ua">UA</a></a></div>
+        <div id="languagesBar"><a href="<?php $pageName; ?>?lang=en">EN</a> | <a href="<?php $pageName; ?>?lang=nl">NL</a> | <a href="<?php $pageName; ?>?lang=ar">عربي</a> | <a href="<?php $pageName; ?>?lang=ua">UA</a></a></div>
         <h2><?= $languages['aboutUsTitle'][$lang]; ?></h2>
         <p>
             <?= $languages['aboutUs'][$lang]; ?>
