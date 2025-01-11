@@ -84,7 +84,7 @@ $cat = getCategory();
 
             <div>
                 <a href="#">Welcome, <?= $user['firstname'] ?>!</a>
-                <aside>
+                <aside id="profileDetails">
                     <div>
                         <h3>Your Profile Details</h3>
                         <p>Name: <?= $user['firstname'] ?> <?= $user['lastname'] ?></p>
