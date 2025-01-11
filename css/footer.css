@@ -11,6 +11,7 @@
   --font-footer: "Comic Neue", sans-serif;
 }
 
+/* General styles */
 * {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -21,17 +22,18 @@ footer {
   background-color: var(--footer-bg);
   color: var(--footer-text-color);
   padding: 2rem;
+  margin: 1rem;
 }
 
 .footer-container {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 2rem;
 }
 
 /* Contact Section */
 .footer-section.contact-us {
-  flex: 1;
   min-width: 250px;
 }
 
@@ -57,7 +59,6 @@ footer {
 
 /* Social Media Links */
 .footer-section.follow-us {
-  flex: 1;
   min-width: 250px;
   text-align: center;
 }
@@ -95,7 +96,6 @@ footer {
 
 /* Quick Links */
 .footer-section.quick-links {
-  flex: 1;
   min-width: 250px;
   text-align: right;
 }
@@ -129,7 +129,7 @@ footer {
   text-align: center;
   margin-top: 2rem;
   padding-top: 1rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.2); /* Полупрозрачная линия */
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
   font-size: 1.2rem;
 }
 
@@ -140,6 +140,66 @@ footer {
   color: var(--footer-link-hover);
 }
 
+/* Media Queries */
+
+/* For screens up to 910px */
+@media screen and (max-width: 910px) {
+  footer {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .footer-section {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .footer-section.contact-us h3,
+  .footer-section.follow-us h3,
+  .footer-section.quick-links h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .footer-section.follow-us li a,
+  .footer-section.quick-links ul li a {
+    font-size: 1rem;
+  }
+
+  .footer-section.quick-links {
+    text-align: center;
+  }
+
+  .footer-section.quick-links ul {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    gap: 1rem;
+  }
+
+  .footer-section.quick-links ul li {
+    margin: 0 1rem;
+  }
+
+  .footer-bottom {
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+
+  .footer-bottom p {
+    font-size: 1rem;
+  }
+}
+
+/* For screens up to 600px */
 @media screen and (max-width: 600px) {
   footer {
     font-size: 1rem;
@@ -155,26 +215,23 @@ footer {
     font-size: 0.8rem;
     text-align: center;
   }
-  .footer-section.contact-us h3 {
+
+  .footer-section.contact-us h3,
+  .footer-section.follow-us h3,
+  .footer-section.quick-links h3 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
   }
 
-  .footer-section.follow-us h3 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
-  .footer-section.follow-us li a {
+  .footer-section.follow-us li a,
+  .footer-section.quick-links ul li a {
     font-size: 0.8rem;
   }
 
   .footer-section.quick-links {
     text-align: center;
   }
-  .footer-section.quick-links h3 {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-  }
+
   .footer-section.quick-links ul {
     display: flex;
     justify-content: center;
@@ -188,17 +245,10 @@ footer {
     margin: 0 0.5rem;
   }
 
-  .footer-section.quick-links ul li a {
-    font-size: 0.8rem;
-  }
-
   .footer-bottom {
     font-size: 0.8rem;
-  }
-  .footer-bottom {
     margin-top: 1rem;
     padding-top: 1rem;
-    font-size: 0.8rem;
   }
 
   .footer-bottom p {
