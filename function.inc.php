@@ -249,7 +249,7 @@ function getItems()
 // ---- search by product title ------------
 function getItemsBySearch(String $search)
 {
-    $sql = "select* from product where title like'%$search%';";
+    $sql = "select product.* ,wishlist.* from product left join wishlist on product_id= product.id where  title like'%$search%';";
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -263,16 +263,6 @@ function getCategory()
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// ---- filter product by category  ------------
-function getItemsByCat(String $name)
-{
-    $sql = "select product.*, category.name as catName from category left join product on category.id = product.category_id where category.name = :name;";
-    $stmt = connectToDB()->prepare($sql);
-    $stmt->execute([
-        'name' => $name
-    ]);
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
 
 
 //--------------------api 
@@ -280,7 +270,7 @@ function getOgViaApi(String $ogUrl): bool|stdClass
 {
     $curl_handle = curl_init();
 
-    $apiURL = "https://opengraph.io/api/1.1/site/" . urlencode($ogUrl) . "?app_id=4b00ea99-9be1-4a4f-8d85-c40958ba6672";
+    $apiURL = "https://opengraph.io/api/1.1/site/" . urlencode($ogUrl) . "?app_id=3dd6e817-0041-41af-865b-bf3e3ad174cf";
 
     curl_setopt($curl_handle, CURLOPT_URL, $apiURL); // de locatie waar ik een request naartoe stuur
     curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true); // ik wil een antwoord ontvangen van de request url
@@ -301,7 +291,7 @@ function getOgViaApi(String $ogUrl): bool|stdClass
 function insertOgLink(String $url, $title, $description, $image, $price, Int $cat): bool|int
 {
     $db = connectToDB();
-    $sql = "INSERT INTO product (url, title, description, image, price,status,stock, category_id) VALUES ( :url, :title, :description, :image ,:price ,1,1,:category);";
+    $sql = "INSERT INTO product (url, title, description, image, price, category_id) VALUES ( :url, :title, :description, :image ,:price ,:category);";
     $stmt = $db->prepare($sql);
     $stmt->execute([
         'url' => $url,
@@ -328,6 +318,16 @@ function getProductPerPage(int $start, int $rows): array
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+// ---- filter product by category  ------------
+function getItemsByCat(String $name)
+{
+    $sql = "select product.*, category.name as catName, wishlist.* from category left join product on category.id = product.category_id left join wishlist on product_id=product.id where category.name = :name ;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        'name' => $name
+    ]);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 function getProductByID(Int $id)
 {
@@ -342,6 +342,11 @@ function getProductByID(Int $id)
 
 function deleteProduct(int $id)
 {
+    $sql = "DELETE FROM wishlist  WHERE product_id = :id;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ':id' => $id
+    ]);
     $sql = "DELETE FROM product WHERE id = :id;";
     $stmt = connectToDB()->prepare($sql);
     $stmt->execute([
@@ -349,6 +354,19 @@ function deleteProduct(int $id)
     ]);
     $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function UpdateProductAvilability(int $id, int $value)
+{
+    $sql = "UPDATE product SET status = :value, updated_date = now() WHERE id = :id;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ':id' => $id,
+        ':value' => $value
+    ]);
+    $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 
 function addProductToWishlist(int $productId, Int $userId)
 {

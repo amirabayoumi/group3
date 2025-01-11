@@ -40,6 +40,7 @@ $cat = getCategory();
     <title>Document</title>
     <link rel="stylesheet" href="./css/header.css">
     <link rel="stylesheet" href="./css/icons.css">
+    <link rel="icon" type="image/icon" href="images/Pet paradise.png" />
 
 </head>
 

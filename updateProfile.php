@@ -1,6 +1,6 @@
 <?php
-require('./function.inc.php');
-requiredLoggedIn();
+// require('./function.inc.php');
+// requiredLoggedIn();
 
 $errors = [];
 
@@ -69,7 +69,7 @@ if (@$_POST['submit_edit']) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Update profile</title>
     <link rel="stylesheet" href="css/update.css">
-    <link rel="stylesheet" href="css/userProfileHeader.css">
+    <!-- <link rel="stylesheet" href="css/userProfileHeader.css"> -->
 </head>
 
 <body>
@@ -111,7 +111,7 @@ if (@$_POST['submit_edit']) {
 
     </header> -->
     <main>
-        <form action="./updateProfile.php" method="post">
+        <form action="./profile.php?updateProfile" method="post">
             <?php if (count($errors)): ?>
                 <div>
                     <ul>
