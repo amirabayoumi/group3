@@ -30,6 +30,7 @@ body {
     background-color: var(--header-bg);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    white-space: nowrap;
 
     padding: 10px 30px;
     color: var(--header-title-color);
