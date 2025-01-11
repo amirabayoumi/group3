@@ -38,21 +38,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = "All fields are required.";
     }
 
-    
+
     if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
         $errors[] = "Please provide a valid email address.";
     }
 
-    
+
     if (empty($errors)) {
-        
+
         if (!empty($password)) {
-            $hashedPassword = md5($password); 
+            $hashedPassword = md5($password);
         } else {
             $hashedPassword = $user['password']; // keep old password
         }
 
-        
+
         $updateResult = editUser($id, $firstname, $lastname, $country, $mail, $username, $petname, $hashedPassword);
 
         if ($updateResult) {
@@ -93,15 +93,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="post">
             <div class="mb-3">
                 <label for="firstname" class="form-label">First Name</label>
-                <input type="text" name="firstname" id="firstname" class="form-control" value="<?= htmlspecialchars($user['firstname'] ?? ''); ?>" >
+                <input type="text" name="firstname" id="firstname" class="form-control" value="<?= htmlspecialchars($_POST['firstname'] ?? $user['firstname']); ?>">
             </div>
             <div class="mb-3">
                 <label for="lastname" class="form-label">Last Name</label>
-                <input type="text" name="lastname" id="lastname" class="form-control" value="<?= htmlspecialchars($user['lastname'] ?? ''); ?>" >
+                <input type="text" name="lastname" id="lastname" class="form-control" value="<?= htmlspecialchars($_POST['lastname'] ?? $user['lastname']); ?>">
             </div>
             <div class="mb-3">
                 <label for="country" class="form-label">Country</label>
-                <select name="country" id="country" class="form-select" >
+                <select name="country" id="country" class="form-select">
                     <?php
                     $countries = [
                         "Albania",
@@ -116,6 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         "Czech Republic",
                         "Denmark",
                         "Estonia",
+                        "Egypt",
                         "Finland",
                         "France",
                         "Germany",
@@ -151,24 +152,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         "Vatican City"
                     ];
 
-                    foreach ($countries as $country) {
-                        $selected = ($user['country'] === $country) ? 'selected' : '';
-                        echo "<option value=\"" . htmlspecialchars($country) . "\" $selected>" . htmlspecialchars($country) . "</option>";
+
+                    foreach ($countries as $countryOption) {
+                        $selected = ($_POST['country'] ?? $user['country']) === $countryOption ? 'selected' : '';
+                        echo "<option value=\"" . htmlspecialchars($countryOption) . "\" $selected>" . htmlspecialchars($countryOption) . "</option>";
                     }
+                    ?>
+
                     ?>
                 </select>
             </div>
             <div class="mb-3">
                 <label for="mail" class="form-label">Email</label>
-                <input type="email" name="mail" id="mail" class="form-control" value="<?= htmlspecialchars($user['mail'] ?? ''); ?>" >
+                <input type="email" name="mail" id="mail" class="form-control" value="<?= htmlspecialchars($_POST['mail'] ?? $user['mail']); ?>">
             </div>
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" name="username" id="username" class="form-control" value="<?= htmlspecialchars($user['username'] ?? ''); ?>" >
+                <input type="text" name="username" id="username" class="form-control" value="<?= htmlspecialchars($_POST['username'] ?? $user['username']); ?>">
             </div>
             <div class="mb-3">
                 <label for="petname" class="form-label">Pet Name</label>
-                <input type="text" name="petname" id="petname" class="form-control" value="<?= htmlspecialchars($user['petname'] ?? ''); ?>" >
+                <input type="text" name="petname" id="petname" class="form-control" value="<?= htmlspecialchars($_POST['petname'] ?? $user['petname']); ?>">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password (leave blank to keep current)</label>
