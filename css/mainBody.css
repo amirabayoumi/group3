@@ -136,7 +136,12 @@ body {
   }
 }
 
-#itemsCards {
+.wishList.hide {
+  display: none;
+}
+
+#itemsCards,
+.wishList.show {
   margin: 4rem 2rem;
   display: grid;
   place-self: center;
