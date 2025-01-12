@@ -24,7 +24,7 @@ body {
       gap: 2rem;
       background-color: #ffffff;
       border: 2px solid #6ec5aa;
-      border-radius: 5px;
+      border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
       max-width: 1200px;
       width: 90%;
@@ -58,7 +58,7 @@ body {
   aside {
     background-color: #6ec5aa;
     padding: 1.5rem;
-    border-radius: 5px;
+    border-radius: 10px;
     font-size: 15px;
     color: #244d3b;
     h2 {
@@ -87,7 +87,7 @@ body {
       color: #244d3b;
       background-color: #96e7c5;
       border: none;
-      border-radius: 5px;
+      border-radius: 10px;
       cursor: pointer;
       transition: all 0.3s;
 
