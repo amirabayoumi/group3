@@ -22,7 +22,9 @@ footer {
   background-color: var(--footer-bg);
   color: var(--footer-text-color);
   padding: 2rem;
-  margin: 1rem;
+  /* margin: 1rem 0; */
+  margin-top: auto;
+  font-size: 1.2rem;
 }
 
 .footer-container {
@@ -135,7 +137,6 @@ footer {
 
 .footer-bottom p {
   margin: 0;
-  color: var(--footer-text-color);
   font-size: 1rem;
   color: var(--footer-link-hover);
 }

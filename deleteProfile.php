@@ -44,8 +44,6 @@ if (isset($_POST['cancel'])) {
                 <button type="submit" name="cancel">Cancel</button>
             </section>
         </form>
-
-
     </main>
 
 </body>

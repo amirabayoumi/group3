@@ -8,15 +8,22 @@
 
   --font-header-title: "Puppybellies", sans-serif;
   --font-body: "Comic Neue", sans-serif;
+  font-size: 62.5%;
 }
 
 * {
-  font-size: 62.5%;
   box-sizing: border-box;
+}
+
+html {
+  height: 100%;
 }
 
 body {
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 #searchBar {
