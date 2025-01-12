@@ -4,7 +4,7 @@ require('./adminFunctions.php');
 requiredLoggedInAdmin();
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
- error_reporting(E_ALL);
+error_reporting(E_ALL);
 
 // print '<pre>';
 // print_r($errors);
@@ -19,7 +19,7 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
 $id = intval($_GET['id']);
 
 
-$user = getUserById($id); 
+$user = getUserById($id);
 
 if (!$user) {
     header("Location: adminUserCrud.php?error=User not found");
@@ -49,6 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete User</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="icon" type="image/icon" href="../images/Pet paradise.png" />
 </head>
 
 <body>

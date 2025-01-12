@@ -64,87 +64,8 @@ if (isset($_POST['mail'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        @import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap");
-
-        * {
-            font-size: 62.5%;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Comic Neue', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-            color: #244d3b;
-
-            main {
-                display: flex;
-                justify-content: space-around;
-                margin: 3rem auto;
-                max-width: 1200px;
-
-                section {
-                    background-color: #ffffff;
-                    padding: 1.5rem;
-                    border: 1px solid #ccc;
-                    border-radius: 5px;
-                    width: 500px;
-                    min-width: 300px;
-
-                    label {
-                        display: block;
-                        margin-bottom: 0.5rem;
-
-                    }
-
-                    input {
-                        width: 100%;
-                        padding: 1rem;
-                        margin-bottom: 1rem;
-                        border: 1px solid #ccc;
-                        border-radius: 5px;
-                        font-size: 1rem;
-                    }
-
-                    button {
-                        transition: all .5s ease;
-                        background-color: #244d3b;
-                        color: #ffffff;
-                        padding: 0.8rem 2rem;
-                        border: none;
-                        border-radius: 5px;
-                        cursor: pointer;
-                        font-size: 1rem;
-                    }
-
-                    button:hover {
-                        color: #244d3b;
-                        background-color: #fff;
-                        border: 1px solid #244d3b;
-                        border-radius: 5px;
-                    }
-
-                    .error-container {
-                        padding: 1rem;
-
-                        ul {
-                            list-style-type: none;
-                            margin: 0;
-                            padding: 0;
-
-                            li {
-                                font-size: 1.1rem;
-                                color: #D72C0D;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    </style>
     <title>Log in to Pet Paradise</title>
+    <link rel="stylesheet" href="css/signin.css">
 </head>
 
 <body>
@@ -177,6 +98,7 @@ if (isset($_POST['mail'])) {
             </form>
         </section>
     </main>
+
 
 </body>
 

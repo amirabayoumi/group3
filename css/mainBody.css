@@ -8,15 +8,22 @@
 
   --font-header-title: "Puppybellies", sans-serif;
   --font-body: "Comic Neue", sans-serif;
+  font-size: 62.5%;
 }
 
 * {
-  font-size: 62.5%;
   box-sizing: border-box;
+}
+
+html {
+  height: 100%;
 }
 
 body {
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
 }
 
 #searchBar {
@@ -220,7 +227,14 @@ body {
   }
 }
 
+#productNotFound {
+  font-size: 30px;
+  text-align: center;
+  color: #244d3b;
+}
+
 #pagination {
+  margin: 2rem;
   ul {
     display: flex;
     justify-content: center;
@@ -229,7 +243,7 @@ body {
     li {
       a {
         text-decoration: none;
-        padding: 1rem;
+        padding: 0.5rem 0.8rem;
         color: var(--header-bg);
         border: 0.1rem solid var(--header-bg);
         border-radius: 5px;
