@@ -1,7 +1,7 @@
 <?php
 require_once("./function.inc.php");
 // Number of items per page
-$rowsPerPage = 8;
+$rowsPerPage = 10;
 
 // Determine the current page
 if (isset($_GET['page'])) {

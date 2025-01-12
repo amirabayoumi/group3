@@ -146,11 +146,16 @@ body {
   }
 }
 
-#itemsCards {
+.wishList.hide {
+  display: none;
+}
+
+#itemsCards,
+.wishList.show {
   margin: 4rem 2rem;
   display: grid;
   place-self: center;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 0.5rem;
 
   article {
