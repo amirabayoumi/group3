@@ -174,7 +174,7 @@ if (isset($_GET["lang"])) {
                     <div id="item">
                         <img src="<?= $item['image']; ?>" alt="" />
                         <div>
-                            <p><?= $item['title']; ?></p>
+                            <p><a href="detail.php?id=<?= $item['id']; ?>"><?= htmlspecialchars($item['title']); ?></a></p>
                             <h4><?= $item['price']; ?> &#8364;</h4>
                         </div>
 

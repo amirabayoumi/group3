@@ -176,6 +176,10 @@ body {
           gap: 1rem;
 
           p {
+            a{
+              text-decoration: none;
+              color: #123022;
+            }
           }
 
           h4 {
