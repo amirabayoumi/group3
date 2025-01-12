@@ -22,6 +22,26 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])
     }
 }
 
+// pagination
+
+$users = getUser();
+
+$start = 0;
+$rowsPerPage = 10; // Кількість записів на сторінку
+$totalUsers = count($users);
+$pages = ceil($totalUsers / $rowsPerPage);
+
+$currentPage = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+
+if ($currentPage < 1) {
+    $currentPage = 1;
+} elseif ($currentPage > $pages) {
+    $currentPage = $pages;
+}
+
+$start = ($currentPage - 1) * $rowsPerPage;
+$usersPerPage = array_slice($users, $start, $rowsPerPage);
+
 
 ?>
 <!DOCTYPE html>
@@ -94,31 +114,22 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])
                             </thead>
                             <tbody>
 
-                                <?php if (isset($users) && is_array($users)): ?>
-                                    <?php foreach ($users as $user): ?>
-
-                                        <td><?= $user['id'] ?></td>
-                                        <td><?= $user['firstname'] ?></td>
-                                        <td><?= $user['lastname'] ?></td>
-                                        <td><?= $user['username'] ?></td>
-                                        <td><?= $user['country'] ?></td>
-                                        <td><?= $user['mail'] ?></td>
-                                        <td><?= $user['password'] ?></td>
-                                        <td><?= $user['petname'] ?></td>
-                                        <td>
-                                            <a href="editUser.php?id=<?= $user['id']; ?>" class="d-inline-block me-2">
-                                                <button type="button" class="btn btn-outline-warning">Edit</button>
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <a href="deleteUser.php?id=<?= $user['id']; ?>" class="d-inline-block">
-                                                <button type="button" class="btn btn-outline-danger">Delete</button>
-                                            </a>
-                                        </td>
-
-
+                                <?php if (isset($usersPerPage) && is_array($usersPerPage)): ?>
+                                    <?php foreach ($usersPerPage as $user): ?>
+                                        <tr>
+                                            <td><?= $user['id'] ?></td>
+                                            <td><?= $user['firstname'] ?></td>
+                                            <td><?= $user['lastname'] ?></td>
+                                            <td><?= $user['username'] ?></td>
+                                            <td><?= $user['country'] ?></td>
+                                            <td><?= $user['mail'] ?></td>
+                                            <td><?= $user['password'] ?></td>
+                                            <td><?= $user['petname'] ?></td>
+                                            <td>
+                                                <a href="editUser.php?id=<?= $user['id']; ?>" class="btn btn-outline-warning">Edit</a>
+                                                <a href="deleteUser.php?id=<?= $user['id']; ?>" class="btn btn-outline-danger">Delete</a>
+                                            </td>
                                         </tr>
-
                                     <?php endforeach; ?>
                                 <?php else: ?>
                                     <tr>
@@ -126,12 +137,31 @@ if (isset($_GET['action']) && $_GET['action'] === 'delete' && isset($_GET['id'])
                                     </tr>
                                 <?php endif; ?>
 
+
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
     </main>
+    <section>
+        <ul class="pagination" style="display:flex; place-self:center;">
+            <li class="page-item <?= ($currentPage === 1) ? 'disabled' : '' ?>">
+                <a href="adminUserCrud.php?page=<?= $currentPage - 1 ?>" class="page-link">Previous</a>
+            </li>
+
+            <?php for ($i = 1; $i <= $pages; $i++): ?>
+                <li class="page-item <?= ($i === $currentPage) ? 'active' : '' ?>">
+                    <a href="adminUserCrud.php?page=<?= $i ?>" class="page-link"><?= $i ?></a>
+                </li>
+            <?php endfor; ?>
+
+            <li class="page-item <?= ($currentPage === $pages) ? 'disabled' : '' ?>">
+                <a href="adminUserCrud.php?page=<?= $currentPage + 1 ?>" class="page-link">Next</a>
+            </li>
+        </ul>
+
+    </section>
 </body>
 
 </html>
