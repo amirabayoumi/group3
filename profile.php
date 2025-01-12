@@ -26,7 +26,7 @@ if (isset($_SESSION['uid'])) {
 // print '<pre>';
 // print_r($_GET);
 // print '</pre>';
-
+$wishList = [];
 if (isset($_GET['wishlist'])) {
     $wishList = getWishlistById($_SESSION['uid']);
     // print '<pre>';
@@ -112,11 +112,11 @@ $cat = getCategory();
     </header>
 
     <main>
-        <section style="display:<?php if (!isset($_GET['wishlist'])) {
-                                    print "none";
-                                } else {
-                                    print "";
-                                } ?>">
+        <section class="wishList <?php if (!isset($_GET['wishlist'])) {
+                                        print "hide";
+                                    } else {
+                                        print "show";
+                                    } ?>">
             <?php foreach ($wishList as $wishItem): ?>
                 <article>
 
