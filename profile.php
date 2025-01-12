@@ -157,7 +157,7 @@ $cat = getCategory();
         <?php endif; ?>
     </main>
 
-
+    <?php require("./footer.php"); ?>
 
 </body>
 

@@ -215,7 +215,14 @@ body {
   }
 }
 
+#productNotFound {
+  font-size: 30px;
+  text-align: center;
+  color: #244d3b;
+}
+
 #pagination {
+  margin: 2rem;
   ul {
     display: flex;
     justify-content: center;
@@ -224,7 +231,7 @@ body {
     li {
       a {
         text-decoration: none;
-        padding: 1rem;
+        padding: 0.5rem 0.8rem;
         color: var(--header-bg);
         border: 0.1rem solid var(--header-bg);
         border-radius: 5px;
