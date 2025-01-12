@@ -214,7 +214,7 @@ if (isset($_GET["lang"])) {
             <?php endforeach; ?>
 
         <?php else : ?>
-            <h1>Oops! Sorry, no products were found. Please try searching again or send us a request with what you're looking for, and we'll be happy to assist you </h1>
+            <h1 id="productNotFound">Oops! Sorry, no products were found. Please try searching again or send us a request with what you're looking for, and we'll be happy to assist you </h1>
         <?php endif; ?>
     </section>
     <section id="pagination">
