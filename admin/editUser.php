@@ -104,6 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <select name="country" id="country" class="form-select">
                     <?php
                     $countries = [
+                        "Not selected",
                         "Albania",
                         "Andorra",
                         "Austria",
@@ -172,7 +173,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
             <div class="mb-3">
                 <label for="petname" class="form-label">Pet Name</label>
-                <input type="text" name="petname" id="petname" class="form-control" value="<?= htmlspecialchars($_POST['petname'] ?? $user['petname']); ?>">
+                <input type="text" name="petname" id="petname" class="form-control" value="<?= htmlspecialchars($_POST['petname'] ?? $user['petname'] ?? ''); ?>">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password (leave blank to keep current)</label>
