@@ -5,12 +5,19 @@ Pet Paradise is a dynamic platform designed to cater to the needs of pet owners.
 ## Key Features
 
 ### User-Friendly Design
+
 ![main Screen](./images/main.png)
+
 - **Responsive Webshop**: Browse on any device.
+  
 - **Smooth Navigation**: Fast and intuitive browsing.
+  
 - **Search Bar**: Quickly find products by title.
+  
 ___
+
 ### Personalized Experience
+
 ![profile Screen](./images/profile.png)
 
 - Registered users see a **custom interface** with their pet’s name, e.g., "Stella Paradise."
@@ -19,11 +26,17 @@ ___
 
 
 ![wish List](./images/wishlist.png)
+
 - **Wishlist** to save/Delete favorite products.
+  
 ___
+
 ### Extra Tools
+
 ![Lang](./images/lang.png)
+
 - **Translation**: View "About Us" in 4 languages.
+  
 - **Pagination**: Load products in smaller batches for a smooth experience.
 
 ___
@@ -31,62 +44,36 @@ ___
 
 ![admin/product](./images/admin-product.png)
 
-- Manage users with CRUD functionality.
-- Add, update, and delete products with Open Graph tags and category options.
-- Update product availability based on vendor stock.
+- **Manage users** with CRUD functionality.
+- Add, update, and delete products with **Open Graph tags** and category options.
+- **Update product** availability based on vendor stock.
+
 ___
 
 ## Technologies Used
 
-- **Frontend**:
-  - HTML and CSS for the user interface.
-  - JavaScript (optional) for interactive features.
 - **Backend**:
-  - PHP for server-side logic and database interactions.
-- **Database**: MySQL, with structured tables for Products, Categories, and Users.
-- **Additional Tools**:
-  - Bootstrap for styling the admin interface.
-  - APIs for extended functionality:
-    - **Fun Translations API**: Adds entertainment value by translating product descriptions into fun styles like Pirate, Yoda, or Shakespearean English.
-    - **OpenWeather API**: Recommends weather-specific pet products and displays real-time weather widgets.
+  - PHP
+  - MySQL
+  - OpenGraph API
 
-## Additional Features (Nice-to-Have)
+- **Frontend**:
+  - HTML
+  - Native CSS
+  - Bootstrap (admin UI)
+  - Vite
 
-- Product galleries with zoom functionality.
-- "Product of the Day" section showcasing a highlighted item.
-- Thematic translations for special events, e.g., Pirate Day.
-- Outdoor product suggestions based on weather data.
-
-## API Integrations
-
-### Fun Translations API
-
-This API translates product descriptions into fun styles for user entertainment.  
-**Example**:
-
-- Original: _"This cozy pet bed is perfect for your furry friend."_
-- Pirate Style: _"Arrr! This cozy bed be perfect fer yer furry matey."_
-- Yoda Style: _"Perfect for your furry friend, this bed is."_
-
-### OpenWeather API
-
-This API provides real-time weather data, forecasts, and alerts.  
-**Example**:
-
-- Input: _Location: Amsterdam_
-- Output: _"Current Weather: 12°C, Light Rain."_
-- Suggestion: \*"Raincoats for Dogs – Perfect for today's weather!"
-
-## Database Architecture
+## Database Architecture with MySQL (Local)
 
 The database includes structured tables to support:
 
-- Products
-- Categories
-- Users
-- WishList
-- Admin
+- **Product**: Stores Open Graph (OG) data.
+- **Category**: Links products to categories for easy filtering.
+- **User**: Holds user information.
+- **Wishlist**: Stores user-selected products.
+- **Admin**: Stores admin names and secure access keys for admin zone.
 
+___
 # FASE 1: CLIENT SIDE
 
     $ npm run dev | npm start
