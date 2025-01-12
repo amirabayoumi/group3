@@ -26,7 +26,7 @@ if (isset($_SESSION['uid'])) {
 // print '<pre>';
 // print_r($_GET);
 // print '</pre>';
-
+$wishList = [];
 if (isset($_GET['wishlist'])) {
     $wishList = getWishlistById($_SESSION['uid']);
     // print '<pre>';
