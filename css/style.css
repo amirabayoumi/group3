@@ -2,9 +2,11 @@
   --header-bg: #244d3b;
   --header-title-color: #ffffff;
   --header-signin-color: #96e7c5;
-  --footer-bg: #244d3b;
   --font-header-title: "Puppybellies", sans-serif;
   --font-body: "Comic Neue", sans-serif;
+  --footer-bg: #244d3b;
+  --footer-text-color: #96e7c5;
+  --footer-link-hover: #ffffff;
 }
 
 * {
@@ -14,6 +16,6 @@
 
 body {
   font-family: var(--font-body);
-  font-size: 40px;
+  font-size: 1rem;
   width: 100%;
 }
