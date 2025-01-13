@@ -22,11 +22,13 @@ if (isset($_POST['cancel'])) {
 }
 
 ?>
+<div class="deleteUserProfile">
 
-<form action="deleteProfile.php" method="post">
-    <h1>Are you sure you want to delete your profile?</h1>
-    <section>
-        <button type="submit" name="deleteUser">Yes, I'm sure!</button>
-        <button type="submit" name="cancel">Cancel</button>
-    </section>
-</form>
+    <form action="deleteProfile.php" method="post">
+        <h1>Are you sure you want to delete your profile?</h1>
+        <section>
+            <button type="submit" name="deleteUser">Yes, I'm sure!</button>
+            <button type="submit" name="cancel">Cancel</button>
+        </section>
+    </form>
+</div>
