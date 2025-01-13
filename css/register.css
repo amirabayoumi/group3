@@ -1,164 +1,149 @@
-@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap");
+main.register {
+  display: flex;
+  justify-content: space-around;
+  margin: 3rem auto;
+  max-width: 1200px;
+  min-width: 300px;
 
-* {
-  font-size: 62.5%;
-  box-sizing: border-box;
-}
+  form {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 600px;
 
-body {
-  font-family: "Comic Neue", sans-serif;
-  margin: 0;
-  padding: 0;
-  background-color: #f5f5f5;
-  color: #244d3b;
+    margin: 2rem auto;
 
-  main {
-    display: flex;
-    justify-content: space-around;
-    margin: 3rem auto;
-    max-width: 1200px;
-    min-width: 300px;
+    h1 {
+      margin-bottom: 1rem;
+      padding-left: 1rem;
+      font-weight: bold;
+    }
 
-    form {
-      background-color: #ffffff;
-      padding: 1.5rem;
+    fieldset {
+      border: 1px solid #244d3b;
+      border-radius: 5px;
+      padding: 1rem;
+      margin-bottom: 1.8rem;
+
+      legend {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #244d3b;
+
+        label {
+          display: block;
+          margin-bottom: 1rem;
+          font-weight: bold;
+        }
+      }
+    }
+
+    input {
+      width: 100%;
+      padding: 1rem;
+      margin-bottom: 1rem;
       border: 1px solid #ccc;
       border-radius: 5px;
-      max-width: 600px;
+      font-size: 1rem;
+    }
 
-      margin: 2rem auto;
+    #passwordHelpBlock {
+      font-size: 0.9rem;
+      color: #244d3b;
+      margin-top: -0.8rem;
+      margin-bottom: 0.5rem;
+      text-align: left;
+    }
 
-      h1 {
-        margin-bottom: 1rem;
-        padding-left: 1rem;
-        font-weight: bold;
-      }
+    #policy {
+      /* background-color: #D72C0D; */
+      display: grid;
+      grid-template-columns: 1fr;
 
-      fieldset {
-        border: 1px solid #244d3b;
-        border-radius: 5px;
-        padding: 1rem;
-        margin-bottom: 1.8rem;
+      section {
+        padding: 0.5rem;
 
-        legend {
-          font-size: 1.3rem;
-          font-weight: bold;
-          color: #244d3b;
-
-          label {
-            display: block;
-            margin-bottom: 1rem;
-            font-weight: bold;
-          }
-        }
-      }
-
-      input {
-        width: 100%;
-        padding: 1rem;
-        margin-bottom: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        font-size: 1rem;
-      }
-
-      #passwordHelpBlock {
-        font-size: 0.9rem;
-        color: #244d3b;
-        margin-top: -0.8rem;
-        margin-bottom: 0.5rem;
-        text-align: left;
-      }
-
-      #policy {
-        /* background-color: #D72C0D; */
-        display: grid;
-        grid-template-columns: 1fr;
-
-        section {
-          padding: 0.5rem;
-
-          &:nth-child(1) {
-            width: 100%;
-            display: flex;
-            padding: 0;
-
-            input {
-              display: inline;
-              width: 10%;
-              margin: 0;
-            }
-
-            label {
-              font-size: 20px;
-              width: 90%;
-              white-space: nowrap;
-            }
-          }
-
-          &:nth-child(2) {
-            line-height: 25px;
-            padding: 1rem;
-
-            details {
-              font-size: 15px;
-            }
-
-            summary {
-              font-size: 18px;
-            }
-          }
-
-          &:nth-child(3) {
-            display: flex;
-            align-items: center;
-
-            justify-content: space-between;
-
-            button {
-              transition: all 0.5s ease;
-              background-color: #244d3b;
-              color: #ffffff;
-              padding: 0.8rem 2rem;
-              border: none;
-              border-radius: 5px;
-              cursor: pointer;
-              font-size: 1rem;
-            }
-          }
-        }
-      }
-
-      button:hover {
-        color: #244d3b;
-        background-color: #fff;
-        border: 1px solid #244d3b;
-        border-radius: 5px;
-      }
-
-      a {
-        color: #244d3b;
-        text-decoration: none;
-        font-size: 1rem;
-        margin-left: 1.5rem;
-      }
-
-      a:hover {
-        text-decoration: underline;
-      }
-
-      .error-container {
-        padding: 1rem;
-
-        ul {
-          list-style-type: none;
-          margin: 0;
+        &:nth-child(1) {
+          width: 100%;
+          display: flex;
           padding: 0;
 
-          li {
-            font-size: 1.1rem;
-            color: #d72c0d;
+          input {
+            display: inline;
+            width: 10%;
+            margin: 0;
           }
+
+          label {
+            font-size: 20px;
+            width: 90%;
+            white-space: nowrap;
+          }
+        }
+
+        &:nth-child(2) {
+          line-height: 25px;
+          padding: 1rem;
+
+          details {
+            font-size: 15px;
+          }
+
+          summary {
+            font-size: 18px;
+          }
+        }
+
+        &:nth-child(3) {
+          display: flex;
+          align-items: center;
+
+          justify-content: space-between;
+
+          button {
+            transition: all 0.5s ease;
+            background-color: #244d3b;
+            color: #ffffff;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+
+    button:hover {
+      color: #244d3b;
+      background-color: #fff;
+      border: 1px solid #244d3b;
+      border-radius: 5px;
+    }
+
+    a {
+      color: #244d3b;
+      text-decoration: none;
+      font-size: 1rem;
+      margin-left: 1.5rem;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .error-container {
+      padding: 1rem;
+
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          font-size: 1.1rem;
+          color: #d72c0d;
         }
       }
     }

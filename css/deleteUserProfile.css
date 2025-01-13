@@ -1,29 +1,27 @@
-
-  main {
-    margin: 2rem auto;
-    max-width: 60%;
-    background-color: #6ec5aa;
-    border-radius: 10px;
-    form {
+main {
+  margin: 2rem auto;
+  max-width: 60%;
+  background-color: #6ec5aa;
+  border-radius: 10px;
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 3rem;
+    h1 {
+      font-size: 2.4rem;
+    }
+    section {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 3rem;
-      h1 {
-        font-size: 2.4rem;
-      }
-      section {
-        display: flex;
-        justify-content: center;
-        button {
-          cursor: pointer;
-          background-color: #244d3b;
-          color: #6ec5aa;
-          height: 4rem;
-          border-radius: 2rem;
-          min-width: 80%;
-          margin: 2rem 1rem;
-        }
+      justify-content: center;
+      button {
+        cursor: pointer;
+        background-color: #244d3b;
+        color: #6ec5aa;
+        height: 4rem;
+        border-radius: 2rem;
+        min-width: 80%;
+        margin: 2rem 1rem;
       }
     }
   }

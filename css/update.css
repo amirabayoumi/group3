@@ -1,49 +1,47 @@
-
-  main {
-    margin: 2rem auto;
-    max-width: 70%;
-    background-color: #6ec5aa;
-    border-radius: 10px;
-    form {
-      display: flex;
-      flex-direction: column;
-      padding: 2rem;
-      div {
-        ul {
-          li {
-            color: #6d1000ec;
-            background-color: #faec6c;
-          }
+main {
+  margin: 2rem auto;
+  max-width: 70%;
+  background-color: #6ec5aa;
+  border-radius: 10px;
+  form {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    div {
+      ul {
+        li {
+          color: #6d1000ec;
+          background-color: #faec6c;
         }
       }
-      label {
-        padding-top: 1rem;
-        font-family: "Comic Neue", sans serif;
-        font-size: 2.5rem;
-      }
-      input {
-        line-height: 2.5rem;
+    }
+    label {
+      padding-top: 1rem;
+      font-family: "Comic Neue", sans serif;
+      font-size: 2.5rem;
+    }
+    input {
+      line-height: 2.5rem;
+      font-size: 1.5rem;
+    }
+    select {
+      height: 2.5rem;
+      font-size: 1.5rem;
+      option {
         font-size: 1.5rem;
       }
-      select {
-        height: 2.5rem;
-        font-size: 1.5rem;
-        option {
-          font-size: 1.5rem;
-        }
-      }
-      #passwordHelpBlock {
-        font-size: 1.5rem;
-        padding: 1rem 0;
-      }
-      button {
-        background-color: #244d3b;
-        color: #6ec5aa;
-        height: 4rem;
-        border-radius: 2rem;
-        cursor: pointer;
-        font-size: 2rem;
-      }
+    }
+    #passwordHelpBlock {
+      font-size: 1.5rem;
+      padding: 1rem 0;
+    }
+    button {
+      background-color: #244d3b;
+      color: #6ec5aa;
+      height: 4rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-size: 2rem;
     }
   }
 }

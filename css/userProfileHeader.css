@@ -1,5 +1,5 @@
 body {
-  header {
+  header.user {
     background-color: var(--header-bg);
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -148,9 +148,6 @@ body {
               a {
                 text-decoration: none;
                 color: #123022;
-              }
-
-              h4 {
               }
             }
 

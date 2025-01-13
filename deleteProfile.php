@@ -23,29 +23,10 @@ if (isset($_POST['cancel'])) {
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Delete profile</title>
-    <link rel="stylesheet" href="css/deleteUserProfile.css">
-    <link rel="stylesheet" href="css/userProfileHeader.css">
-</head>
-
-<body>
-
-    <main>
-        <form action="deleteProfile.php" method="post">
-            <h1>Are you sure you want to delete your profile?</h1>
-            <section>
-                <button type="submit" name="deleteUser">Yes, I'm sure!</button>
-                <button type="submit" name="cancel">Cancel</button>
-            </section>
-        </form>
-    </main>
-
-</body>
-
-</html>
+<form action="deleteProfile.php" method="post">
+    <h1>Are you sure you want to delete your profile?</h1>
+    <section>
+        <button type="submit" name="deleteUser">Yes, I'm sure!</button>
+        <button type="submit" name="cancel">Cancel</button>
+    </section>
+</form>

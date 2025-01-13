@@ -1,4 +1,5 @@
 <?php
+include_once "includes/css_js.inc.php";
 require("./header.php");
 require_once("./function.inc.php");
 requiredLoggedOut();
@@ -58,46 +59,34 @@ if (isset($_POST['mail'])) {
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
+<main class="signin">
+    <section class="login">
+        <form action="./signin.php" method="post">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Log in to Pet Paradise</title>
-    <link rel="stylesheet" href="css/signin.css">
-</head>
-
-<body>
-
-    <main>
-        <section class="login">
-            <form action="./signin.php" method="post">
-
-                <p> </p>
-                <?php if (count($errors)): ?>
-                    <div class="error-container">
-                        <ul>
-                            <?php foreach ($errors as $error): ?>
-                                <li><?= $error; ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                <?php endif; ?>
+            <p> </p>
+            <?php if (count($errors)): ?>
+                <div class="error-container">
+                    <ul>
+                        <?php foreach ($errors as $error): ?>
+                            <li><?= $error; ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
 
 
-                <label for="mail">Email address:</label>
-                <input type="email" id="mail" name="mail" size="28" placeholder="Please enter your email">
+            <label for="mail">Email address:</label>
+            <input type="email" id="mail" name="mail" size="28" placeholder="Please enter your email">
 
-                <label for="inputPassword">Password:</label>
-                <input type="password" id="inputPassword" name="inputPassword" placeholder="Please enter your password">
+            <label for="inputPassword">Password:</label>
+            <input type="password" id="inputPassword" name="inputPassword" placeholder="Please enter your password">
 
 
 
-                <button type="submit" id="submit" name="submit" value="1">Log in</button>
-            </form>
-        </section>
-    </main>
+            <button type="submit" id="submit" name="submit" value="1">Log in</button>
+        </form>
+    </section>
+</main>
 
 
 </body>

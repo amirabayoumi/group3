@@ -3,7 +3,7 @@
 ini_set('display_errors', '1');
 ini_set('display_startup_errors', '1');
 error_reporting(E_ALL);
-
+include_once "includes/css_js.inc.php";
 require('./function.inc.php');
 requiredLoggedIn();
 
@@ -67,13 +67,21 @@ $cat = getCategory();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="css/userProfileHeader.css">
+    <!-- <link rel="stylesheet" href="css/userProfileHeader.css"> -->
     <link rel="icon" type="image/icon" href="images/Pet paradise.png" />
+    <style>
+        @font-face {
+            font-family: "Puppybellies";
+            src: url("/fonts/Puppybellies-JyRM.ttf") format("truetype");
+        }
+    </style>
+    <link rel="stylesheet" href="./dist/<?= $cssPath ?>" />
+    <script type="module" src="./dist/<?= $jsPath ?>"></script>
 </head>
 
 <body>
 
-    <header>
+    <header class="user">
         <img src="./images/Pet paradise.png" alt="logo">
         <h1><? if (isset($user['petname']) && strlen($user['petname']) > 1) {
                 print $user['petname'];

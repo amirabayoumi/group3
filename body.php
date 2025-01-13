@@ -115,87 +115,76 @@ if (isset($_GET["lang"])) {
 ?>
 
 
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="css/mainBody.css">
-</head>
-
-
-<body>
-    <?php if (!isset($_GET['detail'])): ?>
-        <section id="searchBar">
-            <form action="<?= $pageName; ?>" method="post">
-                <input type="text" id='searchname' name='searchname' placeholder="Search... ">
-                <button type="submit" id='search' name="search" class="btn btn-primary"><i class="icon-search"></i></button>
-            </form>
-        </section>
+<?php if (!isset($_GET['detail'])): ?>
+    <section id="searchBar">
+        <form action="<?= $pageName; ?>" method="post">
+            <input type="text" id='searchname' name='searchname' placeholder="Search... ">
+            <button type="submit" id='search' name="search" class="btn btn-primary"><i class="icon-search"></i></button>
+        </form>
+    </section>
 
 
-        <section id="aboutUs">
-            <div id="languagesBar"><a href="<?php $pageName; ?>?lang=en">EN</a> | <a href="<?php $pageName; ?>?lang=nl">NL</a> | <a href="<?php $pageName; ?>?lang=ar">عربي</a> | <a href="<?php $pageName; ?>?lang=ua">UA</a></a></div>
-            <h2><?= $languages['aboutUsTitle'][$lang]; ?></h2>
-            <p>
-                <?= $languages['aboutUs'][$lang]; ?>
-            </p>
-        </section>
+    <section id="aboutUs">
+        <div id="languagesBar"><a href="<?php $pageName; ?>?lang=en">EN</a> | <a href="<?php $pageName; ?>?lang=nl">NL</a> | <a href="<?php $pageName; ?>?lang=ar">عربي</a> | <a href="<?php $pageName; ?>?lang=ua">UA</a></a></div>
+        <h2><?= $languages['aboutUsTitle'][$lang]; ?></h2>
+        <p>
+            <?= $languages['aboutUs'][$lang]; ?>
+        </p>
+    </section>
 
-        <section id="categories">
+    <section id="categories">
 
-            <div>
-                <a href="<?php $pageName; ?>?cat=food"><img src="https://5.imimg.com/data5/SELLER/Default/2023/9/341168148/DH/HC/FG/158448362/dog-food-500x500.jpg" alt="food">
-                    <h5>Food</h5>
-                </a>
+        <div>
+            <a href="<?php $pageName; ?>?cat=food"><img src="https://5.imimg.com/data5/SELLER/Default/2023/9/341168148/DH/HC/FG/158448362/dog-food-500x500.jpg" alt="food">
+                <h5>Food</h5>
+            </a>
 
-            </div>
-            <div>
-                <a href="<?php $pageName; ?>?cat=toy"> <img src="https://i.etsystatic.com/38871768/r/il/76d029/6209376226/il_794xN.6209376226_1dn3.jpg" alt="toy">
-                    <h5>Toys</h5>
-                </a>
+        </div>
+        <div>
+            <a href="<?php $pageName; ?>?cat=toy"> <img src="https://i.etsystatic.com/38871768/r/il/76d029/6209376226/il_794xN.6209376226_1dn3.jpg" alt="toy">
+                <h5>Toys</h5>
+            </a>
 
-            </div>
-            <div>
-                <a href="<?php $pageName; ?>?cat=care"> <img src="https://www.animalhumanesociety.org/sites/default/files/styles/scale_width_960/public/media/image/2023-04/untitled-instagram-post-square.png.jpg?itok=cBCBr_Do" alt="care">
-                    <h5>Care</h5>
-                </a>
+        </div>
+        <div>
+            <a href="<?php $pageName; ?>?cat=care"> <img src="https://www.animalhumanesociety.org/sites/default/files/styles/scale_width_960/public/media/image/2023-04/untitled-instagram-post-square.png.jpg?itok=cBCBr_Do" alt="care">
+                <h5>Care</h5>
+            </a>
 
-            </div>
+        </div>
 
-        </section>
-        <section id="itemsCards"><?php if (count($items) > 0): ?>
+    </section>
+    <section id="itemsCards"><?php if (count($items) > 0): ?>
 
 
 
-                <?php foreach ($items as $item): ?>
-                    <article style="background-color: <?= !$item['status'] ? '#88a197e0' : ''  ?>">
+            <?php foreach ($items as $item): ?>
+                <article style="background-color: <?= !$item['status'] ? '#88a197e0' : ''  ?>">
 
-                        <div id="item">
-                            <img src="<?= $item['image']; ?>" alt="" />
-                            <div>
-                                <a href="<?= $pageName; ?>?detail=<?= $item['id']; ?>"><?= htmlspecialchars($item['title']); ?></a>
-                                <h4><?= $item['price']; ?> &#8364;</h4>
-                            </div>
-
-                            <p>
-                                <?= $item['description']; ?>
-                            </p>
-                        </div>
+                    <div id="item">
+                        <img src="<?= $item['image']; ?>" alt="" />
                         <div>
+                            <a href="<?= $pageName; ?>?detail=<?= $item['id']; ?>"><?= htmlspecialchars($item['title']); ?></a>
+                            <h4><?= $item['price']; ?> &#8364;</h4>
+                        </div>
 
-                            <p style="color: <?= !$item['status'] ? '#914f3b' : 'black'  ?>"> <?= !$item['status'] ? 'Not Available' : 'Available'  ?> </p>
-                            <form action="<?= $pageName; ?>" method="post">
-                                <button type="submit" style="visibility: <?php if (!isset($_SESSION['uid'])) {
-                                                                                print "hidden;";
-                                                                            } ?>" id=" <?php if ($item['user_id'] == $_SESSION['uid']) {
-                                                                                            print "takeOffWishItem";
-                                                                                        } else {
-                                                                                            print "addWishItem";
-                                                                                        }
-                                                                                        ?>" name="<?php if ($item['user_id'] == $_SESSION['uid']) {
+                        <p>
+                            <?= $item['description']; ?>
+                        </p>
+                    </div>
+                    <div>
+
+                        <p style="color: <?= !$item['status'] ? '#914f3b' : 'black'  ?>"> <?= !$item['status'] ? 'Not Available' : 'Available'  ?> </p>
+                        <form action="<?= $pageName; ?>" method="post">
+                            <button type="submit" style="visibility: <?php if (!isset($_SESSION['uid'])) {
+                                                                            print "hidden;";
+                                                                        } ?>" id=" <?php if ($item['user_id'] == $_SESSION['uid']) {
+                                                                                        print "takeOffWishItem";
+                                                                                    } else {
+                                                                                        print "addWishItem";
+                                                                                    }
+                                                                                    ?>" name="<?php if ($item['user_id'] == $_SESSION['uid']) {
                                                                                                         print "takeOffWishItem";
                                                                                                     } else {
                                                                                                         print "addWishItem";
@@ -208,45 +197,41 @@ if (isset($_GET["lang"])) {
 
 
                                                                                                                                         ?> </button>
-                            </form>
+                        </form>
 
-                        </div>
-                    </article>
+                    </div>
+                </article>
 
-                <?php endforeach; ?>
+            <?php endforeach; ?>
 
-            <?php else : ?>
-                <h1 id="productNotFound">Oops! Sorry, no products were found. Please try searching again or send us a request with what you're looking for, and we'll be happy to assist you </h1>
+        <?php else : ?>
+            <h1 id="productNotFound">Oops! Sorry, no products were found. Please try searching again or send us a request with what you're looking for, and we'll be happy to assist you </h1>
+        <?php endif; ?>
+    </section>
+    <section id="pagination">
+        <ul>
+            <?php
+            // This shows a "Previous" link only if the current page is greater than 1.
+            if ($currentPage > 1): ?>
+                <li><a href="<?= $pageName; ?>?page=<?= $currentPage - 1; ?>">Previous</a></li>
             <?php endif; ?>
-        </section>
-        <section id="pagination">
-            <ul>
-                <?php
-                // This shows a "Previous" link only if the current page is greater than 1.
-                if ($currentPage > 1): ?>
-                    <li><a href="<?= $pageName; ?>?page=<?= $currentPage - 1; ?>">Previous</a></li>
-                <?php endif; ?>
 
-                <?php
-                // Loop through all pages to display page numbers.
-                for ($i = 1; $i <= $pages; $i++): ?>
-                    <li <?= $i == $currentPage ? 'class="active"' : ''; ?>>
-                        <!-- Display page number as a link. "active" class added for the current page. -->
-                        <a href="<?= $pageName; ?>?page=<?= $i; ?>"><?= $i; ?></a>
-                    </li>
-                <?php endfor; ?>
+            <?php
+            // Loop through all pages to display page numbers.
+            for ($i = 1; $i <= $pages; $i++): ?>
+                <li <?= $i == $currentPage ? 'class="active"' : ''; ?>>
+                    <!-- Display page number as a link. "active" class added for the current page. -->
+                    <a href="<?= $pageName; ?>?page=<?= $i; ?>"><?= $i; ?></a>
+                </li>
+            <?php endfor; ?>
 
-                <?php
-                // Show "Next" link only if the current page is less than the total number of pages.
-                if ($currentPage < $pages): ?>
-                    <li><a href="<?= $pageName; ?>?page=<?= $currentPage + 1; ?>">Next</a></li>
-                <?php endif; ?>
-            </ul>
-        </section>
-    <?php elseif (isset($_GET['detail'])): ?>
-        <?php require("./detail.php"); ?>
-    <?php endif; ?>
-
-</body>
-
-</html>
+            <?php
+            // Show "Next" link only if the current page is less than the total number of pages.
+            if ($currentPage < $pages): ?>
+                <li><a href="<?= $pageName; ?>?page=<?= $currentPage + 1; ?>">Next</a></li>
+            <?php endif; ?>
+        </ul>
+    </section>
+<?php elseif (isset($_GET['detail'])): ?>
+    <?php require("./detail.php"); ?>
+<?php endif; ?>
