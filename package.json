@@ -1,7 +1,7 @@
 {
-  "name": "some_name",
+  "name": "pet_paradise",
   "version": "1.0.0",
-  "description": "",
+  "description": "Pet Paradise",
   "main": "vite.config.js",
   "scripts": {
     "start": "npm run dev",
@@ -12,5 +12,15 @@
     "preview:php": "php -S localhost:8080"
   },
   "author": "David Verhulst",
-  "license": "ISC"
+  "license": "ISC",
+  "directories": {
+    "example": "examples"
+  },
+  "devDependencies": {
+    "vite": "^6.0.7"
+  },
+  "keywords": [],
+  "dependencies": {
+    "vue": "^3.5.13"
+  }
 }

@@ -38,10 +38,14 @@ $cat = getCategory();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="./css/header.css">
-    <link rel="stylesheet" href="./css/icons.css">
-    <link rel="icon" type="image/icon" href="images/Pet paradise.png" />
-
+    <style>
+        @font-face {
+            font-family: "Puppybellies";
+            src: url("/fonts/Puppybellies-JyRM.ttf") format("truetype");
+        }
+    </style>
+    <link rel="stylesheet" href="./dist/<?= $cssPath ?>" />
+    <script type="module" src="./dist/<?= $jsPath ?>"></script>
 </head>
 
 <body>
@@ -55,7 +59,3 @@ $cat = getCategory();
             <i class="icon-user"></i>
         </div>
     </header>
-
-    <body>
-
-</html>

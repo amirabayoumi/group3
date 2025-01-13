@@ -41,3 +41,7 @@
         <p title="Group project Syntra">Group 3 Syntra &copy; 2024</p>
     </div>
 </footer>
+
+</body>
+
+</html>
