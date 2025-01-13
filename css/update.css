@@ -1,13 +1,13 @@
-body {
+
   main {
     margin: 2rem auto;
-    max-width: 60%;
+    max-width: 70%;
     background-color: #6ec5aa;
     border-radius: 10px;
     form {
       display: flex;
       flex-direction: column;
-      padding: 3rem;
+      padding: 2rem;
       div {
         ul {
           li {
@@ -18,12 +18,16 @@ body {
       }
       label {
         padding-top: 1rem;
+        font-family: "Comic Neue", sans serif;
+        font-size: 2.5rem;
       }
       input {
         line-height: 2.5rem;
+        font-size: 1.5rem;
       }
       select {
         height: 2.5rem;
+        font-size: 1.5rem;
         option {
           font-size: 1.5rem;
         }
@@ -38,6 +42,7 @@ body {
         height: 4rem;
         border-radius: 2rem;
         cursor: pointer;
+        font-size: 2rem;
       }
     }
   }

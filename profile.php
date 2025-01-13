@@ -26,7 +26,7 @@ if (isset($_SESSION['uid'])) {
 // print '<pre>';
 // print_r($_GET);
 // print '</pre>';
-
+$wishList = [];
 if (isset($_GET['wishlist'])) {
     $wishList = getWishlistById($_SESSION['uid']);
     // print '<pre>';
@@ -68,6 +68,7 @@ $cat = getCategory();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/userProfileHeader.css">
+    <link rel="icon" type="image/icon" href="images/Pet paradise.png" />
 </head>
 
 <body>
@@ -84,7 +85,7 @@ $cat = getCategory();
 
             <div>
                 <a href="#">Welcome, <?= $user['firstname'] ?>!</a>
-                <aside>
+                <aside id="profileDetails">
                     <div>
                         <h3>Your Profile Details</h3>
                         <p>Name: <?= $user['firstname'] ?> <?= $user['lastname'] ?></p>
@@ -110,19 +111,19 @@ $cat = getCategory();
 
     </header>
 
-    <main>
-        <section style="display:<?php if (!isset($_GET['wishlist'])) {
-                                    print "none";
-                                } else {
-                                    print "";
-                                } ?>">
+    <main id="wishlistItem">
+        <section class="wishList <?php if (!isset($_GET['wishlist'])) {
+                                        print "hide";
+                                    } else {
+                                        print "show";
+                                    } ?>">
             <?php foreach ($wishList as $wishItem): ?>
                 <article>
 
                     <div>
                         <img src=" <?= $wishItem['image']; ?>" alt="" />
                         <div>
-                            <p><?= $wishItem['title']; ?></p>
+                            <a id="wisha" href="<?= $wishItem['url']; ?>" target="_blank"><?= $wishItem['title']; ?></a>
                             <h4><?= $wishItem['price']; ?> &#8364;</h4>
                         </div>
 
@@ -157,7 +158,7 @@ $cat = getCategory();
         <?php endif; ?>
     </main>
 
-
+    <?php require("./footer.php"); ?>
 
 </body>
 
