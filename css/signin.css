@@ -1,5 +1,6 @@
 main.signin {
   display: flex;
+  flex: 1;
   justify-content: space-around;
   margin: 3rem auto;
   max-width: 1200px;
@@ -15,6 +16,7 @@ main.signin {
     label {
       display: block;
       margin-bottom: 0.5rem;
+      font-size: 1.3rem;
     }
 
     input {

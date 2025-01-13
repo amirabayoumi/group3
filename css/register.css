@@ -5,19 +5,21 @@ main.register {
   max-width: 1200px;
   min-width: 300px;
 
-  form {
+  .register-form {
     background-color: #ffffff;
     padding: 1.5rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     max-width: 600px;
-
     margin: 2rem auto;
+    
 
     h1 {
       margin-bottom: 1rem;
       padding-left: 1rem;
+      font-size: 1.5rem;
       font-weight: bold;
+
     }
 
     fieldset {
@@ -31,11 +33,13 @@ main.register {
         font-weight: bold;
         color: #244d3b;
 
-        label {
+           label {
           display: block;
           margin-bottom: 1rem;
+          font-size: 1rem;
           font-weight: bold;
         }
+      
       }
     }
 
@@ -76,6 +80,7 @@ main.register {
           }
 
           label {
+          
             font-size: 20px;
             width: 90%;
             white-space: nowrap;

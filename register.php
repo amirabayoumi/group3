@@ -1,30 +1,21 @@
 <?php
-$errors = [];
+
 include_once "includes/css_js.inc.php";
 require("./header.php");
 require_once("./function.inc.php");
 requiredLoggedOut();
 
 
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
-
-$userList = getUser();
+// ini_set('display_errors', '1');
+// ini_set('display_startup_errors', '1');
+// error_reporting(E_ALL);
 
 // print "<pre>";
 // print_r($_POST);
 // print "</pre>";
 
-// print "<pre>";
-// print_r($userList);
-// print "</pre>";
 
-// print '<pre>';
-// print_r($_SESSION);
-// print '</pre>';
-
-
+$errors = [];
 $firstname = "";
 $lastname = "";
 $mail = "";
@@ -120,15 +111,11 @@ if (isset($_POST['submit'])) {
 }
 
 
-// print "<pre>";
-// print_r($errors);
-// print "</pre>";
-
 ?>
 
 
 <main class="register">
-    <form action="./register.php" method="post">
+    <form action="./register.php" method="post" class="register-form">
         <h1>New Customer</h1>
 
         <p> </p>
@@ -204,8 +191,4 @@ if (isset($_POST['submit'])) {
 
     </form>
 </main>
-
-</body>
-
-
-</html>
+<?php require("./footer.php"); ?>

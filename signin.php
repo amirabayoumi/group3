@@ -5,9 +5,9 @@ require_once("./function.inc.php");
 requiredLoggedOut();
 
 
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ALL);
+// ini_set('display_errors', '1');
+// ini_set('display_startup_errors', '1');
+// error_reporting(E_ALL);
 
 // $userList = getUser();
 
@@ -52,9 +52,6 @@ if (isset($_POST['mail'])) {
     }
 }
 
-// print "<pre>";
-// print_r($errors);
-// print "</pre>";
 
 ?>
 
@@ -89,6 +86,4 @@ if (isset($_POST['mail'])) {
 </main>
 
 
-</body>
-
-</html>
+<?php require("./footer.php"); ?>

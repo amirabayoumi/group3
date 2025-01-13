@@ -14,7 +14,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 358px); /* Враховує висоту header та footer */
+    min-height: calc(100vh - 358px);
     padding: 1rem;
 
     main {
@@ -107,25 +107,4 @@ body {
     width: 100%;
     padding: 1rem;
   }
-
-  /* #productDetails {
-    img {
-      width: 100%;
-      margin-bottom: 1rem;
-    }
-  }
-
-  aside {
-    margin-top: 2rem;
-    padding: 1rem;
-  }
-
-  form {
-    margin-top: 1.5rem;
-  }
-
-  form button {
-    width: 100%;
-    padding: 1rem;
-  } */
 }
