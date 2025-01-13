@@ -116,73 +116,72 @@ body {
       }
     }
   }
-  main {
-    section:nth-child(1) {
-      margin: 4rem 2rem;
-      display: grid;
-      place-self: center;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
 
-      article {
-        padding: 1.5rem;
-        border-radius: 5px;
-        background-color: #6ec5aa;
+  #wishlistItem {
+    margin: 4rem 2rem;
+    display: grid;
+    place-self: center;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
 
-        > div {
-          &:nth-child(1) {
-            img {
-              width: 100%;
-              aspect-ratio: 1/1;
-              display: grid;
-              place-self: center;
-            }
+    article {
+      padding: 1.5rem;
+      border-radius: 5px;
+      background-color: #6ec5aa;
 
-            > div {
-              font-size: 20px;
-              font-weight: 600;
-              display: flex;
-              padding: 1rem 0;
-              justify-content: space-between;
+      > div {
+        &:nth-child(1) {
+          img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            display: grid;
+            place-self: center;
+          }
 
-              a {
-                text-decoration: none;
-                color: #123022;
-              }
-            }
+          > div {
+            font-size: 20px;
+            font-weight: 600;
+            display: flex;
+            padding: 1rem 0;
+            justify-content: space-between;
 
-            > p {
-              min-height: 5vh;
-              font-size: 15px;
+            a {
+              text-decoration: none;
+              color: #123022;
             }
           }
 
-          &:nth-child(2) {
-            margin-top: 1rem;
-            padding-top: 2rem;
-            display: flex;
-            justify-content: space-between;
-            border-top: 1px solid white;
+          > p {
+            min-height: 5vh;
+            font-size: 15px;
+          }
+        }
 
-            p {
-              font-size: 14px;
-              color: darkslategrey;
-              white-space: nowrap;
-            }
+        &:nth-child(2) {
+          margin-top: 1rem;
+          padding-top: 2rem;
+          display: flex;
+          justify-content: space-between;
+          border-top: 1px solid white;
 
-            form {
-              button {
-                padding: 0.2rem 1rem;
-                text-decoration: none;
-                background-color: white;
-                border: none;
-                border-radius: 5px;
-                font-size: 20px;
-                color: #244d3b;
-                &:hover {
-                  background-color: #244d3b;
-                  color: #ffffff;
-                }
+          p {
+            font-size: 14px;
+            color: darkslategrey;
+            white-space: nowrap;
+          }
+
+          form {
+            button {
+              padding: 0.2rem 1rem;
+              text-decoration: none;
+              background-color: white;
+              border: none;
+              border-radius: 5px;
+              font-size: 20px;
+              color: #244d3b;
+              &:hover {
+                background-color: #244d3b;
+                color: #ffffff;
               }
             }
           }
