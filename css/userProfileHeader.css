@@ -1,118 +1,116 @@
-body {
-  header.user {
-    background-color: var(--header-bg);
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    white-space: nowrap;
+header.user {
+  background-color: var(--header-bg);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  white-space: nowrap;
 
-    padding: 10px 30px;
-    color: var(--header-title-color);
+  padding: 10px 30px;
+  color: var(--header-title-color);
 
-    img {
-      max-width: 80px;
-      height: auto;
-      border-radius: 50%;
-    }
+  img {
+    max-width: 80px;
+    height: auto;
+    border-radius: 50%;
+  }
 
-    h1 {
-      place-self: center;
-      font-size: 40px;
-      font-family: var(--font-header-title);
-    }
+  h1 {
+    place-self: center;
+    font-size: 40px;
+    font-family: var(--font-header-title);
+  }
+
+  > div {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-size: 15px;
+    gap: 2rem;
 
     > div {
-      display: flex;
-      justify-content: end;
-      align-items: center;
-      font-size: 15px;
-      gap: 2rem;
+      position: relative;
+      z-index: 1;
+      > a {
+        color: var(--header-signin-color);
+        text-decoration: none;
+      }
 
-      > div {
-        position: relative;
-        z-index: 1;
-        > a {
-          color: var(--header-signin-color);
-          text-decoration: none;
+      aside {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        h3 {
+          display: none;
         }
+        > div {
+          display: none;
+        }
+        a {
+          display: none;
+        }
+        &:hover {
+          display: grid;
+          grid-template-columns: 2fr 1fr;
+          border-radius: 10px;
+          font-size: 15px;
+          padding: 0.5rem;
+          background-color: #6ec5aa;
+          border: 1px solid #244d3b;
+          width: 500px;
+          height: 250px;
+          transform: translate(0, 15px);
 
-        aside {
-          position: absolute;
-          right: 0;
-          top: 0;
-          width: 100%;
-          height: 100%;
-          h3 {
-            display: none;
-          }
           > div {
-            display: none;
-          }
-          a {
-            display: none;
-          }
-          &:hover {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            border-radius: 10px;
-            font-size: 15px;
+            font-size: 17px;
             padding: 0.5rem;
-            background-color: #6ec5aa;
-            border: 1px solid #244d3b;
-            width: 500px;
-            height: 250px;
-            transform: translate(0, 15px);
-
-            > div {
-              font-size: 17px;
+            border-radius: 10px;
+            color: #244d3b;
+            &:nth-child(1) {
               padding: 0.5rem;
-              border-radius: 10px;
-              color: #244d3b;
-              &:nth-child(1) {
-                padding: 0.5rem;
+              text-align: center;
+              margin: 1rem;
+              gap: 1rem;
+              background-color: white;
+              display: flex;
+              flex-direction: column;
+              h3 {
+                display: block;
                 text-align: center;
-                margin: 1rem;
-                gap: 1rem;
-                background-color: white;
-                display: flex;
-                flex-direction: column;
-                h3 {
-                  display: block;
-                  text-align: center;
-                  font-weight: 600;
-                  padding-bottom: 0.5rem;
-                  border-bottom: 1px solid #244d3b;
-                }
+                font-weight: 600;
+                padding-bottom: 0.5rem;
+                border-bottom: 1px solid #244d3b;
               }
-              &:nth-child(2) {
-                display: grid;
-                grid-template-columns: 1fr;
-                align-items: center;
+            }
+            &:nth-child(2) {
+              display: grid;
+              grid-template-columns: 1fr;
+              align-items: center;
 
-                > a {
-                  text-align: center;
-                  background-color: #ffffff;
-                  display: inline-block;
-                  text-decoration: none;
-                  color: #244d3b;
-                  padding: 1rem;
-                  &:hover {
-                    background-color: #244d3b;
-                    color: white;
-                  }
+              > a {
+                text-align: center;
+                background-color: #ffffff;
+                display: inline-block;
+                text-decoration: none;
+                color: #244d3b;
+                padding: 1rem;
+                &:hover {
+                  background-color: #244d3b;
+                  color: white;
                 }
               }
             }
           }
         }
       }
-      > a {
-        color: var(--header-signin-color);
-        text-decoration: none;
+    }
+    > a {
+      color: var(--header-signin-color);
+      text-decoration: none;
 
-        &:hover {
-          text-decoration: underline;
-          transform: scale(1.2);
-        }
+      &:hover {
+        text-decoration: underline;
+        transform: scale(1.2);
       }
     }
   }
