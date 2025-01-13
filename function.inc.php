@@ -339,6 +339,15 @@ function getProductByID(Int $id)
     return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
+function getProductForDetails(Int $id)
+{
+    $sql = "SELECT * FROM product left join wishlist on product.id = wishlist.product_id where id=:id;";
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute([
+        ':id' => $id
+    ]);
+    return $stmt->fetch(PDO::FETCH_ASSOC);
+}
 
 function deleteProduct(int $id)
 {

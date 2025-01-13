@@ -1,0 +1,131 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css);
+@import url("https://fonts.googleapis.com/css2?family=Comic+Neue:wght@300;400;700&display=swap");
+
+/* General body styles */
+body {
+  font-family: "Comic Neue", sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+
+  /* Main section for product details */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 358px); /* Враховує висоту header та footer */
+    padding: 1rem;
+
+    main {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      background-color: #ffffff;
+      border: 2px solid #6ec5aa;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      max-width: 1200px;
+      width: 90%;
+    }
+  }
+
+  #productDetails {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      max-width: 100%;
+      width: 500px;
+      height: auto;
+      border-radius: 5px;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #244d3b;
+      margin: 0 0 0.5rem;
+    }
+    p {
+      font-size: 20px;
+      font-weight: 700;
+      color: #244d3b;
+    }
+  }
+
+  aside#productDescription {
+    background-color: #6ec5aa;
+    padding: 1.5rem;
+    border-radius: 10px;
+    font-size: 15px;
+    color: #244d3b;
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #123022;
+      margin-top: 0;
+      padding-bottom: 1rem;
+    }
+    p {
+      font-size: 1.2rem;
+      line-height: 1.5rem;
+      margin: 0.5rem 0;
+    }
+  }
+
+  /* Wishlist button */
+  form {
+    display: flex;
+    justify-content: center;
+
+    button {
+      margin-top: 1rem;
+      padding: 0.5rem 1.5rem;
+      font-size: 1.3rem;
+      color: #244d3b;
+      background-color: #96e7c5;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+
+      &:hover {
+        background-color: #244d3b;
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  body .container main {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  /* #productDetails {
+    img {
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+  }
+
+  aside {
+    margin-top: 2rem;
+    padding: 1rem;
+  }
+
+  form {
+    margin-top: 1.5rem;
+  }
+
+  form button {
+    width: 100%;
+    padding: 1rem;
+  } */
+}

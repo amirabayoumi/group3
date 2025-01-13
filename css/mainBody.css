@@ -148,7 +148,7 @@ body {
   margin: 4rem 2rem;
   display: grid;
   place-self: center;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 0.5rem;
 
   article {
@@ -175,6 +175,11 @@ body {
           padding: 1rem 0;
           justify-content: space-between;
           gap: 1rem;
+
+          a {
+            text-decoration: none;
+            color: #123022;
+          }
 
           h4 {
             white-space: nowrap;
