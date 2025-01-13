@@ -50,10 +50,10 @@ if (isset($_GET['detail'])) {
         <main>
             <section id="productDetails">
                 <h1 id="productTitle"><?= htmlspecialchars($product['title']); ?></h1>
-                <img src="<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['title']); ?>">
+                <a href="<?= $product['url']; ?>"><img src="<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['title']); ?>"></a>
                 <p><strong>Price:</strong> <?= $product['price']; ?> &#8364;</p>
             </section>
-            <aside>
+            <aside id="productDescription">
                 <h2>Description</h2>
                 <p><?= htmlspecialchars($product['description']); ?></p>
             </aside>

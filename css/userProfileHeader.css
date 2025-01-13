@@ -172,7 +172,9 @@ body {
               padding: 1rem 0;
               justify-content: space-between;
 
-              p {
+              a {
+                text-decoration: none;
+                color: #123022;
               }
 
               h4 {

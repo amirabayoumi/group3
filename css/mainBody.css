@@ -148,7 +148,7 @@ body {
   margin: 4rem 2rem;
   display: grid;
   place-self: center;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 0.5rem;
 
   article {
@@ -176,16 +176,11 @@ body {
           justify-content: space-between;
           gap: 1rem;
 
-<<<<<<< HEAD
-          p {
-            a{
-              text-decoration: none;
-              color: #123022;
-            }
+          a {
+            text-decoration: none;
+            color: #123022;
           }
 
-=======
->>>>>>> 23532e98dbebc43de9af4db37198d824a6b1fce9
           h4 {
             white-space: nowrap;
           }

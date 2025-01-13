@@ -55,7 +55,7 @@ body {
     }
   }
 
-  aside {
+  aside#productDescription {
     background-color: #6ec5aa;
     padding: 1.5rem;
     border-radius: 10px;

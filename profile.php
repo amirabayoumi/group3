@@ -111,7 +111,7 @@ $cat = getCategory();
 
     </header>
 
-    <main>
+    <main id="wishlistItem">
         <section class="wishList <?php if (!isset($_GET['wishlist'])) {
                                         print "hide";
                                     } else {
@@ -123,7 +123,7 @@ $cat = getCategory();
                     <div>
                         <img src=" <?= $wishItem['image']; ?>" alt="" />
                         <div>
-                            <p><?= $wishItem['title']; ?></p>
+                            <a id="wisha" href="<?= $wishItem['url']; ?>" target="_blank"><?= $wishItem['title']; ?></a>
                             <h4><?= $wishItem['price']; ?> &#8364;</h4>
                         </div>
 
