@@ -62,7 +62,8 @@ if (isset($_POST['formSubmit'])) {
         // insert into db
         $id = insertOgLink($inputUrl, $ogtitle, $ogdescription, $ogimage, $ogprice, $cat);
         unset($_POST);
-        $AddMessage = "Product added successfully";
+        header("Location: adminaddproduct.php?message= Product added successfully");
+        // $AddMessage = "";
         if (!$id) {
             $errors[] = "Something unexplainable happened...";
         }
