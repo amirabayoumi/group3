@@ -30,6 +30,10 @@ if (isset($_GET['detail'])) {
     $productId = (int)$_GET['detail'];
     $product = getProductForDetails($productId);
 }
+
+// print '<pre>';
+// print_r($product);
+// print '</pre>';
 ?>
 
 
@@ -66,11 +70,11 @@ if (isset($_GET['detail'])) {
                                                                             print "addWishItem";
                                                                         }
                                                                         ?>" name="<?php if ($product['user_id'] == $_SESSION['uid']) {
-                                                                                    print "takeOffWishItem";
-                                                                                } else {
-                                                                                    print "addWishItem";
-                                                                                }
-                                                                                ?>" value=" <?= $product['id']; ?>"> <?php if (isset($_SESSION['uid']) && $product['user_id'] == $_SESSION['uid']) {
+                                                                                        print "takeOffWishItem";
+                                                                                    } else {
+                                                                                        print "addWishItem";
+                                                                                    }
+                                                                                    ?>" value=" <?= $product['id']; ?>"> <?php if (isset($_SESSION['uid']) && $product['user_id'] == $_SESSION['uid']) {
                                                                                                                                 print "&#x2665;";
                                                                                                                             } elseif (isset($_SESSION['uid']) && $product['user_id'] != $_SESSION['uid']) {
                                                                                                                                 print " Add &#x2665;";

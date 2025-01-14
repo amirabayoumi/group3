@@ -99,9 +99,8 @@ $cat = getCategory();
                         <p>Country: <?= $user['country'] ?></p>
                         <p>UserName: <?= $user['username'] ?></p>
                         <p>Email: <?= $user['mail'] ?></p>
-                        <?php if (strlen($user['petname']) > 1): ?>
-                            <p> Pet Name : <?= $user['petname'] ?></p>
-                        <?php endif; ?>
+                        <p> <?= isset($user['petname']) ? "Pet Name :" .  $user['petname'] : '' ?></p>
+
                     </div>
                     <div> <a href="profile.php?updateProfile">Edit Profile</a>
                         <a href="profile.php?deleteProfile">Delete Profile</a>
