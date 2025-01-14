@@ -118,7 +118,7 @@ if (isset($_GET["lang"])) {
 
 <?php if (!isset($_GET['detail'])): ?>
     <section id="searchBar">
-        <form action="<?= $pageName; ?>" method="post">
+        <form id="searchForm" action="<?= $pageName; ?>" method="post">
             <input type="text" id='searchname' name='searchname' placeholder="Search... ">
             <button type="submit" id='search' name="search" class="btn btn-primary"><i class="icon-search"></i></button>
         </form>
@@ -185,11 +185,11 @@ if (isset($_GET["lang"])) {
                                                                                         print "addWishItem";
                                                                                     }
                                                                                     ?>" name="<?php if ($item['user_id'] == $_SESSION['uid']) {
-                                                                                                        print "takeOffWishItem";
-                                                                                                    } else {
-                                                                                                        print "addWishItem";
-                                                                                                    }
-                                                                                                    ?>" value=" <?= $item['id']; ?>"> <?php if (isset($_SESSION['uid']) && $item['user_id'] == $_SESSION['uid']) {
+                                                                                                    print "takeOffWishItem";
+                                                                                                } else {
+                                                                                                    print "addWishItem";
+                                                                                                }
+                                                                                                ?>" value=" <?= $item['id']; ?>"> <?php if (isset($_SESSION['uid']) && $item['user_id'] == $_SESSION['uid']) {
                                                                                                                                             print "&#x2665;";
                                                                                                                                         } elseif (isset($_SESSION['uid']) && $item['user_id'] != $_SESSION['uid']) {
                                                                                                                                             print " Add &#x2665;";

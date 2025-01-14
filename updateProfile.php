@@ -62,7 +62,7 @@ if (@$_POST['submit_edit']) {
 
 
 
-<form action="./profile.php?updateProfile" method="post">
+<form id="updateForm" action="./profile.php?updateProfile" method="post">
     <?php if (count($errors)): ?>
         <div>
             <ul>

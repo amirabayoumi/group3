@@ -44,10 +44,10 @@ if (isset($_GET['detail'])) {
 
 </head>
 
-<body>
+<div id="detailBody">
     <title><?= htmlspecialchars($product['title']); ?></title>
-    <div class="container">
-        <main>
+    <div id="detailContainer">
+        <div id="detailMain">
             <section id="productDetails">
                 <h1 id="productTitle"><?= htmlspecialchars($product['title']); ?></h1>
                 <a href="<?= $product['url']; ?>"><img src="<?= htmlspecialchars($product['image']); ?>" alt="<?= htmlspecialchars($product['title']); ?>"></a>
@@ -66,11 +66,11 @@ if (isset($_GET['detail'])) {
                                                                             print "addWishItem";
                                                                         }
                                                                         ?>" name="<?php if ($product['user_id'] == $_SESSION['uid']) {
-                                                                                        print "takeOffWishItem";
-                                                                                    } else {
-                                                                                        print "addWishItem";
-                                                                                    }
-                                                                                    ?>" value=" <?= $product['id']; ?>"> <?php if (isset($_SESSION['uid']) && $product['user_id'] == $_SESSION['uid']) {
+                                                                                    print "takeOffWishItem";
+                                                                                } else {
+                                                                                    print "addWishItem";
+                                                                                }
+                                                                                ?>" value=" <?= $product['id']; ?>"> <?php if (isset($_SESSION['uid']) && $product['user_id'] == $_SESSION['uid']) {
                                                                                                                                 print "&#x2665;";
                                                                                                                             } elseif (isset($_SESSION['uid']) && $product['user_id'] != $_SESSION['uid']) {
                                                                                                                                 print " Add &#x2665;";
@@ -80,6 +80,6 @@ if (isset($_GET['detail'])) {
                                                                                                                             ?> </button>
 
             </form>
-        </main>
+        </div>
     </div>
-</body>
+</div>

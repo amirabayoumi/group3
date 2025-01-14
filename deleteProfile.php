@@ -23,8 +23,7 @@ if (isset($_POST['cancel'])) {
 
 ?>
 <div class="deleteUserProfile">
-
-    <form action="deleteProfile.php" method="post">
+    <form action="deleteProfile.php" method="post" id="deleteForm">
         <h1>Are you sure you want to delete your profile?</h1>
         <section>
             <button type="submit" name="deleteUser">Yes, I'm sure!</button>

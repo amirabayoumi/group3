@@ -127,7 +127,7 @@ if (isset($_POST['submit'])) {
 ?>
 
 
-<main class="register">
+<main id="register">
     <form action="./register.php" method="post">
         <h1>New Customer</h1>
 

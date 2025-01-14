@@ -33,6 +33,7 @@ body {
         > a {
           color: var(--header-signin-color);
           text-decoration: none;
+          font-size: 15px;
         }
 
         aside {
@@ -116,18 +117,23 @@ body {
       }
     }
   }
-  main {
-    section:nth-child(1) {
+  #wishlistItem {
+    .wishList.hide {
+      margin: 0;
+    }
+    .wishList {
       margin: 4rem 2rem;
       display: grid;
       place-self: center;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 2rem;
 
       article {
         padding: 1.5rem;
         border-radius: 5px;
         background-color: #6ec5aa;
+        display: grid;
+        grid-template-rows: auto 50px;
 
         > div {
           &:nth-child(1) {
@@ -136,6 +142,7 @@ body {
               aspect-ratio: 1/1;
               display: grid;
               place-self: center;
+              background-color: white;
             }
 
             > div {
@@ -159,10 +166,12 @@ body {
 
           &:nth-child(2) {
             margin-top: 1rem;
-            padding-top: 2rem;
+            padding-top: 1rem;
             display: flex;
             justify-content: space-between;
             border-top: 1px solid white;
+            align-items: center;
+            height: 50px;
 
             p {
               font-size: 14px;
@@ -192,30 +201,9 @@ body {
   }
 }
 
-/* @media screen and (max-width: 480px) {
-  body header {
-    padding: 10px;
-
-    img {
-      max-width: 60px;
-      height: auto;
-      border-radius: 50%;
-    }
-
-    h1 {
-      font-size: 25px;
-    }
-
-    div {
-      align-items: center;
-      gap: 5px;
-    }
-  }
-} */
-
 /* copy same header media query */
 @media screen and (max-width: 900px) {
-  body header {
+  body header.user {
     display: flex;
     flex-wrap: wrap;
     padding: 10px;
@@ -240,10 +228,10 @@ body {
       justify-content: flex-end;
     }
   }
-  body header div div aside#profileDetails > div:nth-child(1) {
+  body header.user div div aside#profileDetails > div:nth-child(1) {
     display: none;
   }
-  body header div div aside#profileDetails {
+  body header.user div div aside#profileDetails {
     white-space: nowrap;
     &:hover {
       display: grid;
@@ -258,7 +246,7 @@ body {
 }
 
 @media screen and (max-width: 650px) {
-  body header {
+  body header.user {
     flex-direction: column;
     align-items: center;
 
