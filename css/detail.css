@@ -1,5 +1,5 @@
 /* General body styles */
-body {
+#detailBody {
   font-family: var(--font-body);
   margin: 0;
   padding: 0;
@@ -7,14 +7,14 @@ body {
   min-height: 100vh;
 
   /* Main section for product details */
-  .container {
+  #detailContainer {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - 358px); /* Враховує висоту header та footer */
     padding: 1rem;
 
-    main {
+    #detailMain {
       padding: 2rem;
       display: grid;
       grid-template-columns: 2fr 1fr;
@@ -23,7 +23,7 @@ body {
       border: 2px solid #6ec5aa;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      max-width: 1200px;
+      max-width: 1000px;
       width: 90%;
     }
   }
@@ -76,10 +76,10 @@ body {
   form {
     display: flex;
     justify-content: center;
+    align-items: center;
 
     button {
       margin-top: 1rem;
-      padding: 0.5rem 1.5rem;
       font-size: 1.3rem;
       color: #244d3b;
       background-color: #96e7c5;
@@ -87,6 +87,7 @@ body {
       border-radius: 10px;
       cursor: pointer;
       transition: all 0.3s;
+      aspect-ratio: 1/1;
 
       &:hover {
         background-color: #244d3b;
@@ -97,32 +98,11 @@ body {
 }
 
 @media (max-width: 800px) {
-  body .container main {
+  #detailBody #detailContainer #detailMain {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
     width: 100%;
     padding: 1rem;
   }
-
-  /* #productDetails {
-    img {
-      width: 100%;
-      margin-bottom: 1rem;
-    }
-  }
-
-  aside {
-    margin-top: 2rem;
-    padding: 1rem;
-  }
-
-  form {
-    margin-top: 1.5rem;
-  }
-
-  form button {
-    width: 100%;
-    padding: 1rem;
-  } */
 }

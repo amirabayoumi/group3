@@ -37,7 +37,7 @@ $cat = getCategory();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pet Paradise</title>
     <style>
         @font-face {
             font-family: "Puppybellies";
@@ -45,6 +45,8 @@ $cat = getCategory();
         }
     </style>
     <link rel="stylesheet" href="./dist/<?= $cssPath ?>" />
+    <link rel="icon" type="image/icon" href="images/Pet paradise.png" />
+
     <script type="module" src="./dist/<?= $jsPath ?>"></script>
 </head>
 

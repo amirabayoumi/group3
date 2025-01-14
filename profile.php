@@ -66,8 +66,7 @@ $cat = getCategory();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- <link rel="stylesheet" href="css/userProfileHeader.css"> -->
+    <title>Pet Paradise</title>
     <link rel="icon" type="image/icon" href="images/Pet paradise.png" />
     <style>
         @font-face {
@@ -144,7 +143,7 @@ $cat = getCategory();
 
 
                         <p style="color: <?= !$wishItem['status'] ? '#914f3b' : 'black'  ?>"> <?= !$wishItem['status'] ? 'Not Available' : 'Available'  ?> </p>
-                        <form action="profile.php?wishlist" method="post">
+                        <form class="wishListForm" action="profile.php?wishlist" method="post">
                             <button type="submit" name="takeOffWishItem" id="takeOffWishItem" value="<?= $wishItem['product_id']; ?>">&#x2665;</button>
                         </form>
                     </div>

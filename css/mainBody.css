@@ -3,9 +3,11 @@
   margin: 1rem;
   width: auto;
 
-  form {
+  #searchForm {
     position: relative;
     height: 100%;
+    display: block;
+    padding: 0;
 
     input {
       width: auto;
@@ -19,6 +21,7 @@
       color: white;
       font-size: 1.5rem;
       font-weight: 500;
+      line-height: 0;
 
       &::placeholder {
         color: white;
@@ -38,6 +41,7 @@
       right: 0;
       top: 7.5px;
       cursor: pointer;
+      height: 3rem;
     }
   }
 }
@@ -117,11 +121,12 @@
 }
 
 #itemsCards {
-  margin: 4rem 2rem;
+  margin: 4rem auto;
   display: grid;
   place-self: center;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 0.5rem;
+  width: 90%;
 
   article {
     padding: 1.5rem;
@@ -162,6 +167,9 @@
           font-size: 15px;
         }
       }
+      form {
+        padding: 0;
+      }
 
       &:nth-child(2) {
         margin-top: 1rem;
@@ -186,6 +194,7 @@
           border-radius: 5px;
           font-size: 20px;
           color: #244d3b;
+          height: 2rem;
 
           &:hover {
             background-color: #244d3b;
@@ -201,6 +210,7 @@
   font-size: 30px;
   text-align: center;
   color: #244d3b;
+  grid-column: 1/-1;
 }
 
 #pagination {

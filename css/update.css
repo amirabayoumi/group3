@@ -1,8 +1,11 @@
-main {
-  margin: 2rem auto;
-  max-width: 70%;
-  /* background-color: #6ec5aa; */
+#wishlistItem {
   border-radius: 10px;
+  form.wishListForm {
+    padding: 0;
+    button {
+      height: 2.5rem;
+    }
+  }
   form {
     display: flex;
     flex-direction: column;
@@ -44,14 +47,30 @@ main {
       font-size: 2rem;
     }
   }
+  #updateForm {
+    background-color: #6ec5aa;
+    border-radius: 10px;
+    max-width: 50%;
+    margin: 2rem auto;
+    label {
+      font-size: 1.5rem;
+    }
+    input {
+      font-size: 1.2rem;
+    }
+    select {
+      font-size: 1.2rem;
+      option {
+        font-size: 1.2rem;
+      }
+    }
+  }
 }
 
 @media (max-width: 600px) {
-  body {
-    main {
-      max-width: 100%;
-      margin: 0;
-      border-radius: 0;
-    }
+  #wishlistItem {
+    max-width: 100%;
+    margin: 0;
+    border-radius: 0;
   }
 }
