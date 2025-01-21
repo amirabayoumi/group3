@@ -45,6 +45,9 @@ requiredLoggedInAdmin();
         <a href="./adminaddproduct.php" title="Oversee products, Add product, Delete product and keep inventory organized.">
             <p> Product Management </p>
         </a>
+        <a href="./uploadlogo.php" title="upload new seasonal logo">
+            <p> Upload new seasonal logo </p>
+        </a>
     </main>
 
 </body>

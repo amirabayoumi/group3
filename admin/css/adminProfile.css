@@ -23,7 +23,7 @@ body {
     margin-top: 4rem;
     width: 50%;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
     place-self: center;
 
