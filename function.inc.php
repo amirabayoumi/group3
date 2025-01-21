@@ -407,3 +407,27 @@ function deleteProductFromWishlist(int $productId, Int $userId)
 //     $stmt->execute([]);
 //     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 // }
+
+
+// function to upload image 
+
+function getDbImages(): array
+{
+    $sql = "SELECT * FROM dbimages";
+
+    $stmt = connectToDB()->prepare($sql);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function insertDbImage(String $path): bool|int
+{
+    $db = connectToDB();
+    $sql = "INSERT INTO dbimages(path) VALUES (:path)";
+    $stmt = $db->prepare($sql);
+    $stmt->execute([
+        'path' => $path,
+    ]);
+
+    return $db->lastInsertId();
+}
